@@ -10,12 +10,11 @@
 <script>
 
 useSeoMeta({
-  title: 'Rosen Kelly Conway Architecture & Design Firm | Residential / Commercial | Summit NJ',
-  ogTitle: 'Rosen Kelly Conway Architecture & Design Firm | Residential / Commercial | Summit NJ',
-  description: 'Rosen Kelly Conway Architecture & Design: Embracing design heritage with a modern vision.',
-  ogDescription: 'Rosen Kelly Conway Architecture & Design: Embracing design heritage with a modern vision.',
-  ogImage: 'https://rkcad.com/images/fb-image.jpg',
-  ogUrl: 'https://rkcad.com',
+  title: 'frayednot - Uncompromised Sound. Unseen Experience.',
+  ogTitle: 'frayednot - Uncompromised Sound. Unseen Experience.',
+  description: 'For over 20 years, frayednot has specialized in creating unique audio/video integration experiences. No project has been the same, it is always custom to fit the experience you envision.',
+  ogDescription: 'For over 20 years, frayednot has specialized in creating unique audio/video integration experiences. No project has been the same, it is always custom to fit the experience you envision.',
+  ogUrl: 'https://frayednot.net',
   twitterCard: 'summary_large_image',
 })
 </script>

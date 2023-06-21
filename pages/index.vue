@@ -47,6 +47,7 @@ definePageMeta({
   .swiper-slide {
     background-color: rgba(0, 0, 0, 0.35);
     background-blend-mode: darken;
+    animation: bg-animation 9s ease-in-out infinite;
     h4 {
       font-size: 8vw;
       opacity: 0.1;
@@ -60,6 +61,19 @@ definePageMeta({
   }
   h1 {
     font-size: 10px;
+  }
+}
+@keyframes bg-animation {
+  0% {
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+
+  50% {
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+
+  100% {
+    background-color: rgba(0, 0, 0, 0.35);
   }
 }
 </style>
