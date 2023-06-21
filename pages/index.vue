@@ -10,8 +10,8 @@
       </swiper-slide>
     </swiper>
     <div class="absolute z-10 flex items-center justify-center flex-col">
-      <img src="/assets/images/logo.png" alt="frayednot Logo" class="mt-4 md:mt-0 logo" />
-
+      <img src="/assets/images/logo2.png" alt="frayednot Logo" class="mt-4 md:mt-0 logo" />
+     
       <h3 class="font-serif uppercase mt-6 text-center">Uncompromised Sound. <span class="block sm:inline-block">Unseen Experience.</span></h3>
       <h1 class="uppercase mt-12 mb-6">a new digital experience coming soon.</h1>
     </div>
@@ -54,9 +54,9 @@ definePageMeta({
     }
   }
   .logo {
-    width: 200px;
+    width: 250px;
     @media (min-width: theme('screens.md')) {
-      width: 250px;
+      width: 300px;
     }
   }
   h1 {
