@@ -54,21 +54,21 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          'HelveticaNeueW01-Thin',
+          'Avenir Next LT W01 Light',
           'Helvetica Neue',
           'Helvetica',
           'Arial',
           'sans-serif',
         ],
         body: [
-          'HelveticaNeueW01-Thin',
+          'Avenir Next LT W01 Light',
           'Helvetica Neue',
           'Helvetica',
           'Arial',
           'sans-serif',
         ],
         bold: [
-          'HelveticaNeueW01-45Ligh',
+          'Avenir Next LT W01 Regular',
           'Helvetica Neue',
           'Helvetica',
           '-apple-system',
@@ -77,7 +77,7 @@ module.exports = {
           'sans-serif',
         ],
         light: [
-          'Helvetica Neue LT W05_25 Ult Lt',
+          'Avenir Next LT W01 Light',
           'Helvetica Neue',
           'Helvetica',
           'Arial',

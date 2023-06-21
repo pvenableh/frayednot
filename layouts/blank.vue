@@ -1,25 +1,14 @@
 <template>
   <div
     class="min-h-screen w-full transition duration-150 bg-white overflow-hidden flex items-center justify-start flex-col relative">
-    <input id="nav-drawer-toggle" type="checkbox" class="hidden" />
-    <input id="profile-toggle" type="checkbox" class="hidden" />
-    <input id="application-toggle" type="checkbox" class="hidden" />
-    <div class="w-full flex items-center justify-center flex-col min-h-screen page__content">
-      <LayoutHeader />
-      <div class="w-full mx-auto min-h-screen relative">
+    
         <slot />
-      </div>
-      <LayoutFooter />
-    </div>
-    <transition name="screen">
-      <LayoutScreen v-if="screen" />
-    </transition>
-    <LayoutNavDrawer />
+  
 
   </div>
 </template>
 <script>
-import { screen } from '~~/composables/useScreen'
+
 useSeoMeta({
   title: 'Rosen Kelly Conway Architecture & Design Firm | Residential / Commercial | Summit NJ',
   ogTitle: 'Rosen Kelly Conway Architecture & Design Firm | Residential / Commercial | Summit NJ',

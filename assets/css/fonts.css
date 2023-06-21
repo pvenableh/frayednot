@@ -1,4 +1,13 @@
-@import url('https://fast.fonts.net/t/1.css?apiType=css&projectid=fc18d970-c0d6-4bd4-b982-93d12102f11f');
+@import url("http://fast.fonts.net/t/1.css?apiType=css&projectid=8e0f19c9-e2ae-4552-9ba4-6219543596ab");
+@font-face{
+  font-family:"Avenir Next LT W01 Light";
+  src:url("../fonts/670c4af6-0f8f-4dfa-89d7-0213a1f77b7d.woff2") format("woff2"),url("../fonts/b25f4dd5-5498-47ad-bf13-ed8d085f0ace.woff") format("woff");
+}
+@font-face{
+  font-family:"Avenir Next LT W01 Regular";
+  src:url("../fonts/c4691e94-080d-4452-8f9f-8b3db6b68d55.woff2") format("woff2"),url("../fonts/a1adabe6-efe5-40b7-b619-48111c8ff883.woff") format("woff");
+}
+
 @font-face {
   font-family: 'Cinzel';
   src: url('../fonts/Cinzel-Regular.woff2')
