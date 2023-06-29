@@ -23,48 +23,43 @@ function sideMenuToggle() {
 </script>
 <style scoped>
 #nav-btn {
-  top: 18px;
-  right:15px;
-  z-index: 90;
+  left: 0px;
+  bottom: 0px;
+  z-index: 20;
   display: block;
-  position: absolute;
-  background: none;
-  width: 50px;
+  position: fixed;
+ 
+  width: 100%;
   text-align: center;
   cursor: pointer;
   transition: 0.65s var(--curve);
-  max-width: 300px;
-  /* @media (min-width: theme('screens.sm')) {
-    right:35px;
-  } */
-  /* -webkit-backdrop-filter: blur(10px) invert(0.015);
-  backdrop-filter: blur(10px) invert(0.015); */
-  /* @media (min-width: theme('screens.xl')) {
-    width: 50px;
-    right: 0px;
+  background: var(--white);
+  transform: translateY(0px);
+  @media (min-width: theme('screens.md')) {
     position: absolute;
-  } */
-  /* @media (min-width: 1280px) {
-    margin-right: 0px;
-  } */
+    left: auto;
+    bottom: auto;
+    width: 80px;
+    right:15px;
+    background: none;
+  }
   #nav-icon {
-    width: 45px;
+    width: 80px;
     height: 30px;
     position: relative;
-    margin: 4px auto 6px;
-    transform: rotate(0deg);
+    margin: 14px auto 16px;
     cursor: pointer;
-    @media (min-width: theme('screens.lg')) {
-      /* margin: 16px auto; */
-      width: 50px;
+    @media (min-width: theme('screens.md')) {
+      width: 100%;
+      height: 30px;
+      margin: 4px auto 6px;
     }
-
     span {
       display: block;
       position: absolute;
       height: 1px;
       width: 100%;
-      background: var(--white);
+      background: var(--grey);
       border-radius: 1px;
       opacity: 1;
       left: 0;
@@ -73,7 +68,7 @@ function sideMenuToggle() {
     }
 
     span:nth-child(1) {
-      top: 1px;
+      top: 10px;
       transform-origin: left center;
       /* @media (min-width: theme('screens.lg')) {
         top: 9px;
@@ -83,7 +78,7 @@ function sideMenuToggle() {
     span:nth-child(2) {
       top: 12px;
       transform-origin: left center;
-    
+      display: none;
     }
 
     span:nth-child(3) {
@@ -96,12 +91,14 @@ function sideMenuToggle() {
   }
 }
 #nav-btn.open {
-  /* width: 230px; */
-  /* top: calc(50vh - 15px); */
-  right: -200px;
-  /* transform: rotate(-360deg); */
+
+  /* transform: translateY(-50px); */
   opacity: 0;
-  @media (min-width: theme('screens.lg')) {
+
+  bottom: 0px;
+  @media (min-width: theme('screens.md')) {
+    bottom: auto;
+    transform: translateY(150px);
   }
 
   #nav-icon {

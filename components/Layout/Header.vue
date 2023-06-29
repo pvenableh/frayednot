@@ -1,10 +1,10 @@
 <template>
   <div class="w-full mx-auto relative flex items-center justify-start flex-col md:flex-row max-w-7xl w-full md:py-4 header">
-    <nuxt-link to="/" class="inline-block logo-link">
+    <nuxt-link to="/test" class="inline-block logo-link">
       <img src="/assets/images/logo.png" alt="frayednot Logo" class="mt-4 md:mt-0 logo"/>
     </nuxt-link>
     <h3 class="font-serif uppercase md:ml-6 mb-4 md:mb-0">Uncompromised Sound. Unseen Experience.</h3>
-    <!-- <LayoutNavButton class="lg:pr-6" /> -->
+    <LayoutNavButton class="lg:pr-6" />
   </div>
 </template>
 

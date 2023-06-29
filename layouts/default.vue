@@ -21,12 +21,12 @@
 <script>
 import { screen } from '~~/composables/useScreen'
 useSeoMeta({
-  title: 'Rosen Kelly Conway Architecture & Design Firm | Residential / Commercial | Summit NJ',
-  ogTitle: 'Rosen Kelly Conway Architecture & Design Firm | Residential / Commercial | Summit NJ',
-  description: 'Rosen Kelly Conway Architecture & Design: Embracing design heritage with a modern vision.',
-  ogDescription: 'Rosen Kelly Conway Architecture & Design: Embracing design heritage with a modern vision.',
-  ogImage: 'https://rkcad.com/images/fb-image.jpg',
-  ogUrl: 'https://rkcad.com',
+  title: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Crandall NJ',
+  ogTitle: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Crandall NJ',
+  description: 'frayednot strives to create custom, sophisticated, seamless yet simple-to-use, integrated home audio/video systems. No project has been the same, it is always custom to fit the experience you envision.',
+  ogDescription: 'frayednot strives to create custom, sophisticated, seamless yet simple-to-use, integrated home audio/video systems. No project has been the same, it is always custom to fit the experience you envision.',
+  ogImage: 'https://frayednot.net/images/fb-image.jpg',
+  ogUrl: 'https://frayednot.net',
   twitterCard: 'summary_large_image',
 })
 </script>
@@ -34,129 +34,50 @@ useSeoMeta({
 <style>
 .page__header-placeholder {
   height: 550px;
-   
-    overflow: hidden !important;
-    @apply  w-full flex items-end justify-center overflow-hidden relative;
 
-    @media (min-width: theme('screens.sm')) {
-      height: 550px;
-    }
+  overflow: hidden !important;
+  @apply w-full flex items-end justify-center overflow-hidden relative;
 
-    @media (min-width: theme('screens.md')) {
-      height: 600px;
-    }
+  @media (min-width: theme('screens.sm')) {
+    height: 550px;
+  }
 
-    @media (min-width: theme('screens.lg')) {
-      height: calc(100vh);
-   
-    }
+  @media (min-width: theme('screens.md')) {
+    height: 600px;
+  }
+
+  @media (min-width: theme('screens.lg')) {
+    height: calc(100vh);
+
+  }
 }
-.page {
-  overflow: hidden;
-  width: 100%;
 
+.page {
+  @apply relative w-full flex items-center justify-center flex-col overflow-hidden;
   &__content {
     transition: all 0.65s var(--curve);
-
   }
-
-  &__header {
-    height: 550px;
-    background-color: rgba(0, 0, 0, 0.35);
-    background-blend-mode: darken;
-    overflow: hidden !important;
-    @apply bg-cover bg-center bg-no-repeat w-full flex items-end justify-center overflow-hidden relative;
-
-    @media (min-width: theme('screens.sm')) {
-      height: 550px;
-    }
-
-    @media (min-width: theme('screens.md')) {
-      height: 600px;
-    }
-
-    @media (min-width: theme('screens.lg')) {
-      height: calc(100vh);
-   
-    }
-
-    #rkc-bg-icon-2 {
-      top: 0px;
-      left: calc(50% - 48vw);
-      height: 96vh;
-      width: 96vw;
-      transition: all 0.35s var(--curve);
-      /* fill: rgba(167, 169, 172, 0.075); */
-      fill: rgba(255, 255, 255, 0.075);
-      @apply fixed;
-
-      path {
-        /* fill: rgba(167, 169, 172, 0.1); */
-        fill: rgba(255, 255, 255, 0.05);
-
-        @media (min-width: theme('screens.lg')) {
-          fill: rgba(255, 255, 255, 0.025);
-        }
-      }
-    }
-
-    h1 {
-      font-size: 36px;
-      line-height: 46px;
-      color: var(--white);
-      /* margin-bottom: 50px; */
-      font-family: var(--light-font);
-      transition: all 0.4s var(--curve) 0.1s;
-      letter-spacing: 0.1em;
-      padding-left: 15px;
-      padding-right: 15px;
-
-      @media (min-width: theme('screens.sm')) {
-        padding-left: 35px;
-        padding-right: 35px;
-      }
-
-      @apply max-w-7xl w-full uppercase py-4;
-
-      @media (min-width: theme('screens.md')) {
-        font-size: 66px;
-        line-height: 66px;
-      }
-
-      @media (min-width: theme('screens.lg')) {
-        font-size: 78px;
-        line-height: 76px;
-      }
-    }
-  }
+  
 
   &__body {
     z-index: 10;
-    /* background: var(--white); */
     padding-left: 15px;
     padding-right: 15px;
-
     @media (min-width: theme('screens.sm')) {
       padding-left: 35px;
       padding-right: 35px;
     }
 
-    @apply max-w-7xl;
+    @apply w-full max-w-7xl;
 
     &-header {
       @apply mt-20;
-      &-subtitle {
-        font-size: 10px;
-        line-height: 2rem;
-        @apply font-bold tracking-wider;
-      }
-
       &-title {
 
         font-size: 36px;
         line-height: 42px;
-        font-family: var(--light-font);
-        @apply font-light tracking-wide mb-8;
+        font-family: var(--serif-font);
+        @apply uppercase tracking-wide mb-8;
 
         @media (min-width: theme('screens.lg')) {
           font-size: 42px;
@@ -168,6 +89,7 @@ useSeoMeta({
           line-height: 58px; */
         }
       }
+
       .rkc-link {
         @apply inline-block;
       }

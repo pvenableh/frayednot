@@ -9,24 +9,24 @@
     <div class="w-full nav-drawer__menu-box p-4 relative">
       <!-- <XIcon class="cursor-pointer h-8 heroicon-sw-1.2 close-btn" /> -->
       <ul tabindex="0" class="w-full nav-drawer__menu text-center">
-        <li><nuxt-link to="/">Home</nuxt-link></li>
+        <li><nuxt-link to="/test">Home</nuxt-link></li>
         <li>
-          <nuxt-link to="/interior-design-architecture-portfolio/"
-            >Work</nuxt-link
+          <nuxt-link to="/audio-video-design-philosophy"
+            >Philosophy</nuxt-link
           >
         </li>
         <li>
-          <nuxt-link to="/new-york-architecture-design-studio/"
-            >About</nuxt-link
+          <nuxt-link to="/automated-audio-video-experiences"
+            >Experiences</nuxt-link
           >
         </li>
         <li>
-          <nuxt-link to="/rosen-kelly-conway-architecture-design-team/"
-            >Team</nuxt-link
+          <nuxt-link to="/awards-press-recognition"
+            >Recognition</nuxt-link
           >
         </li>
         <li>
-          <nuxt-link to="/architecture-design-press-awards/">Press</nuxt-link>
+          <nuxt-link to="/innovative-audio-visual-technology">Technology</nuxt-link>
         </li>
 
         <li><nuxt-link to="/contact">Contact</nuxt-link></li>
@@ -63,14 +63,17 @@ onClickOutside(navDrawerRef, (event) => {
 .nav-drawer {
   min-height: 100vh;
   max-height: 100vh;
-  width: 300px;
+  width: 100%;
   position: fixed;
   right: 0px;
   top: 0px;
   z-index: 30;
-  background: rgba(123, 145, 163, 0.95);
-  transform: translateX(110%);
+  background: rgba(255,255,255, 0.95);
+  transform: translateY(110%);
   transition: 0.55s var(--curve);
+  @media (min-width: theme('screens.md')) {
+    transform: translateY(-110%);
+  }
   @apply shadow-lg;
   .close-btn {
     /* right: 0px;
@@ -96,39 +99,45 @@ onClickOutside(navDrawerRef, (event) => {
   }
   &__menu {
     li {
-      transform: translateX(50px);
+      transform: translateY(50px);
       opacity: 0;
-      transition: 0.55s var(--curve);
+      transition: 0.65s var(--curve);
+      @media (min-width: theme('screens.md')) {
+        transform: translateY(-50px);
+      }
       @apply my-1;
       a {
-        color: var(--white);
+        color: var(--grey);
         font-size: 13px;
         letter-spacing: 0.3em;
-        @apply block uppercase  py-1;
+        @apply block uppercase py-1 font-serif;
       }
       a.router-link-exact-active {
-        color: var(--white);
+        color: var(--black);
         letter-spacing: 0.6em;
-        @apply font-bold cursor-default;
+        @apply cursor-default;
       }
     }
     a:hover {
       letter-spacing: 0.6em;
     }
-    li:nth-of-type(2) {
-      transition-delay: 0.075s;
+    li:nth-of-type(1) {
+      transition-delay: 0.1s;
     }
-    li:nth-of-type(3) {
+    li:nth-of-type(2) {
       transition-delay: 0.125s;
     }
+    li:nth-of-type(3) {
+      transition-delay: 0.15s;
+    }
     li:nth-of-type(4) {
-      transition-delay: 0.150s;
+      transition-delay: 0.175s;
     }
     li:nth-of-type(5) {
-      transition-delay: 0.170s;
+      transition-delay: 0.190s;
     }
     li:nth-of-type(6) {
-      transition-delay: 0.180s;
+      transition-delay: 0.20s;
     }
   }
 }
@@ -140,7 +149,7 @@ onClickOutside(navDrawerRef, (event) => {
   }
   .nav-drawer__menu {
     li {
-      transform: translateX(0px);
+      transform: translateY(0px);
       opacity: 1;
       @apply my-1;
     }
@@ -148,8 +157,8 @@ onClickOutside(navDrawerRef, (event) => {
 }
 #nav-drawer-toggle:checked ~ .page__content {
   /* transform: matrix(1, 0, 0, 1, 8, 0); */
-  transform: translateX(-10px);
-  filter: blur(2px);
+  /* transform: translateY(10px); */
+  filter: blur(2px) grayscale(0.5);
 }
 
 /* #nav-drawer-toggle:checked ~ .nav-drawer > .nav-drawer-overlay {

@@ -1,10 +1,10 @@
 <template>
   <div class="relative w-full flex items-center justify-center flex-col home">
     <div class="w-full flex items-center justify-center flex-col md:flex-row flex-wrap home__intro">
-      <div v-for="(section, index) in home.featured_sections" :key="index" :style="'background-image: url(' + imageUrl + section.background_image + ')'" class="bg-cover bg-center bg-no-repeat w-full md:w-1/2 home__intro-sections">
+      <nuxt-link v-for="(section, index) in page.featured_sections" :key="index" :to="'/' + section.url" :style="'background-image: url(' + imageUrl + section.background_image + ')'" class="bg-cover bg-center bg-no-repeat w-full md:w-1/2 home__intro-sections">
         <h1 class="font-serif tracking-wide uppercase">{{ section.title }}</h1>
         <h5 calss="uppercase">{{ section.subtitle }}</h5>
-      </div>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -12,16 +12,18 @@
 <script setup>
 
 const imageUrl = 'https://admin.frayednot.net/assets/'
-
-const { getItems } = useDirectusItems()
-const home = await getItems({
-  collection: 'home',
-  params: {
-    fields: [
-      'featured_sections.background_image,featured_sections.title,featured_sections.subtitle',
+const { $directus } = useNuxtApp()
+  const { data: page, pending, error } = await useAsyncData('page', () => {
+    return $directus.items('home').readOne(1, {
+      fields: [
+      'featured_sections.background_image,featured_sections.title,featured_sections.subtitle,featured_sections.url',
     ],
-  },
-})
+    })
+  })
+  if (error.value) throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found'
+  })
 
 import { usePageStore } from '~~/store/PageStore'
 const pageStore = usePageStore()

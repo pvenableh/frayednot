@@ -3,7 +3,7 @@ export default defineNuxtConfig({
 
   app: {
     pageTransition: {
-      name: 'page',
+      name: 'fade',
       mode: 'out-in',
     },
     head: {
@@ -99,6 +99,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   css: [
     {
       src: '~/assets/css/main.css',
@@ -134,7 +135,6 @@ export default defineNuxtConfig({
         },
       },
     ],
-    'nuxt-directus',
     'nuxt-icons',
   ],
 
@@ -147,12 +147,9 @@ export default defineNuxtConfig({
     },
     // ...other options
   },
+
   plausible: {
     domain: 'frayednot.net',
-  },
-
-  directus: {
-    url: 'https://admin.frayednot.net',
   },
 
   runtimeConfig: {
@@ -183,6 +180,12 @@ export default defineNuxtConfig({
     },
   },
 
-  devtools: true,
   // plugins: ['~/plugins/socialShare.ts']
+  devtools: true,
+
+  plugins: [
+    '~/plugins/socialShare.ts',
+    '~/plugins/preview.js',
+    '~/plugins/directus.js'
+  ]
 })
