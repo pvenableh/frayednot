@@ -4,6 +4,7 @@
     <input id="nav-drawer-toggle" type="checkbox" class="hidden" />
     <input id="profile-toggle" type="checkbox" class="hidden" />
     <input id="application-toggle" type="checkbox" class="hidden" />
+    <LayoutNavButton />
     <div class="w-full flex items-center justify-center flex-col min-h-screen page__content">
       <LayoutHeader />
       <div class="w-full mx-auto min-h-screen relative">
@@ -21,11 +22,10 @@
 <script>
 import { screen } from '~~/composables/useScreen'
 useSeoMeta({
-  title: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Crandall NJ',
-  ogTitle: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Crandall NJ',
+  title: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Cranford, NJ',
+  ogTitle: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Crandford, NJ',
   description: 'frayednot strives to create custom, sophisticated, seamless yet simple-to-use, integrated home audio/video systems. No project has been the same, it is always custom to fit the experience you envision.',
   ogDescription: 'frayednot strives to create custom, sophisticated, seamless yet simple-to-use, integrated home audio/video systems. No project has been the same, it is always custom to fit the experience you envision.',
-  ogImage: 'https://frayednot.net/images/fb-image.jpg',
   ogUrl: 'https://frayednot.net',
   twitterCard: 'summary_large_image',
 })

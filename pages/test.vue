@@ -1,16 +1,19 @@
 <template>
   <div class="relative w-full flex items-center justify-center flex-col home">
-    <div class="w-full flex items-center justify-center flex-col md:flex-row flex-wrap home__intro">
-      <nuxt-link v-for="(section, index) in page.featured_sections" :key="index" :to="'/' + section.url" :style="'background-image: url(' + imageUrl + section.background_image + ')'" class="bg-cover bg-center bg-no-repeat w-full md:w-1/2 home__intro-sections">
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 home__intro">
+      <nuxt-link v-for="(section, index) in page.featured_sections" :key="index" :to="'/' + section.url" :style="'background-image: url(' + imageUrl + section.background_image + ')'" class="bg-cover bg-center bg-no-repeat w-full home__intro-sections">
         <h1 class="font-serif tracking-wide uppercase">{{ section.title }}</h1>
         <h5 calss="uppercase">{{ section.subtitle }}</h5>
       </nuxt-link>
     </div>
+ 
+  <!-- <div class="w-full">
+    <iframe src="/test/__og_image__" style="width: 100%; border: none; height: 800px"></iframe>
+  </div> -->
   </div>
 </template>
 
 <script setup>
-
 const imageUrl = 'https://admin.frayednot.net/assets/'
 const { $directus } = useNuxtApp()
   const { data: page, pending, error } = await useAsyncData('page', () => {
@@ -34,20 +37,18 @@ const pageStore = usePageStore()
 .home {
   &__intro {
     height: calc(100vh - 110px);
+    padding-right: 15px;
+    padding-left: 15px;
     &-sections {
       color: var(--white);
-      height: 25%;
+ 
       background-color: rgba(0,0,0,0.25);
       background-blend-mode: darken;
-      border-color: var(--white);
-      border-style: solid;
-      border-left-width: 15px;
-      border-right-width: 15px;
-      border-bottom-width: 15px;
-      @apply flex items-center justify-center flex-col h-1/4 md:h-1/2;
+
+      @apply flex items-center justify-center flex-col;
     }
   }
-  .home__intro-sections:nth-of-type(odd) {
+  /* .home__intro-sections:nth-of-type(odd) {
     @media (min-width: theme('screens.md')) {
       border-right-width: 7.5px;
     }
@@ -57,7 +58,7 @@ const pageStore = usePageStore()
  
       border-left-width: 7.5px;
     }
-  }
+  } */
   #animation {
     position: absolute;
     z-index: 10;
