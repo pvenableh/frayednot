@@ -41,12 +41,12 @@ function sideMenuToggle() {
     /* position: absolute; */
     left: auto;
     bottom: auto;
-    top: 15px;
+    top: 22px;
     width: 80px;
     right:15px;
     /* background: none; */
-    border-radius: 3px;
-    height: 65px;
+    border-radius: 0px;
+    height: 50px;
     @apply flex items-center justify-center;
   }
   #nav-icon {
@@ -56,7 +56,7 @@ function sideMenuToggle() {
     margin: 16px auto 14px;
     cursor: pointer;
     @media (min-width: theme('screens.md')) {
-      width: 80%;
+      width: 65%;
       height: 30px;
       margin: 0px;
     }

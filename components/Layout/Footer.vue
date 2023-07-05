@@ -1,45 +1,30 @@
 <template>
-  <div class="w-full max-w-7xl footer">
-    <div class="w-full pt-0 pb-24 flex flex-col items-center justify-center mx-auto ">
-      <div class="w-full flex flex-col items-start justify-center lg:flex-row lg:items-end lg:justify-between">
+  <div class="w-full max-w-7xl pb-24 footer">
 
-        <div
-          class="mt-8 w-full flex items-center lg:items-start justify-center  flex-col sm:flex-row footer__col relative">
-          <!-- <div class="flex flex-col sm:flex-row">
-        <p class="text-center"><span class="hidden">Phone: </span><a href="tel:(908) 273-6565">908.273.6565</a></p>
-        <p class="text-center sm:mx-5 "><span class="hidden">Studio: </span>16 Maple St Summit NJ</p>
-        <p class="text-center sm:mr-5">
-          <span class="hidden">Email: </span><a href="mailto:info@rkcad.com">Info@rkcad.com</a>
-        </p>
-      </div> -->
-          <!-- <div class="flex flex-row mt-8 sm:mt-2 lg:-mt-[4px]">
-          <a
-            href="https://www.instagram.com/rkcad/"
-            target="_blank"
-            class="lg:ml-5 md:mb-3 lg:mb-0"
-          >
-            <nuxt-icon name="instagram" class="" />
-          </a>
-          <a
-            href="https://www.houzz.com/professionals/architects-and-building-designers/rosen-kelly-conway-architecture-and-design-pfvwus-pf~1350653163?"
-            target="_blank"
-            class="ml-5"
-          >
-            <nuxt-icon name="houzz" class="" />
-          </a>
-        </div> -->
-        </div>
-      </div>
-      <div class="flex w-full flex-col items-center justify-center mt-6 font-bold tracking-wide">
-        <h5 class="mt-8 lg:mt-0 tracking-widest body-font copyright">
-          &#169; {{ new Date().getFullYear() }} frayednot, llc
-        </h5>
-        <h5 class="mt-2 web-designer">
-          <a href="https://huestudios.com" target="_blank" rel="noopener" class="columns shrink body-font">designed by
-            <LayoutHue />
-          </a>
-        </h5>
-      </div>
+
+    <div class="w-full flex items-end justify-center flex-row mt-8 social">
+      <a href="https://www.facebook.com/frayednotLLC" target="_blank" class="">
+        <IconsFacebook />
+      </a>
+      <a href="https://www.instagram.com/frayednotllc/" target="_blank" class="mx-5 ">
+        <IconsInstagram class=""/>
+      </a>
+
+      <a href="https://www.linkedin.com/in/constantinossandoukas/" target="_blank" class="">
+        <IconsLinkedin />
+      </a>
+    </div>
+
+
+    <div class="flex w-full flex-col items-center justify-center mt-6 font-bold tracking-wide">
+      <h5 class="mt-8 lg:mt-0 tracking-widest body-font copyright">
+        &#169; {{ new Date().getFullYear() }} frayednot, llc
+      </h5>
+      <h5 class="mt-2 web-designer">
+        <a href="https://huestudios.com" target="_blank" rel="noopener" class="columns shrink body-font">designed by
+          <LayoutHue />
+        </a>
+      </h5>
     </div>
   </div>
 </template>
@@ -60,45 +45,35 @@
     padding-right: 35px;
   }
 
-  &__col {
 
-    a,
-    p {
-      font-size: 9px;
-      @apply uppercase tracking-widest font-bold;
-    }
 
-    a.router-link-exact-active {
-      color: var(--green);
-    }
-  }
-
-  &__nav {
-
-    @media (min-width: theme('screens.md')) {
-      width: 300px;
-    }
-
+  .social {
     a {
-
-      @media (min-width: theme('screens.md')) {
-        width: 100px;
+      background: rgba(204,204,204, 0.25);
+      /* box-shadow: inset 0px 5px 5px 5px rgba(0,0,0,0.25); */
+      @apply inline-block rounded-full p-3 shadow-inner overflow-hidden;
+      svg {
+        height: 20px;
+        width: auto;
+        fill: var(--grey);
+        transition: all 0.3s linear;
+       
+        filter: drop-shadow(3px 3px 2px rgba(66, 66, 66, 0.25));
       }
     }
-  }
-
-  .nuxt-icon {
-    font-size: 20px;
-    margin-top: -5px;
-    @apply inline-block;
-
-    svg {}
-  }
-
-  .nuxt-icon:hover {
-    svg path {
-      fill: rgb(255, 0, 92) !important;
+    a:hover {
+      background: rgba(204,204,204, 0.25);
+      /* @apply shadow-lg; */
+      svg {
+        transform: scale(1.2);
+        filter: drop-shadow(4px 5px 2px rgba(66, 66, 66, 0.35));
+      }
     }
+    /* a:first-of-type {
+      svg {
+        height: 23px;
+      }
+    } */
   }
 }
 
@@ -113,7 +88,7 @@ h5.web-designer {
       width: 35px;
       height: auto;
       display: inline;
-     fill:var(--grey);
+      fill: var(--grey);
       stroke: none;
       margin-top: -11px;
       margin-left: 3px;
@@ -152,4 +127,5 @@ h5.copyright {
   .footer {
     opacity: 0;
   }
-}</style>
+}
+</style>
