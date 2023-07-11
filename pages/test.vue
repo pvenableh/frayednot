@@ -55,7 +55,7 @@
         <div class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-12 md:gap-12 lg:gap-12 mt-6 mb-20 ">
           <nuxt-link v-for="(partner, index) in page.partners_intro.partners" :key="index" :to="partner.partners_id.url"
             class="flex items-center justify-center partner">
-            <img :src="imageUrl + partner.partners_id.logo" :alt="partner.partners_id.name" />
+            <img :src="imageUrl + partner.partners_id.logo" :alt="partner.partners_id.name" class="drop-shadow-md"/>
           </nuxt-link>
         </div>
       </div>
