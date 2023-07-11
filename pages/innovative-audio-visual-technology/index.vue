@@ -54,7 +54,7 @@
                 <div class="relative" v-html="page.recognition_intro.text"> </div>
                 <div v-if="page.recognition_intro.images.length" class="flex items-center justify-around">
                     <div v-for="(image, index) in page.recognition_intro.images" :key="index"
-                        class="my-8 p-6 flex items-center justify-center"
+                        class="my-8 p-1 md:p-6 flex items-center justify-center"
                         :class="'w-1/' + page.recognition_intro.images.length">
                         <img :src="imageUrl + image.directus_files_id + '?key=small'" :key="index" alt="Award"
                             class="inline-block" />

@@ -16,8 +16,9 @@
     </div>
 
 
-    <div class="flex w-full flex-col items-center justify-center mt-6 font-bold tracking-wide">
-      <h5 class="mt-8 lg:mt-0 tracking-widest body-font copyright">
+    <div class="flex w-full flex-col items-center justify-center mt-12 font-bold tracking-wide">
+      <img src="/assets/images/logo.png" alt="frayednot Logo" class="logo"/> 
+      <h5 class="mt-4 tracking-widest body-font copyright">
         &#169; {{ new Date().getFullYear() }} frayednot, llc
       </h5>
       <h5 class="mt-2 web-designer">
@@ -45,7 +46,10 @@
     padding-right: 35px;
   }
 
-
+  .logo {
+    height: 65px;
+      width: auto;
+  }
 
   .social {
     a {

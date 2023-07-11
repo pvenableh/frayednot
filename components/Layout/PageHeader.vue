@@ -56,7 +56,7 @@ const imageUrl = 'https://admin.frayednot.net/assets/'
         }
 
         h1 {
-            font-size: 4vw;
+            font-size: 8vw;
             line-height: 1.2em;
             color: var(--white);
 
@@ -65,19 +65,28 @@ const imageUrl = 'https://admin.frayednot.net/assets/'
             letter-spacing: 0.1em;
             @apply w-full font-serif uppercase mb-2;
 
-            @media (min-width: theme('screens.md')) {}
+            @media (min-width: theme('screens.md')) {
+                font-size: 4vw;
+            }
 
             @media (min-width: theme('screens.lg')) {}
         }
 
         h4 {
-            font-size: 1.5vw;
+            font-size: 3vw;
             line-height: 1.2em;
             @apply w-full font-serif uppercase mb-20;
+            @media (min-width: theme('screens.md')) {
+                font-size: 1.5vw;
+            }
         }
 
         p {
-            @apply w-full font-body;
+            font-size: 12px;
+            @apply w-full font-body max-w-4xl;
+            @media (min-width: theme('screens.md')) {
+                font-size: 14px;
+            }
         }
     }
 }

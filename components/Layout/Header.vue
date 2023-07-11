@@ -1,10 +1,10 @@
 <template>
-  <div class="w-full mx-auto relative flex items-center justify-start flex-col md:flex-row w-full md:py-4 header">
-    <nuxt-link to="/test" class="inline-block logo-link">
-      <img src="/assets/images/logo.png" alt="frayednot Logo" class="mt-4 md:mt-0 logo"/>
+  <div class="w-full mx-auto relative flex items-center justify-start flex-col md:flex-row w-full py-4 header">
+    <!-- <img src="/assets/images/logo.png" alt="frayednot Logo" class="mt-4 md:mt-0 logo"/> -->
+    <nuxt-link to="/test" class="inline-block w-full text-center pt-2 pb-1 logo-link">
+      <h3 class="font-serif uppercase">Uncompromised Sound. Unseen Experience.&trade;</h3>
     </nuxt-link>
-    <h3 class="font-serif uppercase md:ml-6 mb-4 md:mb-0">Uncompromised Sound. Unseen Experience.</h3>
-    
+
   </div>
 </template>
 
@@ -33,11 +33,12 @@
       width: auto;
     }
   }
+
   h3 {
-    font-size: 10px;
+    font-size: 13px;
+
     @media (min-width: theme('screens.sm')) {
       font-size: 13px;
     }
   }
-}
-</style>
+}</style>

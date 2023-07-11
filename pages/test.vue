@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full flex items-center justify-center flex-col home">
-    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 home__intro">
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-1 home__intro">
       <nuxt-link v-for="(section, index) in page.featured_sections" :key="index" :to="'/' + section.url"
         :style="'background-image: url(' + imageUrl + section.background_image + ')'"
         class="bg-cover bg-center bg-no-repeat w-full home__intro-sections">
@@ -96,7 +96,7 @@ const pageStore = usePageStore()
 
       background-color: rgba(0, 0, 0, 0.25);
       background-blend-mode: darken;
-
+      box-shadow: inset 0 20px 25px 5px rgba(0, 0, 0, 0.5);
       @apply flex items-center justify-center flex-col;
 
       h1 {

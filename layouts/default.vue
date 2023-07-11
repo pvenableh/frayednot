@@ -23,7 +23,7 @@
 import { screen } from '~~/composables/useScreen'
 useSeoMeta({
   title: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Cranford, NJ',
-  ogTitle: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Crandford, NJ',
+  ogTitle: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Cranford, NJ',
   description: 'frayednot strives to create custom, sophisticated, seamless yet simple-to-use, integrated home audio/video systems. No project has been the same, it is always custom to fit the experience you envision.',
   ogDescription: 'frayednot strives to create custom, sophisticated, seamless yet simple-to-use, integrated home audio/video systems. No project has been the same, it is always custom to fit the experience you envision.',
   ogUrl: 'https://frayednot.net',

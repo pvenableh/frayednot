@@ -42,6 +42,7 @@ function sideMenuToggle() {
     left: auto;
     bottom: auto;
     top: 22px;
+    top: 6px;
     width: 80px;
     right:15px;
     /* background: none; */

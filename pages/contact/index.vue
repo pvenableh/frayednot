@@ -1,12 +1,6 @@
 <template>
-    <div class="page recognition">
+    <div class="page contact">
         <LayoutPageHeader :page="page" :heading="heading" />
-        <div class="page__body">
-            <div class="page__body-header">
-                <h2 class="page__body-header-title"></h2>
-                <p></p>
-            </div>
-        </div>
     </div>
 </template>
 
