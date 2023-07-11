@@ -35,7 +35,7 @@
 <style>
 .footer {
   position: relative;
-  padding-top: 100px;
+  padding-top: 20px;
   transition: all 0.4s var(--curve);
   z-index: 10;
   padding-left: 15px;

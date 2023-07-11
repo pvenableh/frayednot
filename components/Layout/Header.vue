@@ -2,7 +2,7 @@
   <div class="w-full mx-auto relative flex items-center justify-start flex-col md:flex-row w-full py-4 header">
     <!-- <img src="/assets/images/logo.png" alt="frayednot Logo" class="mt-4 md:mt-0 logo"/> -->
     <nuxt-link to="/test" class="inline-block w-full text-center pt-2 pb-1 logo-link">
-      <h3 class="font-serif uppercase">Uncompromised Sound. Unseen Experience.&trade;</h3>
+      <h3 class="font-serif uppercase sm:tracking-wider">Uncompromised Sound. Unseen Experience.&trade;</h3>
     </nuxt-link>
 
   </div>
