@@ -21,22 +21,10 @@
             </div>
             <div class="page__body-header flex items-center flex-col md:flex-row">
                 <div class="md:flex-grow-0">
-                    <h2 class="page__body-header-title">Certified Luxury</h2>
-                    <p class="mb-4">HTA Certified Luxury is the official standard for the elite category. Less than 8% of
-                        companies in the custom audio/video integration industry is certified by HTA standards. frayednot,
-                        LLC
-                        has been awarded the HTA certification for its unique luxury designs and seamless solutions. See our
-                        HTA
-                        profile <a
-                            href="https://htacertified.org/app/company/Smart-home-theater-design-installation-by-frayednot-summit-nj/"
-                            target="_blank" class="underline">here</a>.
-                    </p>
-                    <p>See what it means to be HTA Certified luxury company <a
-                            href="https://htacertified.org/app/articles/hta-certification-defined/" target="_blank"
-                            class="underline">here</a>.
-                    </p>
+                    <h2 class="page__body-header-title">{{ page.certified_intro.title }}</h2>
+                    <div v-html="page.certified_intro.text" class="mb-4"></div>
                 </div>
-                <img src="/images/technology/HTA.png" alt="HTA Logo" class="w-full md:w-[200px] h-auto md:ml-20"/>
+                <img v-if="page.certified_intro.images.length" :src="imageUrl + page.certified_intro.images[0].directus_files_id" alt="HTA Logo" class="w-full md:w-[200px] h-auto md:ml-20"/>
             </div>
         </div>
     </div>
@@ -51,7 +39,7 @@ if ($preview) {
     const { data: page, pending, error } = await useAsyncData('page', () => {
         return $directus.items('recognition').readOne(1, {
             fields: [
-                'header_image,title,intro,url,articles.title,articles.subtitle,articles.link,articles.image',
+                'header_image,title,intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id',
             ],
         })
     })
@@ -59,7 +47,7 @@ if ($preview) {
 const { data: page, pending, error } = await useAsyncData('page', () => {
     return $directus.items('recognition').readOne(1, {
         fields: [
-            'header_image,title,intro,url,articles.title,articles.subtitle,articles.link,articles.image',
+            'header_image,title,intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id',
         ],
     })
 })

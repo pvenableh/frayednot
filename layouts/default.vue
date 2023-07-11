@@ -73,12 +73,18 @@ useSeoMeta({
     &-header {
       @apply mt-20;
       &-title {
-
-        font-size: 36px;
-        line-height: 42px;
+        font-size: 24px;
+        line-height: 30px;
         font-family: var(--serif-font);
         @apply uppercase tracking-wide mb-8;
-
+        @media (min-width: theme('screens.sm')) {
+          font-size: 26px;
+          line-height: 30px;
+        }
+        @media (min-width: theme('screens.md')) {
+          font-size: 36px;
+          line-height: 42px;
+        }
         @media (min-width: theme('screens.lg')) {
           font-size: 42px;
           line-height: 46px;

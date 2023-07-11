@@ -1,5 +1,5 @@
 <template>
-    <div class="project-card" :class="classes">
+    <div class="w-full project-card" :class="classes">
         <div class="project-card__image-container">
             <swiper v-if="project.images.length" :speed="600" :parallax="true" :pagination="{
                 type: 'bullets',
@@ -76,6 +76,30 @@ function toggleDescription() {
 <style>
 .project-card.small {
     height: 230px;
+
+    .project-card__body {
+
+        &-experience {
+            font-size: 24px;
+            line-height: 30px;
+
+            @media (min-width: theme('screens.sm')) {
+                font-size: 18px;
+                line-height: 30px;
+            }
+
+            @media (min-width: theme('screens.md')) {
+                font-size: 20px;
+                line-height: 32px;
+            }
+
+            /* @media (min-width: theme('screens.lg')) {
+                font-size: 42px;
+                line-height: 46px;
+            } */
+
+        }
+    }
 }
 
 .project-card.large {
@@ -84,7 +108,24 @@ function toggleDescription() {
     .project-card__body {
 
         &-experience {
-            font-size: 36px;
+            font-size: 24px;
+            line-height: 30px;
+
+            @media (min-width: theme('screens.sm')) {
+                font-size: 26px;
+                line-height: 30px;
+            }
+
+            @media (min-width: theme('screens.md')) {
+                font-size: 36px;
+                line-height: 42px;
+            }
+
+            @media (min-width: theme('screens.lg')) {
+                font-size: 42px;
+                line-height: 46px;
+            }
+
         }
     }
 
@@ -94,7 +135,7 @@ function toggleDescription() {
     }
 }
 
-.project-card.screen {
+/* .project-card.screen {
     height: 600px;
 
     .project-card__body {
@@ -108,7 +149,7 @@ function toggleDescription() {
         font-size: 14px;
         @apply p-20;
     }
-}
+} */
 
 .project-card {
     @apply flex items-center justify-center relative overflow-hidden;
@@ -174,6 +215,8 @@ function toggleDescription() {
 
         &-experience {
             transition: all 0.6s var(--curve);
+
+
             @apply uppercase font-serif tracking-wider text-white;
         }
     }
@@ -226,11 +269,15 @@ function toggleDescription() {
 
     .project-card__image,
     .project-card__image-slide {
-        transform: scale(1.2);
+        @media (min-width: theme('screens.lg')) {
+            transform: scale(1.2);
+        }
     }
 
     .project-card__body-experience {
-        letter-spacing: 0.7em;
+        @media (min-width: theme('screens.lg')) {
+            letter-spacing: 0.7em;
+        }
     }
 
     .project-card__description-button {
@@ -260,4 +307,5 @@ function toggleDescription() {
         transform: translate(0px, -75px)
     }
 
-}</style>
+}
+</style>

@@ -16,20 +16,50 @@
       </div>
     </div>
     <div v-for="(section, index) in page.project_sections" :key="index" class="w-full page__body">
-    
+
       <div class="page__body-header">
 
-      <h2 v-if="section.project_sections_id.title" class="page__body-header-title">{{ section.project_sections_id.title }}</h2>
-      <h5 v-if="section.project_sections_id.subtitle">{{ section.project_sections_id.subtitle }}</h5>
-      <p v-if="section.project_sections_id.text" class="mb-12">{{ section.project_sections_id.text }}</p>
+        <h2 v-if="section.project_sections_id.title" class="page__body-header-title">{{ section.project_sections_id.title
+        }}</h2>
+        <h5 v-if="section.project_sections_id.subtitle">{{ section.project_sections_id.subtitle }}</h5>
+        <p v-if="section.project_sections_id.text" class="mb-12">{{ section.project_sections_id.text }}</p>
       </div>
 
-      <div v-if="section.project_sections_id.layout === 'small'" class="grid grid-cols-3 gap-4">
+      <div v-if="section.project_sections_id.layout === 'small'" class="grid sm:grid-cols-3 gap-2 sm:gap-4">
         <ProjectsProjectCard v-for="(project, index) in section.project_sections_id.projects" :key="index"
           :project="project.projects_id" :size="section.project_sections_id.layout" />
       </div>
       <ProjectsProjectCard v-else v-for="(project, index) in section.project_sections_id.projects" :key="index"
         :project="project.projects_id" :size="section.project_sections_id.layout" />
+
+    </div>
+    <div class="page__body mb-20 recognition-intro">
+      <div class="page__body-header">
+        <h2 v-if="page.recognition_intro.title" class="page__body-header-title">{{ page.recognition_intro.title }}</h2>
+        <h5 v-if="page.recognition_intro.subtitle">{{ page.recognition_intro.subtitle }}</h5>
+        <div class="relative" v-html="page.recognition_intro.text"> </div>
+        <div v-if="page.recognition_intro.images.length" class="flex items-center justify-around">
+          <div v-for="(image, index) in page.recognition_intro.images" :key="index"
+            class="my-8 p-1 md:p-6 flex items-center justify-center" :class="'w-1/' + page.recognition_intro.images.length">
+            <img :src="imageUrl + image.directus_files_id + '?key=small'" :key="index" alt="Award" class="inline-block" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full shadow-inner partners-intro">
+      <div class="page__body mx-auto">
+      <div class="page__body-header">
+        <h2 v-if="page.partners_intro.title" class="page__body-header-title">{{ page.partners_intro.title }}</h2>
+        <h5 v-if="page.partners_intro.subtitle" class="uppercase page__body-header-subtitle">{{ page.partners_intro.subtitle }}</h5>
+        <div class="relative" v-if="page.partners_intro.text" v-html="page.partners_intro.text"> </div>
+        <div class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-12 md:gap-12 lg:gap-12 mt-6 mb-20 ">
+          <nuxt-link v-for="(partner, index) in page.partners_intro.partners" :key="index" :to="partner.partners_id.url"
+            class="flex items-center justify-center partner">
+            <img :src="imageUrl + partner.partners_id.logo" :alt="partner.partners_id.name" />
+          </nuxt-link>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </template>
@@ -40,7 +70,7 @@ const { $directus } = useNuxtApp()
 const { data: page, pending, error } = await useAsyncData('page', () => {
   return $directus.items('home').readOne(1, {
     fields: [
-      'featured_sections.background_image,featured_sections.title,featured_sections.subtitle,featured_sections.url,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,philosophy_intro.title,philosophy_intro.subtitle,philosophy_intro.text',
+      'featured_sections.background_image,featured_sections.title,featured_sections.subtitle,featured_sections.url,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,philosophy_intro.title,philosophy_intro.subtitle,philosophy_intro.text,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,partners_intro.title,partners_intro.subtitle,partners_intro.text,partners.partners_id.name,partners_intro.partners.partners_id.link,partners_intro.partners.partners_id.name,partners_intro.partners.partners_id.logo',
     ],
   })
 })
@@ -68,36 +98,69 @@ const pageStore = usePageStore()
       background-blend-mode: darken;
 
       @apply flex items-center justify-center flex-col;
-      h1 {
-        font-size: 36px;
-        line-height: 42px;
-        font-family: var(--serif-font);
-        @apply uppercase tracking-wide mb-1;
 
-        @media (min-width: theme('screens.lg')) {
+      h1 {
+        font-size: 24px;
+        line-height: 30px;
+        font-family: var(--serif-font);
+        @apply uppercase tracking-wide mb-8;
+
+        @media (min-width: theme('screens.sm')) {
+          font-size: 26px;
+          line-height: 30px;
+        }
+
+        @media (min-width: theme('screens.md')) {
+          font-size: 30px;
+          line-height: 42px;
+        }
+
+        /* @media (min-width: theme('screens.lg')) {
           font-size: 42px;
           line-height: 46px;
-        }
+        } */
+
+        @apply uppercase tracking-wide mb-1;
+
+
+      }
+
+      h5 {
+        font-size: 12px;
+        @apply tracking-widest;
       }
     }
   }
+
   .philosophy-intro {
     @apply relative mb-12;
-    p {
 
-    }
+    p {}
+
     div::before {
       @media (min-width: theme('screens.md')) {
-      content: '';
-      background: var(--grey);
-      position: absolute;
-      top: 140px;
-      height: calc(100% - 140px);
-      width: 1px;
-      left: calc(50% - 1px);
+        content: '';
+        background: var(--grey);
+        position: absolute;
+        top: 140px;
+        height: calc(100% - 140px);
+        width: 1px;
+        left: calc(50% - 1px);
       }
     }
   }
 
+  .recognition-intro {
+    img {
+      /* height: 100px; */
+      /* width: auto; */
+      height: auto;
+      width: 100%;
+      max-height: 120px;
+    }
+  }
+  .partners-intro {
+    background: rgba(162,162,162,0.15);
+  }
 }
 </style>

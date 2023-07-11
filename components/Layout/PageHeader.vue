@@ -27,7 +27,7 @@ const imageUrl = 'https://admin.frayednot.net/assets/'
     height: 550px;
     background-color: rgba(0, 0, 0, 0.35);
     background-blend-mode: darken;
-    background-attachment: fixed;
+   
     box-shadow: inset 0 20px 25px -5px rgba(0, 0, 0, 0.5);
     @apply bg-cover bg-center bg-no-repeat overflow-hidden relative w-full flex items-center justify-center flex-col;
 
@@ -40,6 +40,7 @@ const imageUrl = 'https://admin.frayednot.net/assets/'
     }
 
     @media (min-width: theme('screens.lg')) {
+        background-attachment: fixed;
         height: calc(100vh - 95px);
     }
 
