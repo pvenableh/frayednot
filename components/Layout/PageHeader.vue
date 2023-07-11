@@ -75,6 +75,7 @@ const imageUrl = 'https://admin.frayednot.net/assets/'
         h4 {
             font-size: 3vw;
             line-height: 1.2em;
+            transition: all 0.4s var(--curve) 0.2s;
             @apply w-full font-serif uppercase mb-20;
             @media (min-width: theme('screens.md')) {
                 font-size: 1.5vw;
@@ -83,6 +84,7 @@ const imageUrl = 'https://admin.frayednot.net/assets/'
 
         p {
             font-size: 12px;
+            transition: all 0.4s var(--curve) 0.25s;
             @apply w-full font-body max-w-4xl;
             @media (min-width: theme('screens.md')) {
                 font-size: 14px;

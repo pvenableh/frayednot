@@ -96,10 +96,7 @@ useSeoMeta({
         }
       }
 
-      .rkc-link {
-        @apply inline-block;
-      }
-
+     
       &-intro {
         width: 100%;
         max-width: 375px;
@@ -109,54 +106,6 @@ useSeoMeta({
   }
 }
 
-
-
-.rkc-bg-icon {
-  height: 96vh;
-  width: 96vw;
-  transition: all 0.35s var(--curve);
-  /* fill: rgba(167, 169, 172, 0.125);
-  fill: rgba(167, 169, 172, 1); */
-  @apply fixed;
-
-  path {
-    fill: rgba(167, 169, 172, 0.025);
-    animation: icon-animation 10s ease-in-out infinite;
-
-    @media (min-width: theme('screens.lg')) {
-      fill: rgba(167, 169, 172, 0.05);
-    }
-  }
-
-  /* path:nth-of-type(1) {
-    animation-delay: 0.1s;
-  } */
-  path:nth-of-type(2) {
-    animation-delay: 0.4s;
-  }
-
-  path:nth-of-type(3) {
-    animation-delay: 0.8s;
-  }
-}
-
-@keyframes icon-animation {
-  0% {
-    fill: rgba(167, 169, 172, 0.05);
-  }
-
-  50% {
-    fill: rgba(167, 169, 172, 0.015);
-  }
-
-  100% {
-    fill: rgba(167, 169, 172, 0.05);
-  }
-}
-
-#rkc-bg-icon.colored {
-  fill: rgba(98, 121, 132, 0.025);
-}
 
 .screen-enter-from {
   opacity: 0;
