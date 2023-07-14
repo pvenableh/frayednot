@@ -8,7 +8,7 @@
         <h5 class="uppercase">{{ section.subtitle }}</h5>
       </nuxt-link>
     </div>
-    <div class="page__body philosophy-intro">
+    <div class="page__body mt-8 philosophy-intro">
       <div class="page__body-header">
         <h2 v-if="page.philosophy_intro.title" class="page__body-header-title">{{ page.philosophy_intro.title }}</h2>
         <h5 v-if="page.philosophy_intro.subtitle">{{ page.philosophy_intro.subtitle }}</h5>
@@ -34,9 +34,12 @@
       </div>
       <ProjectsProjectCard v-else v-for="(project, index) in section.project_sections_id.projects" :key="index"
         :project="project.projects_id" :size="section.project_sections_id.layout" />
-
+        <div class="w-full text-right mt-4">
+                    <UtilitiesLinkBtn link="/automated-audio-video-experiences">Get Inspired
+                    </UtilitiesLinkBtn>
+                </div>
     </div>
-    <div class="page__body mb-20 recognition-intro" style="background: none;">
+    <div class="page__body mt-12 mb-28 recognition-intro" style="background: none;">
       <div class="page__body-header">
         <h2 v-if="page.recognition_intro.title" class="page__body-header-title">{{ page.recognition_intro.title }}</h2>
         <h5 v-if="page.recognition_intro.subtitle">{{ page.recognition_intro.subtitle }}</h5>
@@ -119,7 +122,8 @@ const pageStore = usePageStore()
         font-size: 24px;
         line-height: 30px;
         font-family: var(--serif-font);
-        letter-spacing: 0.025em;
+        letter-spacing: 0.05em;
+        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.75);
         @apply uppercase mb-0;
 
         @media (min-width: theme('screens.sm')) {
@@ -132,10 +136,15 @@ const pageStore = usePageStore()
           line-height: 42px;
         }
 
-        /* @media (min-width: theme('screens.lg')) {
-          font-size: 42px;
-          line-height: 46px;
-        } */
+        @media (min-width: theme('screens.lg')) {
+          font-size: 46px;
+          line-height: 50px;
+         
+        }
+        @media (min-width: theme('screens.xl')) {
+          font-size: 52px;
+          line-height: 60px;
+        }
 
       
 
@@ -144,6 +153,7 @@ const pageStore = usePageStore()
 
       h5 {
         font-size: 12px;
+        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.75);
         @apply tracking-wide;
       }
     }

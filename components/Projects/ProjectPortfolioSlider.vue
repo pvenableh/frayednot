@@ -130,7 +130,8 @@ const theater = computed(() => {
         font-size: 36px;
         line-height: 42px;
         font-family: var(--serif-font);
-        @apply uppercase tracking-wide mb-8;
+        letter-spacing: 0.05em;
+        @apply uppercase mb-8;
 
         @media (min-width: theme('screens.lg')) {
             font-size: 42px;

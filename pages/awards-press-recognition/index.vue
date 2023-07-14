@@ -36,7 +36,7 @@
                     </h2>
                     <h5 v-if="page.recognition_intro.subtitle">{{ page.recognition_intro.subtitle }}</h5>
                     <div class="relative" v-html="page.recognition_intro.text"> </div>
-                    <div v-if="page.recognition_intro.images.length" class="flex items-center justify-around">
+                    <div v-if="page.recognition_intro.images.length" class="flex items-center justify-around mb-8">
                         <div v-for="(image, index) in page.recognition_intro.images" :key="index"
                             class="my-8 p-1 md:p-6 flex items-center justify-center"
                             :class="'w-1/' + page.recognition_intro.images.length">

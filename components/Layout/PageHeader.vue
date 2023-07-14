@@ -62,23 +62,29 @@ const imageUrl = 'https://admin.frayednot.net/assets/'
 
             font-family: var(--serif-font);
             transition: all 0.4s var(--curve) 0.1s;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             @apply w-full font-serif uppercase mb-2;
 
             @media (min-width: theme('screens.md')) {
-                font-size: 4vw;
+                font-size: 7vw;
             }
 
-            @media (min-width: theme('screens.lg')) {}
+            @media (min-width: theme('screens.lg')) {
+                font-size: 6.5vw;
+            }
         }
 
         h4 {
-            font-size: 3vw;
+            font-size: 2.5vw;
             line-height: 1.2em;
             transition: all 0.4s var(--curve) 0.2s;
+            letter-spacing: 0.05em;
             @apply w-full font-serif uppercase mb-20;
+            @media (min-width: theme('screens.sm')) {
+                font-size: 1.8vw;
+            }
             @media (min-width: theme('screens.md')) {
-                font-size: 1.5vw;
+                font-size: 1.25vw;
             }
         }
 

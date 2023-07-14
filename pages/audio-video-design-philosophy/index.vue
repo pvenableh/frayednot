@@ -23,7 +23,7 @@
                 <h2 v-if="section.project_sections_id.title" class="page__body-header-title">{{
                     section.project_sections_id.title
                 }}</h2>
-                <h3 class="uppercase mb-4 -mt-6 tracking-wider">{{ section.project_sections_id.sub_title }}</h3>
+                <h3 class="uppercase page__body-header-subtitle">{{ section.project_sections_id.sub_title }}</h3>
                 <!-- <h5 v-if="section.project_sections_id.sub_title" class="uppercase -mt-8 mb-2 page__body-header-subtitle"></h5> -->
                 <p v-if="section.project_sections_id.text" class="mb-12">{{ section.project_sections_id.text }}</p>
             </div>
@@ -41,8 +41,8 @@
         </div>
         <div class="page__body">
             <div class="page__body-header">
-                <h2 class="page__body-header-title">{{ page.technology_intro.title }}</h2>
-                <h3 class="uppercase mb-4 -mt-6 tracking-wider">{{ page.technology_intro.subtitle }}</h3>
+                <h2 v-if="page.technology_intro.title" class="page__body-header-title">{{ page.technology_intro.title }}</h2>
+                <h3 v-if="page.technology_intro.subtitle" class="uppercase page__body-header-subtitle">{{ page.technology_intro.subtitle }}</h3>
                 <div class="mb-6" v-html="page.technology_intro.text"></div>
                 <div class="w-full text-right mt-4">
                     <UtilitiesLinkBtn :link="page.technology_intro.link.link">{{ page.technology_intro.link.text }}
