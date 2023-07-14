@@ -2,7 +2,7 @@
     "private": true,
     "scripts": {
         "dev": "nuxi dev",
-        "build": "NITRO_PRESET=vercel-edge nuxt build",
+        "build": "nuxi build",
         "start": "node .output/server/index.mjs",
         "allupdate": "yarn upgrade-interactive --latest"
     },
