@@ -107,8 +107,8 @@ const pageStore = usePageStore()
 .home {
   &__intro {
     height: calc(100vh - 140px);
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
 
     &-sections {
       color: var(--white);
