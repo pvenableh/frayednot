@@ -13,7 +13,7 @@ if ($preview) {
     const { data: page, pending, error } = await useAsyncData('page', () => {
         return $directus.items('contact').readOne(1, {
             fields: [
-                'header_image,title,intro,url',
+                'header_image,title,caption,url',
             ],
         })
     })
@@ -21,7 +21,7 @@ if ($preview) {
 const { data: page, pending, error } = await useAsyncData('page', () => {
     return $directus.items('contact').readOne(1, {
         fields: [
-            'header_image,title,intro,url',
+            'header_image,title,caption,url',
         ],
     })
 })

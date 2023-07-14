@@ -1,10 +1,11 @@
 <template>
     <div class="w-full project-card" :class="classes">
         <div class="project-card__image-container">
-            <swiper v-if="project.images.length" :speed="600" :parallax="true" :pagination="{
-                type: 'bullets',
-                clickable: true,
-            }" :modules="modules" class="h-full flex items-center justify-center flex-col slideshowSwiper">
+            <swiper v-if="project.images.length" class="h-full flex items-center justify-center flex-col mySwiper2 swiper-v"
+                :speed="600" :parallax="true" :pagination="{
+                    type: 'bullets',
+                    clickable: true,
+                }" :direction="'vertical'" :grabCursor="true" :modules="modules">
                 <swiper-slide class="w-full flex items-center justify-center relative overflow-hidden"
                     v-for="(slide, index) in project.images" :key="index">
                     <div :style="'background-image: url(' + imageUrl + slide.directus_files_id + '?key=medium)'"
@@ -18,7 +19,7 @@
         <div class="project-card__body">
             <h3 class="project-card__body-title">{{ project.title }}</h3>
 
-            <p class="project-card__body-experience">{{ project.experience }}</p>
+            <p class="project-card__body-experience" data-swiper-parallax="-200">{{ project.experience }}</p>
 
             <h4 class="hidden">{{ project.title + ' - ' + project.experience + ' Expreience designed by frayednot' }}</h4>
 
@@ -41,8 +42,9 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/pagination'
-import { Pagination, Parallax } from 'swiper'
-const modules = [Parallax, Pagination]
+// import 'swiper/css/effect-creative';
+import { Pagination } from 'swiper'
+const modules = [Pagination]
 const props = defineProps({
     project: {
         type: Object,
@@ -185,6 +187,24 @@ function toggleDescription() {
         opacity: 0.5;
     }
 
+    .swiper-pagination-vertical {
+        .swiper-pagination-bullet {
+            background-color: var(--white);
+            width: 2px;
+            border-radius: 1px;
+            height: 20px;
+            opacity: 0.5;
+
+
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: var(--white);
+            opacity: 1;
+        }
+
+    }
+
     .swiper-pagination-bullet-active {
         background-color: var(--white);
         opacity: 1;
@@ -218,8 +238,8 @@ function toggleDescription() {
 
         &-experience {
             transition: all 0.6s var(--curve);
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.25);
-            letter-spacing: 0.025em;
+
+
             @apply uppercase font-serif text-white;
         }
     }
@@ -242,7 +262,7 @@ function toggleDescription() {
         width: 45px;
         height: 40px;
         background: rgba(255, 255, 255, 0.15);
-  
+
         transition: all 0.6s var(--curve);
         backdrop-filter: blur(10px);
         bottom: 0px;

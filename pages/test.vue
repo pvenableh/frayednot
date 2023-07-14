@@ -4,7 +4,7 @@
       <nuxt-link v-for="(section, index) in page.featured_sections" :key="index" :to="'/' + section.url"
         :style="'background-image: url(' + imageUrl + section.background_image + ')'"
         class="bg-cover bg-center bg-no-repeat w-full home__intro-sections">
-        <h1 class="font-serif tracking-wide uppercase">{{ section.title }}</h1>
+        <h1 class="font-serif uppercase">{{ section.title }}</h1>
         <h5 class="uppercase">{{ section.subtitle }}</h5>
       </nuxt-link>
     </div>
@@ -15,14 +15,17 @@
         <div class="grid md:grid-cols-2 gap-10 md:gap-20 relative" v-html="page.philosophy_intro.text"> </div>
       </div>
     </div>
+    <div class="page__body">
+    <ProjectsProjectPortfolioSlider :projects="projects.data" />
+  </div>
     <div v-for="(section, index) in page.project_sections" :key="index" class="w-full page__body">
 
       <div class="page__body-header">
 
         <h2 v-if="section.project_sections_id.title" class="page__body-header-title">{{ section.project_sections_id.title
         }}</h2>
-        <h5 v-if="section.project_sections_id.subtitle">{{ section.project_sections_id.subtitle }}</h5>
-        <p v-if="section.project_sections_id.text" class="mb-12">{{ section.project_sections_id.text }}</p>
+        <h5 v-if="section.project_sections_id.subtitle" class="mb-6">{{ section.project_sections_id.subtitle }}</h5>
+        <p v-if="section.project_sections_id.text" class="mb-8">{{ section.project_sections_id.text }}</p>
       </div>
 
       <div v-if="section.project_sections_id.layout === 'small'" class="grid sm:grid-cols-3 gap-2 sm:gap-4">
@@ -33,33 +36,39 @@
         :project="project.projects_id" :size="section.project_sections_id.layout" />
 
     </div>
-    <div class="page__body mb-20 recognition-intro">
+    <div class="page__body mb-20 recognition-intro" style="background: none;">
       <div class="page__body-header">
         <h2 v-if="page.recognition_intro.title" class="page__body-header-title">{{ page.recognition_intro.title }}</h2>
         <h5 v-if="page.recognition_intro.subtitle">{{ page.recognition_intro.subtitle }}</h5>
         <div class="relative" v-html="page.recognition_intro.text"> </div>
-        <div v-if="page.recognition_intro.images.length" class="flex items-center justify-around">
+        <!-- <div v-if="page.recognition_intro.images.length" class="flex items-center justify-around">
           <div v-for="(image, index) in page.recognition_intro.images" :key="index"
-            class="my-8 p-1 md:p-6 flex items-center justify-center" :class="'w-1/' + page.recognition_intro.images.length">
+            class="my-8 p-1 md:p-6 flex items-center justify-center"
+            :class="'w-1/' + page.recognition_intro.images.length">
             <img :src="imageUrl + image.directus_files_id + '?key=small'" :key="index" alt="Award" class="inline-block" />
+          </div>
+        </div> -->
+        <div class="w-full text-right mt-4">
+          <UtilitiesLinkBtn :link="page.recognition_intro.link.link">{{ page.recognition_intro.link.text }}
+          </UtilitiesLinkBtn>
+        </div>
+      </div>
+    </div>
+    <div class="w-full shadow-inner mb-20 partners-intro">
+      <div class="page__body mx-auto">
+        <div class="page__body-header">
+          <h2 v-if="page.partners_intro.title" class="page__body-header-title">{{ page.partners_intro.title }}</h2>
+          <h5 v-if="page.partners_intro.subtitle" class="uppercase page__body-header-subtitle">{{
+            page.partners_intro.subtitle }}</h5>
+          <div class="relative" v-if="page.partners_intro.text" v-html="page.partners_intro.text"> </div>
+          <div class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-12 md:gap-12 lg:gap-12 mt-6 mb-20 ">
+            <nuxt-link v-for="(partner, index) in page.partners_intro.partners" :key="index" :to="partner.partners_id.url"
+              class="flex items-center justify-center partner">
+              <img :src="imageUrl + partner.partners_id.logo" :alt="partner.partners_id.name" class="drop-shadow-md" />
+            </nuxt-link>
           </div>
         </div>
       </div>
-    </div>
-    <div class="w-full shadow-inner partners-intro">
-      <div class="page__body mx-auto">
-      <div class="page__body-header">
-        <h2 v-if="page.partners_intro.title" class="page__body-header-title">{{ page.partners_intro.title }}</h2>
-        <h5 v-if="page.partners_intro.subtitle" class="uppercase page__body-header-subtitle">{{ page.partners_intro.subtitle }}</h5>
-        <div class="relative" v-if="page.partners_intro.text" v-html="page.partners_intro.text"> </div>
-        <div class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-12 md:gap-12 lg:gap-12 mt-6 mb-20 ">
-          <nuxt-link v-for="(partner, index) in page.partners_intro.partners" :key="index" :to="partner.partners_id.url"
-            class="flex items-center justify-center partner">
-            <img :src="imageUrl + partner.partners_id.logo" :alt="partner.partners_id.name" class="drop-shadow-md"/>
-          </nuxt-link>
-        </div>
-      </div>
-    </div>
     </div>
   </div>
 </template>
@@ -70,7 +79,14 @@ const { $directus } = useNuxtApp()
 const { data: page, pending, error } = await useAsyncData('page', () => {
   return $directus.items('home').readOne(1, {
     fields: [
-      'featured_sections.background_image,featured_sections.title,featured_sections.subtitle,featured_sections.url,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,philosophy_intro.title,philosophy_intro.subtitle,philosophy_intro.text,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,partners_intro.title,partners_intro.subtitle,partners_intro.text,partners.partners_id.name,partners_intro.partners.partners_id.link,partners_intro.partners.partners_id.name,partners_intro.partners.partners_id.logo',
+      'featured_sections.background_image,featured_sections.title,featured_sections.subtitle,featured_sections.url,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,philosophy_intro.title,philosophy_intro.subtitle,philosophy_intro.text,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,recognition_intro.link.link,recognition_intro.link.text,partners_intro.title,partners_intro.subtitle,partners_intro.text,partners.partners_id.name,partners_intro.partners.partners_id.link,partners_intro.partners.partners_id.name,partners_intro.partners.partners_id.logo',
+    ],
+  })
+})
+const { data: projects, pending2, error2 } = await useAsyncData('projects', () => {
+  return $directus.items('projects').readByQuery({
+    fields: [
+      'status,title,description,experience,category,images.directus_files_id',
     ],
   })
 })
@@ -103,7 +119,8 @@ const pageStore = usePageStore()
         font-size: 24px;
         line-height: 30px;
         font-family: var(--serif-font);
-        @apply uppercase tracking-wide mb-8;
+        letter-spacing: 0.025em;
+        @apply uppercase mb-0;
 
         @media (min-width: theme('screens.sm')) {
           font-size: 26px;
@@ -120,14 +137,14 @@ const pageStore = usePageStore()
           line-height: 46px;
         } */
 
-        @apply uppercase tracking-wide mb-1;
+      
 
 
       }
 
       h5 {
         font-size: 12px;
-        @apply tracking-widest;
+        @apply tracking-wide;
       }
     }
   }
@@ -159,8 +176,24 @@ const pageStore = usePageStore()
       max-height: 120px;
     }
   }
+
   .partners-intro {
-    background: rgba(162,162,162,0.15);
+    background: rgba(162, 162, 162, 0.15);
+
+    a,
+    a:link {
+      img {
+        transition: all 0.4s var(--curve);
+        filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.25));
+      }
+    }
+
+    a:hover {
+      img {
+        filter: drop-shadow(15px 15px 5px rgba(0, 0, 0, 0.5));
+        transform: scale(1.1);
+      }
+    }
   }
 }
 </style>

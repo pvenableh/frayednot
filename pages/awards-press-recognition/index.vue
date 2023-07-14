@@ -3,9 +3,8 @@
         <LayoutPageHeader :page="page" :heading="heading" />
         <div class="page__body">
             <div class="page__body-header">
-                <h2 class="page__body-header-title">Recognition</h2>
-                <p>frayednot has won prestigious awards over the years. frayednot was featured in several articles within
-                    the audio/video integration industry over the years.</p>
+                <h2 class="page__body-header-title">{{ page.page_header }}</h2>
+                <div v-html="page.page_intro"></div>
             </div>
             <div class="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 my-12">
                 <a v-for="(article, index) in page.articles" :key="index" :href="article.link" target="_blank"
@@ -24,7 +23,28 @@
                     <h2 class="page__body-header-title">{{ page.certified_intro.title }}</h2>
                     <div v-html="page.certified_intro.text" class="mb-4"></div>
                 </div>
-                <img v-if="page.certified_intro.images.length" :src="imageUrl + page.certified_intro.images[0].directus_files_id" alt="HTA Logo" class="w-full md:w-[200px] h-auto md:ml-20"/>
+                <img v-if="page.certified_intro.images.length"
+                    :src="imageUrl + page.certified_intro.images[0].directus_files_id" alt="HTA Logo"
+                    class="w-full md:w-[200px] h-auto md:ml-20" />
+            </div>
+        </div>
+        <div class="w-full shadow-inner my-20 recognition-intro">
+            <div class="page__body mx-auto">
+                <div class="page__body-header">
+                    <h2 v-if="page.recognition_intro.title" class="page__body-header-title">{{ page.recognition_intro.title
+                    }}
+                    </h2>
+                    <h5 v-if="page.recognition_intro.subtitle">{{ page.recognition_intro.subtitle }}</h5>
+                    <div class="relative" v-html="page.recognition_intro.text"> </div>
+                    <div v-if="page.recognition_intro.images.length" class="flex items-center justify-around">
+                        <div v-for="(image, index) in page.recognition_intro.images" :key="index"
+                            class="my-8 p-1 md:p-6 flex items-center justify-center"
+                            :class="'w-1/' + page.recognition_intro.images.length">
+                            <img :src="imageUrl + image.directus_files_id + '?key=small'" :key="index" alt="Award"
+                                class="inline-block" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -39,7 +59,7 @@ if ($preview) {
     const { data: page, pending, error } = await useAsyncData('page', () => {
         return $directus.items('recognition').readOne(1, {
             fields: [
-                'header_image,title,intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id',
+                'header_image,title,caption,page_header,page_intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id',
             ],
         })
     })
@@ -47,7 +67,7 @@ if ($preview) {
 const { data: page, pending, error } = await useAsyncData('page', () => {
     return $directus.items('recognition').readOne(1, {
         fields: [
-            'header_image,title,intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id',
+            'header_image,title,caption,page_header,page_intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id',
         ],
     })
 })
@@ -56,14 +76,39 @@ const { data: page, pending, error } = await useAsyncData('page', () => {
 
 </script>
 <style>
+.page__body-header {
+    p {
+        a {
+            color: var(--blue);
+            @apply underline;
+        }
+    }
+}
+
+.recognition-intro {
+    background: rgba(162, 162, 162, 0.15);
+
+
+    img {
+        transition: all 0.4s var(--curve);
+        filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.25));
+    }
+
+
+
+    img:hover {
+        filter: drop-shadow(15px 15px 5px rgba(0, 0, 0, 0.5));
+        transform: scale(1.1);
+
+    }
+}
+
 .press-card {
     width: 100%;
-  
+
     @apply mb-12;
 
-    @media (min-width: theme('screens.sm')) {
-  
-    }
+    @media (min-width: theme('screens.sm')) {}
 
     &__image {
 
@@ -85,4 +130,5 @@ const { data: page, pending, error } = await useAsyncData('page', () => {
             @apply font-serif;
         }
     }
-}</style>
+}
+</style>

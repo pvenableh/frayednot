@@ -1,8 +1,9 @@
 <template>
-  <div class="w-full mx-auto relative flex items-center justify-start flex-col md:flex-row w-full py-4 header">
+  <div class="w-full mx-auto relative flex items-center justify-start flex-col lg:flex-row w-full py-4 header">
     <!-- <img src="/assets/images/logo.png" alt="frayednot Logo" class="mt-4 md:mt-0 logo"/> -->
-    <nuxt-link to="/test" class="inline-block w-full text-center pt-2 pb-1 logo-link">
-      <h3 class="font-serif uppercase sm:tracking-wider">Uncompromised Sound. Unseen Experience.&trade;</h3>
+    <h1 class="absolute uppercase -mt-1 lg:mt-0 opacity-30 text-sm lg:opacity-40 tracking-wider name">Frayednot</h1>
+    <nuxt-link to="/test" class="inline-block w-full text-center mt-2 lg:mt-0 pt-2 lg:pb-1 logo-link">
+      <h3 class="font-serif uppercase sm:tracking-wide">Uncompromised Sound. Unseen Experience.&trade;</h3>
     </nuxt-link>
 
   </div>
@@ -22,7 +23,15 @@
     padding-right: 35px; */
 
   }
-
+  .name {
+    /* margin-top: -30px;
+    left: calc(50% - 30px); */
+    
+    @apply absolute;
+    @media (min-width: theme('screens.md')) {
+      margin-left: 15px;
+    }
+  }
   /* @media (min-width: 1280px) {
     left: calc(50% - 640px);
   } */

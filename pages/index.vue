@@ -9,6 +9,7 @@
         <h4 class="font-serif tracking-wide uppercase absolute bottom-0 left-0 pl-4">{{ section.title }}</h4>
       </swiper-slide>
     </swiper>
+   
     <div class="absolute z-10 flex items-center justify-center flex-col">
       <img src="/assets/images/logo2.png" alt="frayednot Logo" class="mt-4 md:mt-0 logo" />
 
@@ -34,6 +35,7 @@ const { data: home, pending, error } = await useAsyncData('page', () => {
     ],
   })
 })
+
 // const { getItems } = useDirectusItems()
 // const home = await getItems({
 //   collection: 'home',

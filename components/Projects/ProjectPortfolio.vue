@@ -154,7 +154,7 @@ const theater = computed(() => {
     &__panel {
         -ms-overflow-style: none;
         scrollbar-width: none;
-        @apply w-full max-w-7xl absolute;
+        @apply w-full max-w-7xl;
     }
 
     .project-portfolio__panel::-webkit-scrollbar {

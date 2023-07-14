@@ -3,7 +3,7 @@
         <div class="page__header-caption">
             <h1>{{ heading }}</h1>
             <h4>{{ page.title }}</h4>
-            <p v-html="replaceNewlinesWithBreaks(page.intro) "></p>
+            <p v-html="replaceNewlinesWithBreaks(page.caption) "></p>
         </div>
     </div>
 </template>

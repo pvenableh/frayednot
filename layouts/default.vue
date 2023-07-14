@@ -76,7 +76,8 @@ useSeoMeta({
         font-size: 24px;
         line-height: 30px;
         font-family: var(--serif-font);
-        @apply uppercase tracking-wide mb-8;
+        letter-spacing: 0.025em;
+        @apply uppercase  mb-3;
         @media (min-width: theme('screens.sm')) {
           font-size: 26px;
           line-height: 30px;
@@ -94,12 +95,6 @@ useSeoMeta({
           /* font-size: 50px;
           line-height: 58px; */
         }
-      }
-
-     
-      &-intro {
-        width: 100%;
-        max-width: 375px;
       }
     }
 

@@ -116,6 +116,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/devtools',
     '@nuxtjs/tailwindcss',
+    '@vueuse/nuxt',
+    '@vueuse/motion/nuxt',
     'nuxt-og-image',
     [
       '@pinia/nuxt',
@@ -173,6 +175,22 @@ export default defineNuxtConfig({
       directusUrl: 'https://admin.frayednot.net',
       plausible: {
         domain: 'frayednot.net',
+      },
+      motion: {
+        directives: {
+          'pop-bottom': {
+            initial: {
+              scale: 0,
+              opacity: 0,
+              y: 100,
+            },
+            visible: {
+              scale: 1,
+              opacity: 1,
+              y: 0,
+            }
+          }
+        }
       },
     },
   },

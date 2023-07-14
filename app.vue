@@ -1,7 +1,7 @@
 <template>
   <div :class="pageStore.page">
     <NuxtLayout>
-      <NuxtLoadingIndicator color="var(--black)" :height="8" />
+      <NuxtLoadingIndicator color="var(--black)" :height="4" />
       <NuxtPage />
     </NuxtLayout>
     <OgImage
