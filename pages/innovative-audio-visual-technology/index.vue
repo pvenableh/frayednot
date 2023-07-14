@@ -6,12 +6,6 @@
                 <h2 class="page__body-header-title">{{ page.page_header }}</h2>
                 <div v-html="page.page_intro"></div>
             </div>
-            <!-- <div class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-12 md:gap-12 lg:gap-12 mt-12">
-                <nuxt-link v-for="(partner, index) in page.partners" :key="index" :to="partner.url"
-                    class="flex items-center justify-center partner">
-                    <img :src="imageUrl + partner.logo" :alt="partner.name" />
-                </nuxt-link>
-            </div> -->
             <div class="page__body-header">
                 <h2 class="page__body-header-title">{{ page.technology_intro.title }}</h2>
                 <h3 class="uppercase mb-12 -mt-6 tracking-wider">{{ page.technology_intro.subtitle }}</h3>
