@@ -1,12 +1,12 @@
 <template>
     <div class="page recognition">
         <LayoutPageHeader :page="page" :heading="heading" />
-        <div class="page__body">
+        <div class="page__body pt-12">
             <div class="page__body-header">
                 <h2 class="page__body-header-title">{{ page.page_header }}</h2>
                 <div v-html="page.page_intro"></div>
             </div>
-            <div class="page__body-header">
+            <div class="page__body-header pb-12">
                 <h2 class="page__body-header-title">{{ page.technology_intro.title }}</h2>
                 <h3 class="uppercase mb-6 page__body-header-subtitle">{{ page.technology_intro.subtitle }}</h3>
                 <div class="mb-6" v-html="page.technology_intro.text"></div>

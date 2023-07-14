@@ -1,7 +1,7 @@
 <template>
     <div class="page philosophy">
         <LayoutPageHeader :page="page" :heading="heading" />
-        <div class="page__body grid lg:grid-cols-3 gap-2 lg:gap-20">
+        <div class="page__body grid lg:grid-cols-3 gap-2 lg:gap-20 my-12">
             <div class="page__body-header">
                 <h2 class="page__body-header-title">About</h2>
                 <p>{{ page.about }}</p>
