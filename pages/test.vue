@@ -124,11 +124,13 @@ const pageStore = usePageStore()
         font-family: var(--serif-font);
         letter-spacing: 0.05em;
         text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.75);
+        margin-top: 12px;
         @apply uppercase mb-0;
 
         @media (min-width: theme('screens.sm')) {
           font-size: 26px;
           line-height: 30px;
+          margin-top: 22px;
         }
 
         @media (min-width: theme('screens.md')) {
