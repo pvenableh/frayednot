@@ -8,7 +8,7 @@
             </div>
             <div class="page__body-header">
                 <h2 class="page__body-header-title">{{ page.technology_intro.title }}</h2>
-                <h3 class="uppercase mb-12 -mt-6 tracking-wider">{{ page.technology_intro.subtitle }}</h3>
+                <h3 class="uppercase mb-6 page__body-header-subtitle">{{ page.technology_intro.subtitle }}</h3>
                 <div class="mb-6" v-html="page.technology_intro.text"></div>
                 <div class="grid grid-cols-3 gap-1 mt-12">
                     <img v-for="(image, index) in page.technology_intro.images" :key="index"
