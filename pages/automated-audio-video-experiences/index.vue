@@ -21,7 +21,7 @@
             </div>
 
             <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-1">
-                <ProjectsProjectCard v-for="(project, index) in page.projects" :key="index" :project="project" size="small" />
+                <ProjectsProjectCard v-for="(project, index) in page.projects" :key="index" :project="project" size="small" v-motion-fade-visible :delay="100"/>
             </div>
         </div>
         <div v-if="page.recognition_intro" class="w-full shadow-inner my-20 recognition-intro">
