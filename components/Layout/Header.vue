@@ -1,8 +1,7 @@
 <template>
-  <div class="w-full mx-auto relative flex items-center justify-start flex-col lg:flex-row w-full py-4 header">
-    <!-- <img src="/assets/images/logo.png" alt="frayednot Logo" class="mt-4 md:mt-0 logo"/> -->
-    <h1 class="absolute uppercase -mt-1 lg:mt-0 opacity-30 text-sm lg:opacity-40 tracking-wider name">Frayednot</h1>
-    <nuxt-link to="/test" class="inline-block w-full text-center mt-2 lg:mt-0 pt-2 lg:pb-1 logo-link">
+  <div class="w-full mx-auto relative flex items-center justify-center flex-col lg:flex-row w-full py-4 header">
+    <nuxt-link to="/test" class="absolute -mt-5 lg:mt-0 lg:left-0 name"><h1 class="uppercase opacity-30 text-sm lg:opacity-40 tracking-wider">Frayednot</h1></nuxt-link>
+    <nuxt-link to="/test" class="inline-block w-full text-center mt-3 lg:mt-0 pt-1 lg:pb-1 logo-link">
       <h3 class="font-serif uppercase sm:tracking-wide">Uncompromised Sound. Unseen Experience.&trade;</h3>
     </nuxt-link>
 
