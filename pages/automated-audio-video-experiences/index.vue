@@ -20,7 +20,7 @@
                     :project="project.projects_id" :size="section.project_sections_id.layout" />
             </div>
 
-            <div class="mt-20 grid grid-cols-3 gap-1">
+            <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-1">
                 <ProjectsProjectCard v-for="(project, index) in page.projects" :key="index" :project="project" size="small" />
             </div>
         </div>
