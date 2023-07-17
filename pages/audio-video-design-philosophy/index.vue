@@ -41,18 +41,13 @@
         </div>
         <div class="page__body">
             <div class="page__body-header">
-                <h2 v-if="page.technology_intro.title" class="page__body-header-title">{{ page.technology_intro.title }}</h2>
-                <h3 v-if="page.technology_intro.subtitle" class="uppercase page__body-header-subtitle">{{ page.technology_intro.subtitle }}</h3>
-                <div class="mb-6" v-html="page.technology_intro.text"></div>
+                <h2 v-if="technology.title" class="page__body-header-title">{{ technology.title }}</h2>
+                <h3 v-if="technology.subtitle" class="uppercase page__body-header-subtitle">{{ technology.subtitle }}</h3>
+                <div v-if="technology.text" class="mb-6" v-html="technology.text"></div>
                 <div class="w-full text-right mt-4">
-                    <UtilitiesLinkBtn :link="page.technology_intro.link.link">{{ page.technology_intro.link.text }}
+                    <UtilitiesLinkBtn v-if="technology.link" :link="technology.link.link">{{ technology.link.text }}
                     </UtilitiesLinkBtn>
                 </div>
-                <!-- <div class="grid grid-cols-3 gap-2 md:gap-16 mt-12">
-                    <img v-for="(image, index) in page.technology_intro.images" :key="index"
-                        :src="imageUrl + image.directus_files_id + '?key=small'" alt="" />
-
-                </div> -->
             </div>
         </div>
         <div class="page__body w-full flex flex-row items-center justify-around my-32">
@@ -69,7 +64,7 @@
 const heading = ref('Philosophy')
 const imageUrl = 'https://admin.frayednot.net/assets/'
 const { $directus, $preview } = useNuxtApp();
-
+const technology = ref({})
 if ($preview) {
     const { data: page, pending, error } = await useAsyncData('page', () => {
         return $directus.items('philosophy').readOne(1, {
@@ -78,6 +73,7 @@ if ($preview) {
             ],
         })
     })
+    technology.value = page.value.technology_intro
 }
 const { data: page, pending, error } = await useAsyncData('page', () => {
     return $directus.items('philosophy').readOne(1, {
@@ -87,7 +83,7 @@ const { data: page, pending, error } = await useAsyncData('page', () => {
     })
 })
 
-
+technology.value = page.value.technology_intro
 
 </script>
 <style>

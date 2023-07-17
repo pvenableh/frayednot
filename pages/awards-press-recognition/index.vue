@@ -9,33 +9,33 @@
             <div class="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 my-12">
                 <a v-for="(article, index) in page.articles" :key="index" :href="article.link" target="_blank"
                     class="press-card">
-                    <div class="press-card__image">
+                    <div v-if="article.image && article.title" class="press-card__image">
                         <img :src="imageUrl + article.image + '?key=small'" :alt="article.title">
                     </div>
                     <div class="press-card__content">
-                        <h3 class="">{{ article.title }}</h3>
-                        <p class="">{{ article.subtitle }}</p>
+                        <h3 v-if="article.title" class="">{{ article.title }}</h3>
+                        <p v-if="article.subtitle" class="">{{ article.subtitle }}</p>
                     </div>
                 </a>
             </div>
-            <div class="page__body-header flex items-center flex-col md:flex-row">
+            <div v-if="page.certified_intro" class="page__body-header flex items-center flex-col md:flex-row">
                 <div class="md:flex-grow-0">
-                    <h2 class="page__body-header-title">{{ page.certified_intro.title }}</h2>
-                    <div v-html="page.certified_intro.text" class="mb-4"></div>
+                    <h2 v-if="page.certified_intro.title" class="page__body-header-title">{{ page.certified_intro.title }}</h2>
+                    <div v-if="page.certified_intro.text" v-html="page.certified_intro.text" class="mb-4"></div>
                 </div>
                 <img v-if="page.certified_intro.images.length"
                     :src="imageUrl + page.certified_intro.images[0].directus_files_id" alt="HTA Logo"
                     class="w-full md:w-[200px] h-auto md:ml-20" />
             </div>
         </div>
-        <div class="w-full shadow-inner my-20 recognition-intro">
+        <div v-if="page.recognition_intro" class="w-full shadow-inner my-20 recognition-intro">
             <div class="page__body mx-auto">
                 <div class="page__body-header">
                     <h2 v-if="page.recognition_intro.title" class="page__body-header-title">{{ page.recognition_intro.title
                     }}
                     </h2>
                     <h5 v-if="page.recognition_intro.subtitle">{{ page.recognition_intro.subtitle }}</h5>
-                    <div class="relative" v-html="page.recognition_intro.text"> </div>
+                    <div v-if="page.recognition_intro.text" class="relative" v-html="page.recognition_intro.text"> </div>
                     <div v-if="page.recognition_intro.images.length" class="flex items-center justify-around mb-8">
                         <div v-for="(image, index) in page.recognition_intro.images" :key="index"
                             class="my-8 p-1 md:p-6 flex items-center justify-center"

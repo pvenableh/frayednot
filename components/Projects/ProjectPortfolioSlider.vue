@@ -19,7 +19,7 @@
         <div class="project-portfolio__container">
             <transition :name="animateName" mode="out-in" class="relative transition-container">
                 <swiper v-if="panel === 'theater'" key="1" class="mySwiper swiper-h w-full project-portfolio__panel"
-                    :spaceBetween="10" navigation :speed="900" :grabCursor="true" :effect="'creative'" :creativeEffect="{
+                    :spaceBetween="10" navigation :speed="700" :grabCursor="true" :effect="'creative'" :creativeEffect="{
                         prev: {
                             shadow: true,
                             translate: ['-120%', 0, -500],
@@ -28,14 +28,14 @@
                             shadow: true,
                             translate: ['120%', 0, -500],
                         },
-                    }" :parallax="true" :modules="modules">
+                    }" :parallax="true" :observer="true" :observeParents="true" :modules="modules">
                     >
                     <swiper-slide v-for="(project, index) in theater" :key="index" class="w-full overflow-hidden relative">
                         <ProjectsProjectCardVertical :project="project" size="large" class="w-full" />
                     </swiper-slide>
                 </swiper>
                 <swiper v-else-if="panel === 'outdoor'" key="2" class="mySwiper swiper-h w-full project-portfolio__panel"
-                    :spaceBetween="10" :speed="900" :effect="'creative'" :creativeEffect="{
+                    :spaceBetween="10" :speed="700" :effect="'creative'" :creativeEffect="{
                         prev: {
                             shadow: true,
                             translate: ['-120%', 0, -500],
@@ -44,14 +44,14 @@
                             shadow: true,
                             translate: ['120%', 0, -500],
                         },
-                    }" navigation :parallax="true" :modules="modules">
+                    }" navigation :observer="true" :observeParents="true" :parallax="true" :modules="modules">
                     >
                     <swiper-slide v-for="(project, index) in outdoor" :key="index" class="w-full overflow-hidden relative">
                         <ProjectsProjectCardVertical :project="project" size="large" class="w-full" />
                     </swiper-slide>
                 </swiper>
                 <swiper v-else-if="panel === 'indoor'" key="3" class="mySwiper swiper-h w-full project-portfolio__panel"
-                    :spaceBetween="10" navigation :speed="900" :effect="'creative'" :creativeEffect="{
+                    :spaceBetween="10" navigation :speed="700" :effect="'creative'" :creativeEffect="{
                         prev: {
                             shadow: true,
                             translate: ['-120%', 0, -500],
@@ -60,7 +60,7 @@
                             shadow: true,
                             translate: ['120%', 0, -500],
                         },
-                    }" :parallax="true" :modules="modules">
+                    }" :observer="true" :observeParents="true" :parallax="true" :modules="modules">
                     >
                     <swiper-slide v-for="(project, index) in indoor" :key="index" class="w-full overflow-hidden relative">
                         <ProjectsProjectCardVertical :project="project" size="large" class="w-full" />
@@ -145,10 +145,12 @@ const theater = computed(() => {
         &-item {
             opacity: 0.5;
             transition: all .3s var(--curve);
-            @apply uppercase cursor-pointer mb-12 w-1/3 flex items-center relative;
+
+            @apply tracking-wider uppercase cursor-pointer mb-12 w-1/3 flex items-center relative;
 
             h5 {
                 width: 80%;
+                font-size: 14px;
                 @apply text-center;
             }
         }
@@ -201,12 +203,17 @@ const theater = computed(() => {
     }
 
     &__container {
-        height: 585px;
+        height: 315px;
         @apply flex flex-col justify-center items-center w-full max-w-7xl overflow-hidden;
+        @media (min-width: theme('screens.md')) {
+        }
+        @media (min-width: theme('screens.md')) {
+            height: 585px;
+        }
     }
 
     .transition-container {
-        height: 585px;
+      
         @apply max-w-7xl;
     }
 
@@ -218,7 +225,11 @@ const theater = computed(() => {
     }
 
     .swiper-wrapper {
-        height: 500px;
+
+        height:230px;
+        @media (min-width: theme('screens.md')) {
+            height: 500px;
+        }
     }
 
     /* 

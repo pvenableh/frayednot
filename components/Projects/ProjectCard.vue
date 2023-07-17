@@ -16,11 +16,11 @@
         </div>
 
         <div class="project-card__body">
-            <h3 class="project-card__body-title">{{ project.title }}</h3>
+            <h3 v-if="project.title" class="project-card__body-title" >{{ project.title }}</h3>
 
-            <p class="project-card__body-experience">{{ project.experience }}</p>
+            <p v-if="project.experience" class="project-card__body-experience">{{ project.experience }}</p>
 
-            <h4 class="hidden">{{ project.title + ' - ' + project.experience + ' Expreience designed by frayednot' }}</h4>
+            <h4 v-if="project.experience && project.title" class="hidden">{{ project.title + ' - ' + project.experience + ' Expreience designed by frayednot' }}</h4>
 
         </div>
         <div v-if="project.description" class="cursor-pointer project-card__description-button"
@@ -46,15 +46,7 @@ const modules = [Parallax, Pagination]
 const props = defineProps({
     project: {
         type: Object,
-        default: {
-            "title": "Project Title",
-            "description": "Project Description",
-            "experience": "Project Experience",
-            "category": "Project Category",
-            "images": {
-                "directus_files_id": "Project Image"
-            }
-        },
+        default: {},
     },
     size: {
         type: String,

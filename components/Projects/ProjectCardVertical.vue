@@ -1,6 +1,6 @@
 <template>
-    <div class="w-full project-card" :class="classes">
-        <div class="project-card__image-container">
+    <div class="w-full project-card-v" :class="classes">
+        <div class="project-card-v__image-container">
             <swiper v-if="project.images.length" class="h-full flex items-center justify-center flex-col mySwiper2 swiper-v"
                 :speed="600" :parallax="true" :pagination="{
                     type: 'bullets',
@@ -9,26 +9,24 @@
                 <swiper-slide class="w-full flex items-center justify-center relative overflow-hidden"
                     v-for="(slide, index) in project.images" :key="index">
                     <div :style="'background-image: url(' + imageUrl + slide.directus_files_id + '?key=medium)'"
-                        class="project-card__image"></div>
+                        class="project-card-v__image"></div>
                 </swiper-slide>
             </swiper>
-            <!-- <div v-else :style="'background-image: url(' + imageUrl + project.images[0].directus_files_id + '?key=medium)'"
-                class="project-card__image"></div> -->
         </div>
 
-        <div class="project-card__body">
-            <h3 class="project-card__body-title">{{ project.title }}</h3>
+        <div class="project-card-v__body">
+            <h3 class="project-card-v__body-title">{{ project.title }}</h3>
 
-            <p class="project-card__body-experience" data-swiper-parallax="-200">{{ project.experience }}</p>
+            <p class="project-card-v__body-experience" data-swiper-parallax="-100">{{ project.experience }}</p>
 
             <h4 class="hidden">{{ project.title + ' - ' + project.experience + ' Expreience designed by frayednot' }}</h4>
 
         </div>
-        <div v-if="project.description" class="cursor-pointer project-card__description-button"
+        <div v-if="project.description" class="cursor-pointer project-card-v__description-button"
             @click.prevent="toggleDescription()">
             <span></span><span></span>
         </div>
-        <div v-if="project.description" @click.prevent="toggleDescription()" class="project-card__description"
+        <div v-if="project.description" @click.prevent="toggleDescription()" class="project-card-v__description"
             v-html="replaceNewlinesWithBreaks(project.description)">
         </div>
     </div>
@@ -76,10 +74,10 @@ function toggleDescription() {
 }
 </script>
 <style>
-.project-card.small {
+.project-card-v.small {
     height: 230px;
 
-    .project-card__body {
+    .project-card-v__body {
 
         &-experience {
             font-size: 24px;
@@ -104,10 +102,14 @@ function toggleDescription() {
     }
 }
 
-.project-card.large {
-    height: 500px;
+.project-card-v.large {
+    height: 230px;
 
-    .project-card__body {
+    @media (min-width: theme('screens.md')) {
+        height: 500px;
+    }
+
+    .project-card-v__body {
 
         &-experience {
             font-size: 24px;
@@ -131,7 +133,7 @@ function toggleDescription() {
         }
     }
 
-    .project-card__description {
+    .project-card-v__description {
         font-size: 14px;
         @apply p-20;
     }
@@ -153,7 +155,7 @@ function toggleDescription() {
     }
 } */
 
-.project-card {
+.project-card-v {
     @apply flex items-center justify-center relative overflow-hidden;
 
     &__image-container {
@@ -288,45 +290,45 @@ function toggleDescription() {
     }
 }
 
-.project-card:hover {
+.project-card-v:hover {
 
-    .project-card__image,
-    .project-card__image-slide {
+    .project-card-v__image,
+    .project-card-v__image-slide {
         @media (min-width: theme('screens.lg')) {
             transform: scale(1.1);
         }
     }
 
-    .project-card__body-experience {
+    .project-card-v__body-experience {
         @media (min-width: theme('screens.lg')) {
             /* letter-spacing: 0.7em; */
         }
     }
 
-    .project-card__description-button {
+    .project-card-v__description-button {
         @media (min-width: theme('screens.lg')) {
             transform: translate(0px, 0px);
         }
     }
 }
 
-.project-card.open {
-    .project-card__description-button {
+.project-card-v.open {
+    .project-card-v__description-button {
         opacity: 0;
         width: 200px;
         height: 50%;
     }
 
-    .project-card__image {
+    .project-card-v__image {
         background-color: rgba(0, 0, 0, 0.75);
     }
 
-    .project-card__description {
+    .project-card-v__description {
         transform: translate(0px, 0px);
         opacity: 1;
     }
 
-    .project-card__body-experience {
+    .project-card-v__body-experience {
         transform: translate(0px, -75px)
     }
 

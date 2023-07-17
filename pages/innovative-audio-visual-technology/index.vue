@@ -43,10 +43,10 @@
                     <h5 class="uppercase page__body-header-subtitle">OUR TECHNOLOGY PARTNERS INCLUDE:</h5>
 
                     <div class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-12 md:gap-12 lg:gap-12 mt-6 mb-20 ">
-                        <nuxt-link v-for="(partner, index) in page.partners" :key="index" :to="partner.link"
+                        <a v-for="(partner, index) in page.partners" :key="index" :href="partner.link" target="_blank"
                             class="flex items-center justify-center partner">
                             <img :src="imageUrl + partner.logo" :alt="partner.name" class="transition-all" />
-                        </nuxt-link>
+                    </a>
                     </div>
                 </div>
             </div>
