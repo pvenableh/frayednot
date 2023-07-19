@@ -4,7 +4,7 @@
     <input id="nav-drawer-toggle" type="checkbox" class="hidden" />
     <input id="profile-toggle" type="checkbox" class="hidden" />
     <input id="application-toggle" type="checkbox" class="hidden" />
-    <div class="background"></div>
+    <LayoutBackground />
     <LayoutNavButton />
     <div class="w-full flex items-center justify-center flex-col min-h-screen page__content">
       <LayoutHeader />
@@ -33,16 +33,7 @@ useSeoMeta({
 </script>
 
 <style>
-.background {
-  background: rgba(162, 162, 162, 0.15);
-  background: linear-gradient(#f5f1ec, #dddcdb);
-  background-image: url(/assets/images/background.webp);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  @apply min-h-screen w-full fixed top-0 left-0 z-0;
-}
+
 .page__header-placeholder {
   height: 550px;
 

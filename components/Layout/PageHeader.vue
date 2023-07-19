@@ -1,7 +1,7 @@
 <template>
     <div class="page__header" stlye="background-color: none">
         <transition name="fade" mode="out-in">
-            <div v-if="isImageLoaded" class="page__header"
+            <div v-if="isImageLoaded" class="page__header" :class="device"
                 :style="'background-image: url(' + imageUrl + page.header_image + '?key=xlarge)'">
                 <div class="page__header-caption">
                     <h1>{{ heading }}</h1>
@@ -28,7 +28,20 @@ const props = defineProps({
 })
 const imageUrl = 'https://admin.frayednot.net/assets/'
 const isImageLoaded = ref(false);
+const device = ref('mobile')
 onMounted(() => {
+    console.log(navigator.userAgent.match(/iPhone/i))
+    if (navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)) {
+        device.value = 'mobile';
+    } else {
+        device.value = 'desktop';
+    }
     const image = new Image();
     image.src = imageUrl +
         props.page.header_image + '?key=xlarge';
@@ -36,11 +49,13 @@ onMounted(() => {
         isImageLoaded.value = true;
     };
 });
+
 </script>
 <style>
 .page__header-placeholder {
     height: 550px;
     @apply flex items-center justify-center;
+
     @media (min-width: theme('screens.sm')) {
         height: 550px;
     }
@@ -53,6 +68,14 @@ onMounted(() => {
         height: calc(100vh - 57px);
     }
 }
+
+.page__header.desktop {
+    @media (min-width: theme('screens.lg')) {
+        background-attachment: fixed;
+
+    }
+}
+
 .page__header {
     height: 550px;
     background-color: rgba(0, 0, 0, 0.35);
@@ -70,12 +93,12 @@ onMounted(() => {
     }
 
     @media (min-width: theme('screens.lg')) {
-        
+
         height: calc(100vh - 57px);
     }
-    @supports (background-attachment: fixed) {
-        background-attachment: fixed;
-    }
+
+    @supports (background-attachment: fixed) {}
+
     &-caption {
         color: var(--white);
         padding-left: 15px;
