@@ -70,10 +70,12 @@ onMounted(() => {
     }
 
     @media (min-width: theme('screens.lg')) {
-        background-attachment: fixed;
+        
         height: calc(100vh - 57px);
     }
-
+    @supports (background-attachment: fixed) {
+        background-attachment: fixed;
+    }
     &-caption {
         color: var(--white);
         padding-left: 15px;
