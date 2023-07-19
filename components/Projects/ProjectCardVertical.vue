@@ -134,8 +134,11 @@ function toggleDescription() {
     }
 
     .project-card-v__description {
-        font-size: 14px;
-        @apply p-20;
+        
+        @apply md:p-20;
+        @media (min-width: theme('screens.md')) {
+            font-size: 14px;
+        }
     }
 }
 
