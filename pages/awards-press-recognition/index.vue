@@ -24,7 +24,7 @@
                     <div v-if="page.certified_intro.text" v-html="page.certified_intro.text" class="mb-4"></div>
                 </div>
                 <img v-if="page.certified_intro.images.length"
-                    :src="imageUrl + page.certified_intro.images[0].directus_files_id" alt="HTA Logo"
+                    :src="imageUrl + page.certified_intro.images[0].directus_files_id + '?key=medium'" alt="HTA Logo"
                     class="w-full md:w-[200px] h-auto md:ml-20" />
             </div>
         </div>

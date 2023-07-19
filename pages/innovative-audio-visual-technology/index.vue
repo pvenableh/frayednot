@@ -45,7 +45,7 @@
                     <div class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-12 md:gap-12 lg:gap-12 mt-6 mb-20 ">
                         <a v-for="(partner, index) in page.partners" :key="index" :href="partner.link" target="_blank"
                             class="flex items-center justify-center partner">
-                            <img :src="imageUrl + partner.logo" :alt="partner.name" class="transition-all" />
+                            <img :src="imageUrl + partner.logo + '?key=small'" :alt="partner.name" class="transition-all" />
                     </a>
                     </div>
                 </div>

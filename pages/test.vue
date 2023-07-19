@@ -2,7 +2,7 @@
   <div class="relative w-full flex items-center justify-center flex-col home">
     <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-1 home__intro">
       <nuxt-link v-for="(section, index) in page.featured_sections" :key="index" :to="'/' + section.url"
-        :style="'background-image: url(' + imageUrl + section.background_image + ')'"
+        :style="'background-image: url(' + imageUrl + section.background_image + '?key=medium)'"
         class="bg-cover bg-center bg-no-repeat w-full home__intro-sections">
         <h1 class="font-serif uppercase">{{ section.title }}</h1>
         <h5 class="uppercase">{{ section.subtitle }}</h5>
@@ -60,7 +60,7 @@
           <div v-if="page.partners_intro.partners.length" class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-8 mt-6 mb-20 ">
             <a v-for="(partner, index) in page.partners_intro.partners" :key="index" :href="partner.partners_id.link" target="_blank"
               class="flex items-center justify-center partner">
-              <img :src="imageUrl + partner.partners_id.logo" :alt="partner.partners_id.name" class="drop-shadow-md" />
+              <img :src="imageUrl + partner.partners_id.logo + '?key=small'" :alt="partner.partners_id.name" class="drop-shadow-md" />
           </a>
           </div>
         </div>
