@@ -89,7 +89,7 @@ const { data: page, pending, error } = await useAsyncData('page', () => {
 
 .recognition-intro {
     background: rgba(162, 162, 162, 0.15);
-
+    background: rgba(216, 212, 199, 0.25);
 
     img {
         transition: all 0.4s var(--curve);

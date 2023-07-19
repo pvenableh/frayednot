@@ -50,7 +50,7 @@ onMounted(() => {
     }
 
     @media (min-width: theme('screens.lg')) {
-        height: calc(100vh - 95px);
+        height: calc(100vh - 57px);
     }
 }
 .page__header {
@@ -71,7 +71,7 @@ onMounted(() => {
 
     @media (min-width: theme('screens.lg')) {
         background-attachment: fixed;
-        height: calc(100vh - 95px);
+        height: calc(100vh - 57px);
     }
 
     &-caption {

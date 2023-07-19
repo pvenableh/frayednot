@@ -16,7 +16,7 @@
       height: 600px;
     }
     @media (min-width: theme('screens.lg')) {
-      height: calc(100vh);
+      height: calc(100vh - 57px);
     }
     svg {
         width: 250px;
