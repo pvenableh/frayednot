@@ -4,7 +4,7 @@
             <swiper v-if="project.images.length" :speed="600" :parallax="true" :pagination="{
                 type: 'bullets',
                 clickable: true,
-            }" :modules="modules" class="h-full flex items-center justify-center flex-col slideshowSwiper">
+            }" :modules="modules" class="h-full flex items-center justify-center flex-col slideshowSwiperCard">
                 <swiper-slide class="w-full flex items-center justify-center relative overflow-hidden"
                     v-for="(slide, index) in project.images" :key="index">
                     <div :style="'background-image: url(' + imageUrl + slide.directus_files_id + '?key=medium)'"
@@ -16,7 +16,7 @@
         </div>
 
         <div class="project-card__body">
-            <h3 v-if="project.title" class="project-card__body-title" >{{ project.title }}</h3>
+            <h3 v-if="project.title" class="project-card__body-title">{{ project.title }}</h3>
 
             <p v-if="project.experience" class="project-card__body-experience">{{ project.experience }}</p>
 
@@ -152,34 +152,33 @@ function toggleDescription() {
         @apply relative z-0;
     }
 
-    .slideshowSwiper {
-        /* padding-bottom: 20px !important; */
-    }
+    .slideshowSwiperCard {
 
-    .swiper-slide {
-        img {
-            max-height: 100%;
-            max-width: 100%;
+        .swiper-slide {
+            img {
+                max-height: 100%;
+                max-width: 100%;
+            }
         }
-    }
 
-    .swiper-pagination {
-        z-index: 10;
-        bottom: 0px;
-        height: 30px;
-    }
+        .swiper-pagination {
+            z-index: 10;
+            bottom: 0px;
+            height: 30px;
+        }
 
-    .swiper-pagination-bullet {
-        background-color: var(--white);
-        width: 20px;
-        border-radius: 1px;
-        height: 2px;
-        opacity: 0.5;
-    }
+        .swiper-pagination-bullet {
+            background-color: var(--white);
+            width: 20px;
+            border-radius: 1px;
+            height: 2px;
+            opacity: 0.5;
+        }
 
-    .swiper-pagination-bullet-active {
-        background-color: var(--white);
-        opacity: 1;
+        .swiper-pagination-bullet-active {
+            background-color: var(--white);
+            opacity: 1;
+        }
     }
 
     &__image-slide {
@@ -210,7 +209,7 @@ function toggleDescription() {
 
         &-experience {
             transition: all 0.6s var(--curve);
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.25);
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.25);
             letter-spacing: 0.025em;
             @apply uppercase font-serif text-white;
         }
@@ -234,7 +233,7 @@ function toggleDescription() {
         width: 45px;
         height: 40px;
         background: rgba(255, 255, 255, 0.15);
-  
+
         transition: all 0.6s var(--curve);
         backdrop-filter: blur(10px);
         bottom: 0px;
@@ -302,5 +301,4 @@ function toggleDescription() {
         transform: translate(0px, -75px)
     }
 
-}
-</style>
+}</style>

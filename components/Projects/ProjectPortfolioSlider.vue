@@ -18,7 +18,7 @@
 
         <div class="project-portfolio__container">
             <transition :name="animateName" mode="out-in" class="relative transition-container">
-                <swiper v-if="panel === 'theater'" key="1" class="mySwiper swiper-h w-full project-portfolio__panel"
+                <swiper v-if="panel === 'theater'" key="1" class="w-full project-portfolio__panel mySwiperOne"
                     :spaceBetween="10" navigation :speed="700" :grabCursor="true" :effect="'creative'" :creativeEffect="{
                         prev: {
                             shadow: true,
@@ -34,7 +34,7 @@
                         <ProjectsProjectCardVertical :project="project" size="large" class="w-full" />
                     </swiper-slide>
                 </swiper>
-                <swiper v-else-if="panel === 'outdoor'" key="2" class="mySwiper swiper-h w-full project-portfolio__panel"
+                <swiper v-else-if="panel === 'outdoor'" key="2" class="w-full project-portfolio__panel mySwiperTwo"
                     :spaceBetween="10" :speed="700" :effect="'creative'" :creativeEffect="{
                         prev: {
                             shadow: true,
@@ -50,7 +50,7 @@
                         <ProjectsProjectCardVertical :project="project" size="large" class="w-full" />
                     </swiper-slide>
                 </swiper>
-                <swiper v-else-if="panel === 'indoor'" key="3" class="mySwiper swiper-h w-full project-portfolio__panel"
+                <swiper v-else-if="panel === 'indoor'" key="3" class="w-full project-portfolio__panel mySwiperThree"
                     :spaceBetween="10" navigation :speed="700" :effect="'creative'" :creativeEffect="{
                         prev: {
                             shadow: true,

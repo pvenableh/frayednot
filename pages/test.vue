@@ -191,7 +191,7 @@ const pageStore = usePageStore()
   }
 
   .partners-intro {
-    background: rgba(162, 162, 162, 0.15);
+    background: rgba(216, 212, 199, 0.25);
 
     a,
     a:link {

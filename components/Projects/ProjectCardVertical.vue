@@ -1,7 +1,7 @@
 <template>
     <div class="w-full project-card-v" :class="classes">
         <div class="project-card-v__image-container">
-            <swiper v-if="project.images.length" class="h-full flex items-center justify-center flex-col mySwiper2 swiper-v"
+            <swiper v-if="project.images.length" class="h-full flex items-center justify-center flex-col swiper-v"
                 :speed="600" :parallax="true" :pagination="{
                     type: 'bullets',
                     clickable: true,
@@ -164,39 +164,43 @@ function toggleDescription() {
         @apply relative z-0;
     }
 
-    .slideshowSwiper {
-        /* padding-bottom: 20px !important; */
-    }
-
-    .swiper-slide {
-        img {
-            max-height: 100%;
-            max-width: 100%;
+    .swiper-v {
+        .swiper-slide {
+            img {
+                max-height: 100%;
+                max-width: 100%;
+            }
         }
-    }
 
-    .swiper-pagination {
-        z-index: 10;
-        bottom: 0px;
-        height: 30px;
-    }
+        .swiper-pagination {
+            z-index: 10;
+            bottom: 0px;
+            height: 30px;
+        }
 
-    .swiper-pagination-bullet {
-        background-color: var(--white);
-        width: 20px;
-        border-radius: 1px;
-        height: 2px;
-        opacity: 0.5;
-    }
-
-    .swiper-pagination-vertical {
         .swiper-pagination-bullet {
             background-color: var(--white);
-            width: 2px;
+            width: 20px;
             border-radius: 1px;
-            height: 20px;
+            height: 2px;
             opacity: 0.5;
+        }
 
+        .swiper-pagination-vertical {
+            .swiper-pagination-bullet {
+                background-color: var(--white);
+                width: 2px;
+                border-radius: 1px;
+                height: 20px;
+                opacity: 0.5;
+
+
+            }
+
+            .swiper-pagination-bullet-active {
+                background-color: var(--white);
+                opacity: 1;
+            }
 
         }
 
@@ -204,12 +208,6 @@ function toggleDescription() {
             background-color: var(--white);
             opacity: 1;
         }
-
-    }
-
-    .swiper-pagination-bullet-active {
-        background-color: var(--white);
-        opacity: 1;
     }
 
     &__image-slide {

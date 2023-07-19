@@ -118,7 +118,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
-    // 'nuxt-og-image',
     [
       '@pinia/nuxt',
       {
@@ -148,24 +147,7 @@ export default defineNuxtConfig({
     vscode: {
       
     },
-    // ...other options
   },
-  // ogImage: {
-  //   fonts: [
-  //     {
-  //       name: 'Avenir',
-  //       weight: 400,
-  //       // path must point to a public font file
-  //       path: '/fonts/670c4af6-0f8f-4dfa-89d7-0213a1f77b7d.woff2',
-  //     },
-  //     {
-  //       name: 'Cinzel',
-  //       weight: 400,
-  //       // path must point to a public font file
-  //       path: '/fonts/Cinzel-Regular.woff2',
-  //     }
-  //   ],
-  // },
   plausible: {
     domain: 'frayednot.net',
   },

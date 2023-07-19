@@ -2,15 +2,15 @@
     <div class="page philosophy">
         <LayoutPageHeader :page="page" :heading="heading" />
         <div class="page__body grid lg:grid-cols-3 gap-2 lg:gap-20 my-12">
-            <div class="page__body-header">
+            <div v-if="page.about" class="page__body-header">
                 <h2 class="page__body-header-title">About</h2>
                 <p>{{ page.about }}</p>
             </div>
-            <div class="page__body-header approach relative">
+            <div v-if="page.approach" class="page__body-header approach relative">
                 <h2 class="page__body-header-title">Approach</h2>
                 <p>{{ page.approach }}</p>
             </div>
-            <div class="page__body-header">
+            <div v-if="page.expertise" class="page__body-header">
                 <h2 class="page__body-header-title">Expertise</h2>
                 <p>{{ page.expertise }}</p>
             </div>
