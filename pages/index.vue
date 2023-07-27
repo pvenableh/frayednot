@@ -45,7 +45,8 @@
         <h5 v-if="page.recognition_intro.subtitle">{{ page.recognition_intro.subtitle }}</h5>
         <div v-if="page.recognition_intro.text" class="relative" v-html="page.recognition_intro.text"> </div>
         <div class="w-full text-right mt-4">
-          <UtilitiesLinkBtn v-if="page.recognition_intro.link" :link="page.recognition_intro.link.link">{{ page.recognition_intro.link.text }}
+          <UtilitiesLinkBtn v-if="page.recognition_intro.link" :link="page.recognition_intro.link.link">{{
+            page.recognition_intro.link.text }}
           </UtilitiesLinkBtn>
         </div>
       </div>
@@ -57,11 +58,13 @@
           <h5 v-if="page.partners_intro.subtitle" class="uppercase page__body-header-subtitle">{{
             page.partners_intro.subtitle }}</h5>
           <div class="relative" v-if="page.partners_intro.text" v-html="page.partners_intro.text"> </div>
-          <div v-if="page.partners_intro.partners.length" class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-8 mt-6 mb-20 ">
-            <a v-for="(partner, index) in page.partners_intro.partners" :key="index" :href="partner.partners_id.link" target="_blank"
-              class="flex items-center justify-center partner">
-              <img :src="imageUrl + partner.partners_id.logo + '?key=small'" :alt="partner.partners_id.name" class="drop-shadow-md" />
-          </a>
+          <div v-if="page.partners_intro.partners.length"
+            class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-8 mt-6 mb-20 ">
+            <a v-for="(partner, index) in page.partners_intro.partners" :key="index" :href="partner.partners_id.link"
+              target="_blank" class="flex items-center justify-center partner">
+              <img :src="imageUrl + partner.partners_id.logo + '?key=small'" :alt="partner.partners_id.name"
+                class="drop-shadow-md" />
+            </a>
           </div>
         </div>
       </div>
@@ -70,6 +73,8 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
+const route = useRoute()
 const imageUrl = 'https://admin.frayednot.net/assets/'
 const { $directus, $preview } = useNuxtApp();
 
@@ -77,23 +82,23 @@ if ($preview) {
   const { data: page, pending, error } = await useAsyncData('page', () => {
     return $directus.items('home').readOne(1, {
       fields: [
-        'featured_sections.background_image,featured_sections.title,featured_sections.subtitle,featured_sections.url,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,philosophy_intro.title,philosophy_intro.subtitle,philosophy_intro.text,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,recognition_intro.link.link,recognition_intro.link.text,partners_intro.title,partners_intro.subtitle,partners_intro.text,partners.partners_id.name,partners_intro.partners.partners_id.link,partners_intro.partners.partners_id.name,partners_intro.partners.partners_id.logo',
+        'featured_sections.background_image,featured_sections.title,featured_sections.subtitle,featured_sections.url,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,philosophy_intro.title,philosophy_intro.subtitle,philosophy_intro.text,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,recognition_intro.link.link,recognition_intro.link.text,partners_intro.title,partners_intro.subtitle,partners_intro.text,partners.partners_id.name,partners_intro.partners.partners_id.link,partners_intro.partners.partners_id.name,partners_intro.partners.partners_id.logo,seo.*',
       ],
     })
   })
   const { data: projects, pending2, error2 } = await useAsyncData('projects', () => {
-  return $directus.items('projects').readByQuery({
-    fields: [
-      'status,title,description,experience,category,images.directus_files_id',
-    ],
+    return $directus.items('projects').readByQuery({
+      fields: [
+        'status,title,description,experience,category,images.directus_files_id',
+      ],
+    })
   })
-})
 }
 
 const { data: page, pending, error } = await useAsyncData('page', () => {
   return $directus.items('home').readOne(1, {
     fields: [
-      'featured_sections.background_image,featured_sections.title,featured_sections.subtitle,featured_sections.url,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,philosophy_intro.title,philosophy_intro.subtitle,philosophy_intro.text,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,recognition_intro.link.link,recognition_intro.link.text,partners_intro.title,partners_intro.subtitle,partners_intro.text,partners.partners_id.name,partners_intro.partners.partners_id.link,partners_intro.partners.partners_id.name,partners_intro.partners.partners_id.logo',
+      'featured_sections.background_image,featured_sections.title,featured_sections.subtitle,featured_sections.url,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,philosophy_intro.title,philosophy_intro.subtitle,philosophy_intro.text,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,recognition_intro.link.link,recognition_intro.link.text,partners_intro.title,partners_intro.subtitle,partners_intro.text,partners.partners_id.name,partners_intro.partners.partners_id.link,partners_intro.partners.partners_id.name,partners_intro.partners.partners_id.logo,seo.*',
     ],
   })
 })
@@ -104,6 +109,27 @@ const { data: projects, pending2, error2 } = await useAsyncData('projects', () =
     ],
   })
 })
+
+if (page.value.seo) {
+    useHead({
+        title: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+    })
+
+    useSeoMeta({
+        title: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+        description: () => (page.value.seo.meta_description ? page.value.seo.meta_description : config.public.seo.description),
+        ogDescription: () =>
+            (page.value.seo.meta_description ? page.value.seo.meta_description : config.public.seo.description),
+        ogUrl: () => 'https://frayednot.net' + route.path,
+        ogTitle: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+        ogImage: () => (page.value.seo.og_image ? imageUrl + page.value.seo.og_image : config.public.seo.image),
+        twitterTitle: (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+        twitterDescription: (page.value.seo ? page.value.seo.meta_description : config.public.seo.description),
+        twitterImage: (page.value.seo.og_image ? imageUrl + page.value.seo.og_image : config.public.seo.image),
+        twitterCard: 'summary',
+    })
+}
+
 if (error.value) throw createError({
   statusCode: 404,
   statusMessage: 'Page Not Found'

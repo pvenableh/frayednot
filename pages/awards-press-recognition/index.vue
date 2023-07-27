@@ -53,6 +53,8 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
+const route = useRoute()
 const heading = ref('Recognition')
 const imageUrl = 'https://admin.frayednot.net/assets/'
 const { $directus, $preview } = useNuxtApp();
@@ -61,7 +63,7 @@ if ($preview) {
     const { data: page, pending, error } = await useAsyncData('page', () => {
         return $directus.items('recognition').readOne(1, {
             fields: [
-                'header_image,title,caption,page_header,page_intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id.id,recognition_intro.images.directus_files_id.location',
+                'header_image,title,caption,page_header,page_intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id.id,recognition_intro.images.directus_files_id.location,seo.*',
             ],
         })
     })
@@ -69,12 +71,30 @@ if ($preview) {
 const { data: page, pending, error } = await useAsyncData('page', () => {
     return $directus.items('recognition').readOne(1, {
         fields: [
-            'header_image,title,caption,page_header,page_intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id.id,recognition_intro.images.directus_files_id.location',
+            'header_image,title,caption,page_header,page_intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id.id,recognition_intro.images.directus_files_id.location,seo.*',
         ],
     })
 })
 
+if (page.value.seo) {
+    useHead({
+        title: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+    })
 
+    useSeoMeta({
+        title: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+        description: () => (page.value.seo.meta_description ? page.value.seo.meta_description : config.public.seo.description),
+        ogDescription: () =>
+            (page.value.seo.meta_description ? page.value.seo.meta_description : config.public.seo.description),
+        ogUrl: () => 'https://frayednot.net' + route.path,
+        ogTitle: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+        ogImage: () => (page.value.seo.og_image ? imageUrl + page.value.seo.og_image : config.public.seo.image),
+        twitterTitle: (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+        twitterDescription: (page.value.seo ? page.value.seo.meta_description : config.public.seo.description),
+        twitterImage: (page.value.seo.og_image ? imageUrl + page.value.seo.og_image : config.public.seo.image),
+        twitterCard: 'summary',
+    })
+}
 
 </script>
 <style>

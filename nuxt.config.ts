@@ -160,6 +160,12 @@ export default defineNuxtConfig({
       plausible: {
         domain: 'frayednot.net',
       },
+      seo: {
+        title: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Cranford, NJ',
+        description: 'frayednot strives to create custom, sophisticated, seamless yet simple-to-use, integrated home audio/video systems. No project has been the same, it is always custom to fit the experience you envision.',
+        image: 'https://admin.frayednot.net/assets/44fd672d-d210-41df-a031-8f0fc9a473d9',
+        url: 'https://frayednot.net',
+      },
       motion: {
         directives: {
           'pop-bottom': {

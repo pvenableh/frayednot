@@ -21,19 +21,11 @@
   </div>
 </template>
 <script>
+
 import { screen } from '~~/composables/useScreen'
-useSeoMeta({
-  title: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Cranford, NJ',
-  ogTitle: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Cranford, NJ',
-  description: 'frayednot strives to create custom, sophisticated, seamless yet simple-to-use, integrated home audio/video systems. No project has been the same, it is always custom to fit the experience you envision.',
-  ogDescription: 'frayednot strives to create custom, sophisticated, seamless yet simple-to-use, integrated home audio/video systems. No project has been the same, it is always custom to fit the experience you envision.',
-  ogUrl: 'https://frayednot.net',
-  twitterCard: 'summary_large_image',
-})
 </script>
 
 <style>
-
 .page__header-placeholder {
   height: 550px;
 
@@ -56,15 +48,17 @@ useSeoMeta({
 
 .page {
   @apply relative w-full flex items-center justify-center flex-col overflow-hidden;
+
   &__content {
     transition: all 0.65s var(--curve);
   }
-  
+
 
   &__body {
     z-index: 10;
     padding-left: 15px;
     padding-right: 15px;
+
     @media (min-width: theme('screens.sm')) {
       padding-left: 35px;
       padding-right: 35px;
@@ -74,20 +68,24 @@ useSeoMeta({
 
     &-header {
       @apply mt-20;
+
       &-title {
         font-size: 24px;
         line-height: 30px;
         font-family: var(--serif-font);
         letter-spacing: 0.05em;
         @apply uppercase mb-2;
+
         @media (min-width: theme('screens.sm')) {
           font-size: 26px;
           line-height: 30px;
         }
+
         @media (min-width: theme('screens.md')) {
           font-size: 36px;
           line-height: 42px;
         }
+
         @media (min-width: theme('screens.lg')) {
           font-size: 42px;
           line-height: 46px;
@@ -98,6 +96,7 @@ useSeoMeta({
           line-height: 58px; */
         }
       }
+
       &-subtitle {
         font-size: 12px;
         @apply tracking-wide mb-6;
@@ -119,5 +118,4 @@ useSeoMeta({
 .screen-enter,
 .screen-leave-to {
   opacity: 0;
-}
-</style>
+}</style>

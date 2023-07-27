@@ -71,6 +71,8 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
+const route = useRoute()
 const heading = ref('Technology')
 const imageUrl = 'https://admin.frayednot.net/assets/'
 const { $directus, $preview } = useNuxtApp();
@@ -79,7 +81,7 @@ if ($preview) {
     const { data: page, pending, error } = await useAsyncData('page', () => {
         return $directus.items('technology').readOne(1, {
             fields: [
-                'header_image,title,caption,page_header,page_intro,url,partners.name,partners.link,partners.logo,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,technology_intro.title,technology_intro.subtitle,technology_intro.text,technology_intro.images.directus_files_id,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,partners.name,partners.link,partners.logo',
+                'header_image,title,caption,page_header,page_intro,url,partners.name,partners.link,partners.logo,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,technology_intro.title,technology_intro.subtitle,technology_intro.text,technology_intro.images.directus_files_id,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,partners.name,partners.link,partners.logo,seo.*',
             ],
         })
     })
@@ -87,13 +89,30 @@ if ($preview) {
 const { data: page, pending, error } = await useAsyncData('page', () => {
     return $directus.items('technology').readOne(1, {
         fields: [
-            'header_image,title,caption,page_header,page_intro,url,partners.name,partners.link,partners.logo,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,technology_intro.title,technology_intro.subtitle,technology_intro.text,technology_intro.images.directus_files_id,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,partners.name,partners.link,partners.logo',
+            'header_image,title,caption,page_header,page_intro,url,partners.name,partners.link,partners.logo,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,technology_intro.title,technology_intro.subtitle,technology_intro.text,technology_intro.images.directus_files_id,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,partners.name,partners.link,partners.logo,seo.*',
         ],
     })
 })
 
+if (page.value.seo) {
+    useHead({
+        title: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+    })
 
-
+    useSeoMeta({
+        title: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+        description: () => (page.value.seo.meta_description ? page.value.seo.meta_description : config.public.seo.description),
+        ogDescription: () =>
+            (page.value.seo.meta_description ? page.value.seo.meta_description : config.public.seo.description),
+        ogUrl: () => 'https://frayednot.net' + route.path,
+        ogTitle: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+        ogImage: () => (page.value.seo.og_image ? imageUrl + page.value.seo.og_image : config.public.seo.image),
+        twitterTitle: (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+        twitterDescription: (page.value.seo ? page.value.seo.meta_description : config.public.seo.description),
+        twitterImage: (page.value.seo.og_image ? imageUrl + page.value.seo.og_image : config.public.seo.image),
+        twitterCard: 'summary',
+    })
+}
 </script>
 <style>
 .partners-intro {

@@ -20,7 +20,7 @@
           <nuxt-link to="/innovative-audio-visual-technology">Technology</nuxt-link>
         </li>
         <!-- <li><nuxt-link to="/payment">Payment</nuxt-link></li> -->
-        <li><a href="https://htacertified.org/home-technology-installation-budget-tool" target="_blank">Budget Calculator</a></li>
+        <li><a href="https://htacertified.org/home-technology-installation-budget-tool/4413" target="_blank">Budget Calculator</a></li>
         <li><nuxt-link to="/contact">Contact</nuxt-link></li>
         
       </ul>

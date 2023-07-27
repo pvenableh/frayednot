@@ -21,7 +21,8 @@
             </div>
 
             <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-1">
-                <ProjectsProjectCard v-for="(project, index) in projects" :key="index" :project="project" size="small" v-motion-fade-visible :delay="100"/>
+                <ProjectsProjectCard v-for="(project, index) in projects" :key="index" :project="project" size="small"
+                    v-motion-fade-visible :delay="100" />
             </div>
         </div>
         <div v-if="page.recognition_intro" class="w-full shadow-inner my-20 recognition-intro">
@@ -45,6 +46,8 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
+const route = useRoute()
 const heading = ref('Experiences')
 const imageUrl = 'https://admin.frayednot.net/assets/'
 const { $directus, $preview } = useNuxtApp();
@@ -53,7 +56,7 @@ if ($preview) {
     const { data: page, pending, error } = await useAsyncData('page', () => {
         return $directus.items('experiences').readOne(1, {
             fields: [
-                'header_image,title,caption,url,projects.status,projects.title,projects.description,projects.experience,projects.category,projects.images.directus_files_id,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,recognition_intro.link.link,recognition_intro.link.text',
+                'header_image,title,caption,url,projects.status,projects.title,projects.description,projects.experience,projects.category,projects.images.directus_files_id,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,recognition_intro.link.link,recognition_intro.link.text,seo.*',
             ],
         })
     })
@@ -61,7 +64,7 @@ if ($preview) {
 const { data: page, pending, error } = await useAsyncData('page', () => {
     return $directus.items('experiences').readOne(1, {
         fields: [
-            'header_image,title,caption,url,projects.status,projects.title,projects.description,projects.experience,projects.category,projects.images.directus_files_id,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,recognition_intro.link.link,recognition_intro.link.text'
+            'header_image,title,caption,url,projects.status,projects.title,projects.description,projects.experience,projects.category,projects.images.directus_files_id,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,recognition_intro.link.link,recognition_intro.link.text,seo.*'
         ],
     })
 })
@@ -71,6 +74,24 @@ const projects = computed(() => {
         return item.status === 'published'
     })
 })
+if (page.value.seo) {
+    useHead({
+        title: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+    })
 
+    useSeoMeta({
+        title: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+        description: () => (page.value.seo.meta_description ? page.value.seo.meta_description : config.public.seo.description),
+        ogDescription: () =>
+            (page.value.seo.meta_description ? page.value.seo.meta_description : config.public.seo.description),
+        ogUrl: () => 'https://frayednot.net' + route.path,
+        ogTitle: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+        ogImage: () => (page.value.seo.og_image ? imageUrl + page.value.seo.og_image : config.public.seo.image),
+        twitterTitle: (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
+        twitterDescription: (page.value.seo ? page.value.seo.meta_description : config.public.seo.description),
+        twitterImage: (page.value.seo.og_image ? imageUrl + page.value.seo.og_image : config.public.seo.image),
+        twitterCard: 'summary',
+    })
+}
 </script>
 <style></style>
