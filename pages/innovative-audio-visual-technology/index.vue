@@ -107,6 +107,8 @@ if (page.value.seo) {
         ogUrl: () => 'https://frayednot.net' + route.path,
         ogTitle: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
         ogImage: () => (page.value.seo.og_image ? imageUrl + page.value.seo.og_image : config.public.seo.image),
+        ogType: 'website',
+        ogSiteName: 'frayednot',
         twitterTitle: (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
         twitterDescription: (page.value.seo ? page.value.seo.meta_description : config.public.seo.description),
         twitterImage: (page.value.seo.og_image ? imageUrl + page.value.seo.og_image : config.public.seo.image),

@@ -21,14 +21,7 @@
   </div>
 </template>
 <script>
-
 import { screen } from '~~/composables/useScreen'
-
-useSeoMeta({
-  ogType: 'website',
-  ogSiteName: 'frayednot',
-  twitterCard: 'summary',
-})
 </script>
 
 <style>
