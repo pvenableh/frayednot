@@ -130,12 +130,18 @@ onMounted(() => {
         }
 
         h4 {
-            font-size: 2.5vw;
+            font-size: 3vw;
             line-height: 1.2em;
             transition: all 0.4s var(--curve) 0.15s;
             letter-spacing: 0.05em;
             @apply w-full font-serif uppercase mb-20;
-
+            @media (min-width: 475px) {
+                font-size: 2.5vw;
+            }
+            @apply w-full font-serif uppercase mb-20;
+            @media (min-width: 550px) {
+                font-size: 2vw;
+            }
             @media (min-width: theme('screens.sm')) {
                 font-size: 1.8vw;
             }

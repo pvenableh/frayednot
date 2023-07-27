@@ -17,9 +17,9 @@
 
 
     <div class="flex w-full flex-col items-center justify-center mt-12 font-bold tracking-wide">
-      <img src="/assets/images/logo.png" alt="frayednot Logo" class="logo"/> 
+      <nuxt-link to="/"><img src="/assets/images/logo.png" alt="frayednot Logo" class="logo"/></nuxt-link>
       <h5 class="mt-4 tracking-widest body-font copyright">
-        &#169; {{ new Date().getFullYear() }} frayednot, llc
+        &#169; {{ new Date().getFullYear() }} frayednot - never left stranded&reg;
       </h5>
       <h5 class="mt-2 web-designer">
         <a href="https://huestudios.com" target="_blank" rel="noopener" class="columns shrink body-font">designed by

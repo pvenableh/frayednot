@@ -15,7 +15,7 @@
                 <p>{{ page.expertise }}</p>
             </div>
         </div>
-        
+
         <div v-for="(section, index) in page.project_sections" :key="index" class="w-full page__body">
 
             <div class="page__body-header">
@@ -34,10 +34,10 @@
             </div>
             <ProjectsProjectCard v-else v-for="(project, index) in section.project_sections_id.projects" :key="index"
                 :project="project.projects_id" :size="section.project_sections_id.layout" />
-                <div class="w-full text-right mt-4">
-                    <UtilitiesLinkBtn link="/automated-audio-video-experiences">Get Inspired
-                    </UtilitiesLinkBtn>
-                </div>
+            <div class="w-full text-right mt-4">
+                <UtilitiesLinkBtn link="/automated-audio-video-experiences">Get Inspired
+                </UtilitiesLinkBtn>
+            </div>
         </div>
         <div class="page__body">
             <div class="page__body-header">
@@ -50,12 +50,12 @@
                 </div>
             </div>
         </div>
-        <div class="page__body w-full flex flex-row items-center justify-around my-32">
-            <img src="/images/technology/HTA.png" alt="HTA" class="w-1/4 sm:w-1/5 md:w-1/6 max-w-xs h-auto" />
-            <img src="/images/technology/CEDIA-CERTIFIED.png" alt="Cedia Certified"
-                class="w-1/4 mx-6 sm:mx-12 md:mx-20 sm:w-1/5 md:w-1/6 max-w-xs h-auto" />
-            <img src="/images/technology/CEDIA-MEMBER.png" alt="Cedia Member"
-                class="w-1/4 sm:w-1/5 md:w-1/6 max-w-xs h-auto" />
+        <div v-if="page.certifications.length"
+            class="page__body w-full flex flex-row items-center justify-between my-32 certifications">
+            <a :href="certification.link" target="_blank" v-for="(certification, index) in page.certifications" :key="index"
+                class="flex items-center w-1/4 sm:w-1/5 md:w-1/6">
+                <img :src="imageUrl + certification.logo" :alt="certification.name" class="w-full h-auto" />
+            </a>
         </div>
     </div>
 </template>
@@ -69,7 +69,7 @@ if ($preview) {
     const { data: page, pending, error } = await useAsyncData('page', () => {
         return $directus.items('philosophy').readOne(1, {
             fields: [
-                'header_image,title,caption,url,about,approach,expertise,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,technology_intro.title,technology_intro.subtitle,technology_intro.text,technology_intro.images.directus_files_id,technology_intro.link.link,technology_intro.link.text',
+                'header_image,title,caption,url,about,approach,expertise,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,technology_intro.title,technology_intro.subtitle,technology_intro.text,technology_intro.images.directus_files_id,technology_intro.link.link,technology_intro.link.text,certifications.name,certifications.link,certifications.logo',
             ],
         })
     })
@@ -78,7 +78,7 @@ if ($preview) {
 const { data: page, pending, error } = await useAsyncData('page', () => {
     return $directus.items('philosophy').readOne(1, {
         fields: [
-            'header_image,title,caption,url,about,approach,expertise,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,technology_intro.title,technology_intro.subtitle,technology_intro.text,technology_intro.images.directus_files_id,technology_intro.link.link,technology_intro.link.text',
+            'header_image,title,caption,url,about,approach,expertise,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,technology_intro.title,technology_intro.subtitle,technology_intro.text,technology_intro.images.directus_files_id,technology_intro.link.link,technology_intro.link.text,certifications.name,certifications.link,certifications.logo',
         ],
     })
 })
@@ -112,4 +112,23 @@ technology.value = page.value.technology_intro
     }
 
 }
-</style>
+
+.certifications {
+
+    a,
+    a:link {
+        img {
+            transition: all 0.4s var(--curve);
+            filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.25));
+        }
+    }
+
+    a:hover {
+        img {
+            @media (min-width: theme('screens.lg')) {
+                filter: drop-shadow(15px 15px 5px rgba(0, 0, 0, 0.5));
+                transform: scale(1.1);
+            }
+        }
+    }
+}</style>

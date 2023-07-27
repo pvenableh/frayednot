@@ -28,7 +28,6 @@ function sideMenuToggle() {
   z-index: 20;
   display: block;
   position: fixed;
- 
   width: 100%;
   text-align: center;
   cursor: pointer;
@@ -41,15 +40,17 @@ function sideMenuToggle() {
     /* position: absolute; */
     left: auto;
     bottom: auto;
-    top: 22px;
-    top: 6px;
+    top: 8px;
     width: 80px;
     right:15px;
     /* background: none; */
     border-radius: 0px;
     height: 50px;
-    @apply flex items-center justify-center;
   }
+  @media (min-width: theme('screens.lg')) {
+    top: 4px;
+  }
+  @apply flex items-center justify-center;
   #nav-icon {
     width: 80px;
     height: 30px;
@@ -104,6 +105,7 @@ function sideMenuToggle() {
   opacity: 0;
 
   bottom: 0px;
+  backdrop-filter: blur(0px);
   @media (min-width: theme('screens.md')) {
     bottom: auto;
     transform: translateY(150px);

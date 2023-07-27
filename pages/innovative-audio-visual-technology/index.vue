@@ -46,7 +46,7 @@
                         <a v-for="(partner, index) in page.partners" :key="index" :href="partner.link" target="_blank"
                             class="flex items-center justify-center partner">
                             <img :src="imageUrl + partner.logo + '?key=small'" :alt="partner.name" class="transition-all" />
-                    </a>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -99,6 +99,7 @@ const { data: page, pending, error } = await useAsyncData('page', () => {
 .partners-intro {
     background: rgba(162, 162, 162, 0.15);
     background: rgba(216, 212, 199, 0.25);
+
     a,
     a:link {
         img {
@@ -109,8 +110,10 @@ const { data: page, pending, error } = await useAsyncData('page', () => {
 
     a:hover {
         img {
-            filter: drop-shadow(15px 15px 5px rgba(0, 0, 0, 0.5));
-            transform: scale(1.1);
+            @media (min-width: theme('screens.lg')) {
+                filter: drop-shadow(15px 15px 5px rgba(0, 0, 0, 0.5));
+                transform: scale(1.1);
+            }
         }
     }
 }

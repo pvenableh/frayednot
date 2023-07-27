@@ -5,7 +5,7 @@
     <div class="w-full nav-drawer__menu-box p-4 relative">
       <!-- <XIcon class="cursor-pointer h-8 heroicon-sw-1.2 close-btn" /> -->
       <ul tabindex="0" class="w-full nav-drawer__menu text-center">
-        <li><nuxt-link to="/test">Home</nuxt-link></li>
+        <li><nuxt-link to="/">Home</nuxt-link></li>
         <li>
           <nuxt-link to="/automated-audio-video-experiences">Experiences</nuxt-link>
         </li>
@@ -19,8 +19,10 @@
         <li>
           <nuxt-link to="/innovative-audio-visual-technology">Technology</nuxt-link>
         </li>
-
+        <!-- <li><nuxt-link to="/payment">Payment</nuxt-link></li> -->
+        <li><a href="https://htacertified.org/home-technology-installation-budget-tool" target="_blank">Budget Calculator</a></li>
         <li><nuxt-link to="/contact">Contact</nuxt-link></li>
+        
       </ul>
     </div>
   </div>
@@ -144,7 +146,13 @@ onClickOutside(navDrawerRef, (event) => {
     }
 
     li:nth-of-type(6) {
-      transition-delay: 0.20s;
+      transition-delay: 0.202s;
+    }
+    li:nth-of-type(7) {
+      transition-delay: 0.21s;
+    }
+    li:nth-of-type(8) {
+      transition-delay: 0.215s;
     }
   }
 }
