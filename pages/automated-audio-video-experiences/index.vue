@@ -21,7 +21,7 @@
             </div>
 
             <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-1">
-                <ProjectsProjectCard v-for="(project, index) in page.projects" :key="index" :project="project" size="small" v-motion-fade-visible :delay="100"/>
+                <ProjectsProjectCard v-for="(project, index) in projects" :key="index" :project="project" size="small" v-motion-fade-visible :delay="100"/>
             </div>
         </div>
         <div v-if="page.recognition_intro" class="w-full shadow-inner my-20 recognition-intro">
@@ -66,7 +66,11 @@ const { data: page, pending, error } = await useAsyncData('page', () => {
     })
 })
 
-
+const projects = computed(() => {
+    return page.value.projects.filter((item) => {
+        return item.status === 'published'
+    })
+})
 
 </script>
 <style></style>

@@ -129,7 +129,7 @@ h5.copyright {
 
 .page-contact {
   .footer {
-    opacity: 0;
+    /* opacity: 0; */
   }
 }
 </style>

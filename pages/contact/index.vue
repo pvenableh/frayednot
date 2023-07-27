@@ -30,4 +30,9 @@ const { data: page, pending, error } = await useAsyncData('page', () => {
 
 </script>
 <style>
+.contact {
+    .page__header {
+        height: 96vh;
+    }
+}
 </style>

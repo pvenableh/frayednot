@@ -7,20 +7,8 @@ export default defineNuxtRouteMiddleware((to, from) => {
   const routeName = ref()
   if (to.name === 'index') {
     routeName.value = 'page-home'
-  } else if (to.name === 'architecture-design-press-awards') {
-    routeName.value = 'page-press'
-  } else if (to.name === 'architecture-design-press-awards-url') {
-    routeName.value = 'page-press-detail'
-  } else if (to.name === 'interior-design-architecture-portfolio') {
-    routeName.value = 'page-work'
-  } else if (to.name === 'interior-design-architecture-portfolio-url') {
-    routeName.value = 'page-work-detail'
-  } else if (to.name === 'new-york-architecture-design-studio') {
-    routeName.value = 'page-about'
-  } else if (to.name === 'rosen-kelly-conway-architecture-design-team') {
-    routeName.value = 'page-team'
   } else if (to.name === 'contact') {
-    routeName.value = 'page-contact overflow-hidden h-screen'
+    routeName.value = 'page-contact'
   } else if(!to.name) {
     routeName.value = 'page-error h-screen'
   } else {

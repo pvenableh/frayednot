@@ -107,7 +107,6 @@ useSeoMeta({
   }
 }
 
-
 .screen-enter-from {
   opacity: 0;
 }
