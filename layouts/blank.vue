@@ -156,7 +156,7 @@ useSeoMeta({
           line-height: 58px; */
         }
       }
-      .rkc-link {
+      .f-link {
         @apply inline-block;
       }
 

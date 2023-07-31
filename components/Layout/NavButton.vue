@@ -5,20 +5,31 @@
 </template>
 <script setup>
 import { openScreen, toggleScreen } from '~~/composables/useScreen'
+function disableScroll() {
+  let scrollTop =
+    window.scrollY || document.documentElement.scrollTop;
+  let scrollLeft =
+    window.scrollX || document.documentElement.scrollLeft;
+    window.onscroll = function () {
+      window.scrollTo(scrollLeft, scrollTop);
+    };
+    console.log('disable scroll')
+}
+function enableScroll() {
+  console.log('enable scroll')
+  window.onscroll = function () { };
+}
 function sideMenuToggle() {
   const element = document.getElementById('nav-btn')
   const navToggle = document.getElementById('nav-drawer-toggle')
   if (element.classList.contains('open')) {
     element.classList.remove('open')
-    console.log('nav btn remove')
+    enableScroll()
   } else {
-    console.log('nav btn add')
     element.classList.add('open')
     navToggle.checked = true
-    // openScreen()
+    disableScroll()
   }
-  // navToggle.checked = !navToggle.checked
-  // toggleScreen()
 }
 </script>
 <style scoped>
@@ -32,7 +43,7 @@ function sideMenuToggle() {
   text-align: center;
   cursor: pointer;
   transition: 0.65s var(--curve);
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.25);
   transform: translateY(0px);
   backdrop-filter: blur(10px);
 
@@ -42,26 +53,31 @@ function sideMenuToggle() {
     bottom: auto;
     top: 8px;
     width: 80px;
-    right:15px;
+    right: 15px;
     /* background: none; */
     border-radius: 0px;
     height: 50px;
   }
+
   @media (min-width: theme('screens.lg')) {
     top: 4px;
   }
+
   @apply flex items-center justify-center;
+
   #nav-icon {
     width: 80px;
     height: 30px;
     position: relative;
     margin: 16px auto 14px;
     cursor: pointer;
+
     @media (min-width: theme('screens.md')) {
       width: 65%;
       height: 30px;
       margin: 0px;
     }
+
     span {
       display: block;
       position: absolute;
@@ -87,7 +103,7 @@ function sideMenuToggle() {
     span:nth-child(2) {
       top: 15px;
       transform-origin: left center;
- 
+
     }
 
     span:nth-child(3) {
@@ -99,6 +115,7 @@ function sideMenuToggle() {
     }
   }
 }
+
 #nav-btn.open {
 
   /* transform: translateY(-50px); */
@@ -106,6 +123,7 @@ function sideMenuToggle() {
 
   bottom: 0px;
   backdrop-filter: blur(0px);
+
   @media (min-width: theme('screens.md')) {
     bottom: auto;
     transform: translateY(150px);
@@ -145,5 +163,4 @@ function sideMenuToggle() {
       } */
     }
   }
-}
-</style>
+}</style>

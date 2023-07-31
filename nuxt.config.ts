@@ -156,7 +156,9 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    stripeSecret:'sk_test_51NYWsGF0lK6IMCafZk3rSLVAqCUA9HS7c3tG3XNF7kcs1uhbI9wGDNgyZoPcWiFnHitALS4qa2k5Pt3iaAxTf8LW00kEbGEx8s',
     public: {
+      stripePublic: 'pk_test_51NYWsGF0lK6IMCafXWFA8Ehh0Zg2cr8N0jDToR7Bx4o6xgdJptmH62VaY20kzU3p0uS4U0jnMJZAay2oA51ncHNN00DGYG68sc',
       directusUrl: 'https://admin.frayednot.net',
       plausible: {
         domain: 'frayednot.net',
@@ -164,7 +166,7 @@ export default defineNuxtConfig({
       seo: {
         title: 'frayednot | Residential Audio/Visual Automation Design and Integration |  Cranford, NJ',
         description: 'frayednot strives to create custom, sophisticated, seamless yet simple-to-use, integrated home audio/video systems. No project has been the same, it is always custom to fit the experience you envision.',
-        image: 'https://admin.frayednot.net/assets/44fd672d-d210-41df-a031-8f0fc9a473d9',
+        image: 'https://admin.frayednot.net/assets/c8815096-10a9-4613-b948-177069deb786',
         url: 'https://frayednot.net',
       },
       motion: {

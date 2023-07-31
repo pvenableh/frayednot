@@ -1,9 +1,9 @@
 <template>
-    <nuxt-link v-if="link" :to="link" class="uppercase rkc-link">
+    <nuxt-link v-if="link" :to="link" class="uppercase f-link">
         <slot></slot>
         <nuxt-icon name="arrow-right" class="ml-1 arrow-right-icon" />
     </nuxt-link>
-    <a v-else href="#" class="uppercase rkc-link">
+    <a v-else href="#" class="uppercase f-link">
         <slot></slot>
         <nuxt-icon name="arrow-right" class="ml-1 arrow-right-icon" />
     </a>
@@ -19,7 +19,7 @@ const props = defineProps({
 
 </script>
 <style>
-.rkc-link {
+.f-link {
     font-size: 0.75rem;
     line-height: 1rem;
     font-weight: 900;
@@ -45,7 +45,7 @@ const props = defineProps({
     }
 }
 
-.rkc-link:hover {
+.f-link:hover {
     .nuxt-icon {
         transform: translateX(10px)
     }
