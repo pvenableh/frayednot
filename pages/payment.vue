@@ -1,8 +1,9 @@
 <template>
   <div class="relative w-full min-h-screen flex items-center justify-start flex-col py-20 payment">
+    <div v-if="page.intro" class="pb-12">{{ page.intro }}</div>
     <div class="w-full max-w-xl payment__nav">
       <div @click.prevent="changePanel('card', 1)" class="payment__nav-item justify-start"
-        :class="{ 'active': panel === 'cart' }">
+        :class="{ 'active': panel === 'card' }">
         <h5>Credit Card</h5>
       </div>
       <div @click.prevent="changePanel('bank', 2)" class="payment__nav-item justify-center"
@@ -22,7 +23,15 @@
 </template>
 
 <script setup>
-const panel = ref('theater')
+const { $directus, $preview } = useNuxtApp();
+const { data: page, pending, error } = await useAsyncData('payment', () => {
+  return $directus.items('payment').readOne(1,{
+    fields: [
+      'intro,payment_options.sort,payment_options.title,payment_options.amount',
+    ],
+  })
+})
+const panel = ref('card')
 const previousPanelKey = ref(1)
 const animateName = ref('slide-right')
 function changePanel(newPanel, key) {
