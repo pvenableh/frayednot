@@ -9,32 +9,6 @@
         items-center
         justify-between
       ">
-      <!-- <div class="w-1/2">
-        <h5>
-          <span>CART TOTAL: </span>${{ parseFloat(cartStore.total).toFixed(2) }}
-        </h5>
-        <h5>
-          <span>SHIPPING: </span>${{
-            parseFloat(orderStore.order.shipping.method.price).toFixed(2)
-          }}
-        </h5>
-      </div> -->
-      <!-- <div class="w-1/2 text-right">
-        <h5 v-if="orderStore.order.promotion.amount > 0" class="">
-          <span>Promo: </span>
-          <span v-if="orderStore.order.promotion.type === 'amount'">$</span
-          >{{ orderStore.order.promotion.amount
-          }}<span v-if="orderStore.order.promotion.type === 'percentage'"
-            >%</span
-          >
-          OFF
-        </h5>
-        <h5>
-          <span>ORDER TOTAL: </span>${{
-            parseFloat(orderStore.order.total).toFixed(2)
-          }}
-        </h5>
-      </div> -->
     </div>
     <div id="payment-element" />
     <FormVButton id="submit" class="w-full my-6" type="submit" :disabled="isLoading">Submit Payment</FormVButton>
@@ -53,11 +27,17 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  email: {
+    type: String,
+    default: null
+  },
+  amount: {
+    type: Number,
+    default: 0
+  }
 })
 const response = reactive({})
 const clientSecret = ref('')
-// const cartStore = useCartStore()
-// const orderStore = useOrderStore()
 const isLoading = ref(false)
 const messages = ref([])
 let stripe
@@ -65,12 +45,9 @@ let elements
 
 
 onMounted(async () => {
-  // let total
-  // total = (parseFloat(orderStore.order.total) * 100).toString()
-  // let stripeTotal = parseFloat(total).toFixed(0)
   stripe = await loadStripe(config.public.stripePublic)
   const { data, pending, error, refresh } = await useFetch(
-    '/api/stripe/paymentintent?amount=1000&customer=&email=peter@huestudios.com&paymentType=' +
+    '/api/stripe/paymentintent?amount=' + props.amount + '00&customer=&email=' + props.email + '&paymentType=' +
     props.paymentType,
     {
       onResponse({ request, response, options }) {
@@ -85,6 +62,11 @@ onMounted(async () => {
   // messages.value.push(`Client secret returned.`)
   const options = {
     clientSecret: clientSecret.value,
+    fields: {
+      billingDetails: {
+        email: props.email,
+      }
+    },
     style: {
       base: {
         letterSpacing: '0.1em',
@@ -128,26 +110,19 @@ onMounted(async () => {
     console.log(event)
   })
 })
-// const paymentMethods = ref([])
-// if (props.customer) {
-//   $fetch(`/api/paymentmethodsget?customer=${customer}`).then((res) => {
-//     paymentMethods.value = res.data
-//   })
-// }
+
 const handleSubmit = async () => {
   loader.value = true
   openScreen()
   if (isLoading.value) {
     return
   }
-  orderStore.save()
   isLoading.value = true
   const { error } = await stripe.confirmPayment({
     elements: elements,
     confirmParams: {
-      return_url: 'http://localhost:3000/checkout/confirmation',
+      return_url: 'https://frayednot.net/confirmation',
     },
-    // redirect: 'if_required', 'https://stupendous-cendol-a156b4.netlify.app/checkout/confirmation',
   })
   if (error) {
     messages.value.push(error.message)

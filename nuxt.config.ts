@@ -117,6 +117,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/devtools',
+    '@formkit/nuxt',
     '@nuxtjs/plausible',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
