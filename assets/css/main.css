@@ -12,6 +12,19 @@ html {
 a {
   transition: all 0.3s var(--curve);
 }
+.Vue-Toastification__toast {
+  border-radius: 4px !important;
+}
+.Vue-Toastification__toast-body {
+  font-size: 12px !important;
+  font-family: var(--body-font) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em !important;
+  font-size: 10px !important;
+}
+.Vue-Toastification__toast--error {
+  background-color: var(--grey) !important;
+}
 .fade-enter-from {
   opacity: 0;
   /* transform: scale(0.98); */

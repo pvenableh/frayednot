@@ -1,10 +1,19 @@
 <template>
-  <div class="relative w-full min-h-screen flex items-center justify-start flex-col py-20 page payment">
-    <div class="flex items-center justify-center page__body">
+  <div class="relative w-full flex items-start justify-start flex-col page payment">
+
+    <div class="flex items-center justify-start flex-col page__body">
+      <h1 class="w-full mt-6 uppercase tracking-wider max-w-xl">Payment</h1>
       <transition :name="animateName" mode="out-in" class="relative transition-container">
-        <div v-if="section === 'one'" key="1" class="w-full payment-section">
+        <div v-if="section === 'one'" key="1"
+          class="w-full flex items-center justify-center flex-col max-w-xl payment-section">
           <div v-if="page.intro" class="pb-12">{{ page.intro }}</div>
-          <div class="w-full max-w-xl pb-12 services">
+          <VeeForm class="flex w-full flex-wrap flex-row mb-12">
+            <FormVInput name="name" type="text" label="name" v-model="name" class="w-1/2 mb-6 "
+              :required="true" />
+            <FormVEmail name="email" type="text" label="email" v-model="email" class="w-1/2 mb-6 " />
+            <FormVInput name="address" type="text" label="address" v-model="address" class="w-full" :required="true" />
+          </VeeForm>
+          <div class="w-full  pb-12 services">
             <h3 class="uppercase tracking-wider services__title">Please select your service below:</h3>
             <div v-for="(option, index) in page.payment_options" :key="index" :id="'service-' + option.id"
               class="shadow-xl my-4 p-6 cursor-pointer services__item" :class="{ 'selected': service.id === option.id }"
@@ -15,15 +24,20 @@
 
           </div>
         </div>
-        <div v-else-if="section === 'two'" key="2" class="w-full payment-section">
-          <div class="">
+        <div v-else-if="section === 'two'" key="2"
+          class="w-full flex items-center justify-center flex-col max-w-xl payment-section">
+          <div class="w-full">
             <h5 class="text-xs tracking-wider opacity-50 uppercase mb-4">Selected Service</h5>
             <h3 v-if="service.title && service.amount" class="text-lg tracking-wide uppercase mb-1">{{ service.title }}
-              <span class="opacity-50">Amount:</span> ${{ service.amount.toLocaleString("en-US") }}</h3>
+              <span class="opacity-50">Amount:</span> ${{ service.amount.toLocaleString("en-US") }}
+            </h3>
             <p v-if="service.description" class="text-sm mb-4">{{ service.description }}</p>
-
+            <div class="details">
+              <p class="w-full"><span class=" opacity-50">Name:</span>{{ name }} <span class="ml-4 opacity-50">Email:</span>{{ email }}</p>
+              <p class="w-full"><span class="opacity-50">Address:</span>{{ address }}</p>
+            </div>
             <a @click.prevent="changeService" href="#" class="uppercase mb-8 change-btn">
-              <!-- <nuxt-icon name="arrow-right" class="ml-1 arrow-right-icon" /> -->
+
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.32 138.1">
                 <path d="m40.41,0L.15,69.42l-.15.27,40.41,68.41.91-.54L1.22,69.69,41.32.53l-.91-.53Z" />
               </svg>
@@ -44,8 +58,10 @@
 
           <div class="payment__container">
             <transition :name="animateName" mode="out-in" class="relative transition-container">
-              <PaymentStripeCard v-if="panel === 'card'" key="1" paymentType="card" class="payment__panel" :amount="service.amount" :email="email"/>
-              <PaymentStripeCard v-else-if="panel === 'bank'" paymentType="us_bank_account" class="payment__panel" :amount="service.amount" :email="email"/>
+              <PaymentStripeCard v-if="panel === 'card'" key="1" paymentType="card" class="payment__panel"
+                :amount="service.amount" :email="email" />
+              <PaymentStripeCard v-else-if="panel === 'bank'" paymentType="us_bank_account" class="payment__panel"
+                :amount="service.amount" :email="email" />
             </transition>
           </div>
         </div>
@@ -55,6 +71,8 @@
 </template>
 
 <script setup>
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 const { $directus, $preview } = useNuxtApp();
 const { data: page, pending, error } = await useAsyncData('payment', () => {
   return $directus.items('payment').readOne(1, {
@@ -63,10 +81,12 @@ const { data: page, pending, error } = await useAsyncData('payment', () => {
     ],
   })
 })
+const name = ref('')
+const address = ref('')
 function handleChange(s) {
   console.log(s)
 }
-const email = ref('peter@huestudios.com')
+const email = ref('')
 const section = ref('one')
 const panel = ref('card')
 const previousPanelKey = ref(1)
@@ -82,9 +102,14 @@ function changePanel(newPanel, key) {
 }
 const service = ref({})
 function selectService(option) {
-  service.value = option
-  animateName.value = 'slide-left'
-  section.value = 'two'
+  if (!name.value || !address.value || !email.value) {
+    toast.error("You need to complete the form.")
+    return
+  } else {
+    service.value = option
+    animateName.value = 'slide-left'
+    section.value = 'two'
+  }
 }
 function changeService() {
   section.value = 'one'
@@ -92,7 +117,12 @@ function changeService() {
 }
 </script>
 <style scoped>
+
 .payment {
+  .details {
+    font-size: 10px;
+    @apply uppercase font-bold;
+  }
   .services {
     &__title {
       font-size: 12px;
@@ -124,7 +154,7 @@ function changeService() {
 
       h5 {
         width: 80%;
-        font-size: 12px;
+        font-size: 10px;
         @apply text-center;
       }
     }
@@ -219,4 +249,5 @@ function changeService() {
       transform: translateX(10px)
     }
   }
-}</style>
+}
+</style>

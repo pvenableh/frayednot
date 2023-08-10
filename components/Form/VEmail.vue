@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full input-container">
+  <div class="relative input-container">
     <VeeField
       :name="name"
       :id="name"
@@ -8,11 +8,11 @@
         py-2.5
         px-0
         w-full
-        text-sm text-white
+        text-sm 
         bg-transparent
         border-0 border-b-2 border-gray-300
         appearance-none
-        dark:text-white dark:border-gray-600 dark:focus:border-gray-900
+        dark:border-gray-600 dark:focus:border-gray-900
         focus:outline-none focus:ring-0 focus:border-gray-900
         peer
       "
@@ -39,8 +39,6 @@
         top-3
         origin-[0]
         peer-focus:left-0
-        peer-focus:text-gray-100
-        peer-focus:dark:text-gray-500
         peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
         peer-focus:scale-75 peer-focus:-translate-y-6
       "

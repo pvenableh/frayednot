@@ -28,7 +28,6 @@
         "prettier": "^2.7.1"
     },
     "dependencies": {
-        "@formkit/nuxt": "^0.17.5",
         "@nuxtjs/plausible": "^0.2.0",
         "@sendgrid/mail": "^7.7.0",
         "@stripe/stripe-js": "^1.54.1",
@@ -37,7 +36,8 @@
         "@vueuse/motion": "^2.0.0",
         "stripe": "^12.16.0",
         "swiper": "^9.2.3",
-        "vue-social-sharing": "^4.0.0-alpha4"
+        "vue-social-sharing": "^4.0.0-alpha4",
+        "vue-toastification": "^2.0.0-rc.5"
     },
     "overrides": {
         "vue": "latest"

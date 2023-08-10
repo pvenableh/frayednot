@@ -1,7 +1,8 @@
 <template>
   <div :class="pageStore.page">
+    <VitePwaManifest />
+    <NuxtLoadingIndicator color="var(--black)" :height="4" />
     <NuxtLayout>
-      <NuxtLoadingIndicator color="var(--black)" :height="4" />
       <NuxtPage />
     </NuxtLayout>
   </div>

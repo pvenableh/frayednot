@@ -21,19 +21,13 @@ const clientSecret = ref('')
 
 clientSecret.value = route.query.payment_intent_client_secret
 let stripe
-function showMessage(messageText) {
-  console.log(messageText)
-}
+
 onMounted(async () => {
-  // if (localStorage.getItem('order')) {
-  //   console.log('order is there')
-  //   orderStore.order = JSON.parse(localStorage.getItem('order'))
-  //   console.log(orderStore.order)
-  // }
   stripe = await loadStripe(config.public.stripePublic)
   const { error, paymentIntent } = await stripe.retrievePaymentIntent(
     clientSecret.value
   )
+  console.log(paymentIntent)
   switch (paymentIntent.status) {
     case 'succeeded':
       showMessage('Payment succeeded!')
