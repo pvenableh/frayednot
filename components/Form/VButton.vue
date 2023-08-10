@@ -35,12 +35,12 @@ const props = defineProps({
   color: var(--grey);
   @apply  inline-flex  border-transparent  items-center justify-center px-6 py-2 tracking-widest font-bold uppercase shadow-sm disabled:opacity-50 disabled:cursor-not-allowed active:hover:scale-95 transition ease-in-out duration-150;
 }
-.btn-default {
+/* .btn-default {
 }
 .btn-primary {
 }
 .btn-outline {
 }
 .btn-danger {
-}
+} */
 </style>
