@@ -54,7 +54,7 @@
             class="page__body w-full flex flex-row items-center justify-between my-32 certifications">
             <a :href="certification.link" target="_blank" v-for="(certification, index) in page.certifications" :key="index"
                 class="flex items-center w-1/4 sm:w-1/5 md:w-1/6">
-                <img :src="imageUrl + certification.logo" :alt="certification.name" class="w-full h-auto" />
+                <img :src="imageUrl + certification.logo + '?key=medium'" :alt="certification.name" class="w-full h-auto" />
             </a>
         </div>
     </div>
