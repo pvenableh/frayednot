@@ -149,6 +149,9 @@ export default defineNuxtConfig({
       name: 'frayednot',
       short_name: 'frayednot',
       theme_color: '#ffffff',
+      display: 'standalone',
+      id: '/?source=pwa',
+      start_url: '/?source=pwa',
       icons: [
         {
           src: 'android-icon-192x192.png',
