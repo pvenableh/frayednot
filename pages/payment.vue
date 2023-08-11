@@ -83,9 +83,6 @@ const { data: page, pending, error } = await useAsyncData('payment', () => {
 })
 const name = ref('')
 const address = ref('')
-function handleChange(s) {
-  console.log(s)
-}
 const email = ref('')
 const section = ref('one')
 const panel = ref('card')
@@ -101,20 +98,34 @@ function changePanel(newPanel, key) {
   panel.value = newPanel;
 }
 const service = ref({})
+const payment = ref({})
 function selectService(option) {
   if (!name.value || !address.value || !email.value) {
     toast.error("You need to complete the form.")
     return
   } else {
+    payment.value = {
+      name: name.value,
+      address: address.value,
+      email: email.value,
+      amount: option.amount,
+      description: option.description,
+      title: option.title,
+      id: option.id
+    }
+    localStorage.setItem('payment', JSON.stringify(payment.value));
     service.value = option
     animateName.value = 'slide-left'
     section.value = 'two'
+
   }
 }
 function changeService() {
   section.value = 'one'
   animateName.value = 'slide-right'
 }
+
+
 </script>
 <style scoped>
 

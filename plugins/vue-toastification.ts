@@ -14,7 +14,7 @@ import "vue-toastification/dist/index.css";
 
 const options = {
 
-    timeout: 30000,
+    timeout: 3000,
     position: 'top-right',
     transition: "Vue-Toastification__fade",
     newestOnTop: true,
@@ -22,13 +22,13 @@ const options = {
     backgroundColor: 'black',
     // ToastOptions object for each type of toast
     [TYPE.ERROR]: {
-        timeout: 30000,
+        timeout: 3000,
         closeButton: false,
         transition: "Vue-Toastification__fade",
         backgroundColor: 'black',
     },
     [TYPE.SUCCESS]: {
-        timeout: 30000,
+        timeout: 3000,
         // hideProgressBar: true,
         closeButton: false,
         transition: "Vue-Toastification__fade",

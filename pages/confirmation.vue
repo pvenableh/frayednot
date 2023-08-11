@@ -13,19 +13,27 @@
 <script setup>
 const route = useRoute()
 const config = useRuntimeConfig()
-
 import { loadStripe } from '@stripe/stripe-js'
 const { $directus, $preview } = useNuxtApp();
 const messages = ref([])
 const clientSecret = ref('')
-
 clientSecret.value = route.query.payment_intent_client_secret
 let stripe
-
+import { useToast } from 'vue-toastification'
+const toast = useToast()
+function showMessage(messageText) {
+  toast.error(messageText)
+}
+const payment = ref({})
 onMounted(async () => {
+  if(window.localStorage.getItem('payment')) {
+    payment.value = JSON.parse(window.localStorage.getItem('payment'))
+  }
   stripe = await loadStripe(config.public.stripePublic)
   const { error, paymentIntent } = await stripe.retrievePaymentIntent(
-    clientSecret.value
+    clientSecret.value, {
+      expand: ['payment_method', 'latest_charge'],
+    }
   )
   console.log(paymentIntent)
   switch (paymentIntent.status) {
@@ -52,9 +60,22 @@ onMounted(async () => {
     paymentIntent.status +
     '.'
   )
+
   // messages.value.push(paymentIntent)
   messages.value.push(
     `An email receipt was sent to ${paymentIntent.receipt_email}.`
   )
+  let date = new Date();
+  const newYorkTimezoneOffset = -240;
+  const newDate = new Date(date.getTime() + (newYorkTimezoneOffset * 60 * 1000));
+  await $directus.items('payments_received').createOne({
+    status: 'published',
+    name: payment.value.name,
+    email: payment.value.email,
+    address: payment.value.address,
+    service: payment.value.id,
+    date_received: newDate.toISOString(),
+    payment_intent: paymentIntent.id,
+  });
 })
 </script>
