@@ -6,11 +6,11 @@ export default defineEventHandler(async (event) => {
     const message = {
         personalizations: [{
             to: [{
-                email: body.email,
+                email: body.email
             }],
             bcc: [{
                 email: 'huestudios.com@gmail.com',
-            },
+            }],
         }],
         from: {
             email: 'mail@frayednot.net',
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
         template_id: 'd-c2e9769eb2e54c14b66602ea53cee395',
         replyTo: {
             email: 'support@frayednot.net',
-            name: 'frayednot Support Group '
+            name: 'frayednot Support Group'
         },
         subject: 'Payment Received on frayednot.net',
         content: [{
@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
             address: body.address,
             amount: body.amount,
             title: body.title,
-            description: body.description,
+            description: body.description
         },
         categories: [
             'frayednot'
