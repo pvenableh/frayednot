@@ -122,7 +122,6 @@ const handleSubmit = async () => {
     elements: elements,
     confirmParams: {
       return_url: 'https://frayednot.net/confirmation',
-      // return_url: 'http://localhost:3000/confirmation',
     },
   })
   if (error) {
