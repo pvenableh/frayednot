@@ -2,7 +2,7 @@
   <div class="relative w-full flex items-start justify-start flex-col page payment">
 
     <div class="flex items-center justify-start flex-col page__body">
-      <h1 class="w-full mt-6 uppercase tracking-wider max-w-xl">Payment</h1>
+      <h1 class="w-full mt-6 uppercase tracking-wider max-w-xl">Payment!</h1>
       <transition :name="animateName" mode="out-in" class="relative transition-container">
         <div v-if="section === 'one'" key="1"
           class="w-full flex items-center justify-center flex-col max-w-xl payment-section">
