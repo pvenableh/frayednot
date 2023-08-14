@@ -10,43 +10,33 @@ export default defineEventHandler(async (event) => {
             }],
             bcc: [{
                 email: 'huestudios.com@gmail.com',
-            }, {
-                email: 'dana@danablairdesigns.com',
-            }]
+            },
         }],
         from: {
-            email: 'mail@danablairdesigns.com',
-            name: 'Dana Blair Designs'
+            email: 'mail@frayednot.net',
+            name: 'frayednot.net'
         },
 
-        template_id: 'd-ee97485ec12c43c68819153c887e4613',
+        template_id: 'd-c2e9769eb2e54c14b66602ea53cee395',
         replyTo: {
-            email: 'dana@danablairdesigns.com',
-            name: 'Dana Blair Designs'
+            email: 'support@frayednot.net',
+            name: 'frayednot Support Group '
         },
-        subject: 'Your Order Confirmation from Dana Blair Designs',
+        subject: 'Payment Received on frayednot.net',
         content: [{
             type: 'text/html',
             value: '&nbsp;'
         }],
         dynamicTemplateData: {
             email: body.email,
-            first_name: body.first_name,
-            last_name: body.last_name,
-            phone: body.first_name,
-            address_one: body.address_one,
-            address_two: body.address_two,
-            city: body.city,
-            state: body.state,
-            zip: body.zip,
-            total: body.total,
-            promotion: body.promotion,
-            shipping_price: body.shipping_price,
-            shipping_name: body.shipping_name,
-            products: body.products
+            name: body.name,
+            address: body.address,
+            amount: body.amount,
+            title: body.title,
+            description: body.description,
         },
         categories: [
-            'jewelry'
+            'frayednot'
         ],
     };
     sendgrid.send(message)
