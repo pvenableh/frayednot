@@ -119,7 +119,7 @@ export default defineNuxtConfig({
     '@nuxt/devtools',
     '@nuxtjs/plausible',
     '@nuxtjs/tailwindcss',
-    '@vite-pwa/nuxt',
+    // '@vite-pwa/nuxt',
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
     [
@@ -143,49 +143,49 @@ export default defineNuxtConfig({
     ],
     'nuxt-icons',
   ],
-  pwa: {
-    registerType: 'autoUpdate',
-    manifest: {
-      name: 'frayednot',
-      short_name: 'frayednot',
-      theme_color: '#ffffff',
-      display: 'standalone',
-      id: '/?source=pwa',
-      start_url: '/?source=pwa',
-      icons: [
-        {
-          src: 'android-icon-192x192.png',
-          sizes: '192x192',
-          type: 'image/png',
-        },
-        {
-          src: 'apple-icon-180x180.png',
-          sizes: '180x180',
-          type: 'image/png',
-        },
-        {
-          src: 'apple-icon-180x180.png',
-          sizes: '180x180',
-          type: 'image/png',
-          purpose: 'any maskable',
-        },
-      ],
-    },
-    workbox: {
-      navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
-    },
-    client: {
-      installPrompt: true,
-      periodicSyncForUpdates: 20,
-    },
-    devOptions: {
-      enabled: true,
-      suppressWarnings: true,
-      navigateFallbackAllowlist: [/^\/$/],
-      type: 'module',
-    },
-  },
+  // pwa: {
+  //   registerType: 'autoUpdate',
+  //   manifest: {
+  //     name: 'frayednot',
+  //     short_name: 'frayednot',
+  //     theme_color: '#ffffff',
+  //     display: 'standalone',
+  //     id: '/?source=pwa',
+  //     start_url: '/?source=pwa',
+  //     icons: [
+  //       {
+  //         src: 'android-icon-192x192.png',
+  //         sizes: '192x192',
+  //         type: 'image/png',
+  //       },
+  //       {
+  //         src: 'apple-icon-180x180.png',
+  //         sizes: '180x180',
+  //         type: 'image/png',
+  //       },
+  //       {
+  //         src: 'apple-icon-180x180.png',
+  //         sizes: '180x180',
+  //         type: 'image/png',
+  //         purpose: 'any maskable',
+  //       },
+  //     ],
+  //   },
+  //   workbox: {
+  //     navigateFallback: '/',
+  //     globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+  //   },
+  //   client: {
+  //     installPrompt: true,
+  //     periodicSyncForUpdates: 20,
+  //   },
+  //   devOptions: {
+  //     enabled: true,
+  //     suppressWarnings: true,
+  //     navigateFallbackAllowlist: [/^\/$/],
+  //     type: 'module',
+  //   },
+  // },
   devtools: {
     // Enable devtools (default: true)
     enabled: true,
