@@ -8,9 +8,14 @@ export default defineEventHandler(async (event) => {
             to: [{
                 email: body.email
             }],
-            bcc: [{
-                email: 'huestudios.com@gmail.com',
-            }],
+            bcc: [
+                {
+                    email: 'support@frayednot.net',
+                },
+                {
+                    email: 'huestudios.com@gmail.com',
+                }
+            ],
         }],
         from: {
             email: 'mail@frayednot.net',
