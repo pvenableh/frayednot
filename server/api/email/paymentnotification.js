@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
         }],
         from: {
             email: 'mail@frayednot.net',
-            name: 'frayednot.net'
+            name: 'frayednot Support Group'
         },
 
         template_id: 'd-c2e9769eb2e54c14b66602ea53cee395',

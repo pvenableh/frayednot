@@ -77,6 +77,7 @@ onMounted(async () => {
     date_received: newDate.toISOString(),
     payment_intent: paymentIntent.id,
   });
+  console.log(payment.value)
   await useFetch('/api/email/paymentnotification', {
     method: 'post',
     body: {
@@ -88,5 +89,7 @@ onMounted(async () => {
       description: payment.value.description,
     },
   })
+  payment.value = {}
+  localStorage.removeItem('payment')
 })
 </script>
