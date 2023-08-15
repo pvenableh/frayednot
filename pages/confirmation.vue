@@ -77,7 +77,7 @@ onMounted(async () => {
     date_received: newDate.toISOString(),
     payment_intent: paymentIntent.id,
   });
-  await useFetch('/api/paymentnotification', {
+  await useFetch('/api/email/paymentnotification', {
     method: 'post',
     body: {
       name: payment.value.name,
