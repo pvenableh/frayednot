@@ -78,7 +78,7 @@ onMounted(async () => {
     payment_intent: paymentIntent.id,
   });
   console.log(payment.value)
-  await useFetch('/api/email/paymentnotification', {
+  const { data, pending, error2, refresh } = await useFetch('/api/paymentnotification', {
     method: 'post',
     body: {
       name: payment.value.name,
@@ -91,5 +91,6 @@ onMounted(async () => {
   })
   payment.value = {}
   localStorage.removeItem('payment')
+  console.log(data)
 })
 </script>
