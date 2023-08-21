@@ -60,9 +60,9 @@
           <div class="payment__container">
             <transition :name="animateName" mode="out-in" class="relative transition-container">
               <PaymentStripeCard v-if="panel === 'card'" key="1" paymentType="card" class="payment__panel"
-                :amount="payment.amount" :email="email" />
+                :amount="payment.stripeAmount" :email="email" />
               <PaymentStripeCard v-else-if="panel === 'bank'" paymentType="us_bank_account" class="payment__panel"
-                :amount="payment.amount" :email="email" />
+                :amount="payment.stripeAmount" :email="email" />
             </transition>
           </div>
         </div>
@@ -82,9 +82,9 @@ const { data: page, pending, error } = await useAsyncData('payment', () => {
     ],
   })
 })
-const name = ref('Peter Parker')
-const address = ref('1033 Lenox Ave, Miami Beach, FL 33139')
-const email = ref('peter@huestudios.com')
+const name = ref('')
+const address = ref('')
+const email = ref('')
 const section = ref('one')
 const panel = ref('card')
 const previousPanelKey = ref(1)
@@ -119,6 +119,7 @@ function selectService(option) {
       description: option.description,
       title: option.title,
       id: option.id,
+      stripeAmount: total.value.replace(".", "")
     }
     localStorage.setItem('payment', JSON.stringify(payment.value));
     service.value = option
