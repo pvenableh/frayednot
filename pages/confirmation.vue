@@ -76,6 +76,7 @@ onMounted(async () => {
     service: payment.value.id,
     date_received: newDate.toISOString(),
     payment_intent: paymentIntent.id,
+    payment_total: payment.value.amount,
   });
   console.log(payment.value)
   const { data, pending, error2, refresh } = await useFetch('/api/paymentnotification', {
