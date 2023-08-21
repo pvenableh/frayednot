@@ -32,7 +32,7 @@ const props = defineProps({
     default: null
   },
   amount: {
-    type: Number,
+    type: [Number, String],
     default: 0
   }
 })
@@ -47,7 +47,7 @@ let elements
 onMounted(async () => {
   stripe = await loadStripe(config.public.stripePublic)
   const { data, pending, error, refresh } = await useFetch(
-    '/api/stripe/paymentintent?amount=' + props.amount + '00&customer=&email=' + props.email + '&paymentType=' +
+    '/api/stripe/paymentintent?amount=' + (Math.floor(props.amount) / 100).toFixed(2).replace(".", "") + '&customer=&email=' + props.email + '&paymentType=' +
     props.paymentType,
     {
       onResponse({ request, response, options }) {
@@ -139,7 +139,7 @@ const handleSubmit = async () => {
     /* max-width: 550px; */
   }
   #payment-element {
-    min-height: 335px;
+    /* min-height: 335px; */
   }
 }
 </style>
