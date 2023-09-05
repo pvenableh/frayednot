@@ -198,10 +198,12 @@ export default defineNuxtConfig({
     domain: 'frayednot.net',
   },
 
+  // pk_test_51NYWsGF0lK6IMCafXWFA8Ehh0Zg2cr8N0jDToR7Bx4o6xgdJptmH62VaY20kzU3p0uS4U0jnMJZAay2oA51ncHNN00DGYG68sc
+  // sk_test_51NYWsGF0lK6IMCafZk3rSLVAqCUA9HS7c3tG3XNF7kcs1uhbI9wGDNgyZoPcWiFnHitALS4qa2k5Pt3iaAxTf8LW00kEbGEx8s
   runtimeConfig: {
-    stripeSecret:'sk_test_51NYWsGF0lK6IMCafZk3rSLVAqCUA9HS7c3tG3XNF7kcs1uhbI9wGDNgyZoPcWiFnHitALS4qa2k5Pt3iaAxTf8LW00kEbGEx8s',
+    stripeSecret:'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',
     public: {
-      stripePublic: 'pk_test_51NYWsGF0lK6IMCafXWFA8Ehh0Zg2cr8N0jDToR7Bx4o6xgdJptmH62VaY20kzU3p0uS4U0jnMJZAay2oA51ncHNN00DGYG68sc',
+      stripePublic: 'pk_live_51NYWsGF0lK6IMCafvXu0klUufe29TqQKWOJoF2XeDSwKFXoZ3B6AKTwChfI7hy9ZC7dZbhgk2G0hLHheZOS8BGuN00PQ99Sz4o',
       directusUrl: 'https://admin.frayednot.net',
       plausible: {
         domain: 'frayednot.net',
