@@ -47,7 +47,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const stripe = new Stripe(
-    'sk_test_51NYWsGF0lK6IMCafZk3rSLVAqCUA9HS7c3tG3XNF7kcs1uhbI9wGDNgyZoPcWiFnHitALS4qa2k5Pt3iaAxTf8LW00kEbGEx8s'
+    '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'
   )
   // hue sk_test_MEBnHMrFHTpPJsl88qX92GbI00wdGnFKSm
 
