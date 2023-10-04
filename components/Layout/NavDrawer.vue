@@ -111,7 +111,7 @@ onUnmounted(() => {
   }
 
   &__menu-box {
-    width: 250px;
+    width: 350px;
     @apply flex items-center justify-center flex-col;
     .close-btn {
       transform: translateY(50px);

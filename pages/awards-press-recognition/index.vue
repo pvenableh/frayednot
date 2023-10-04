@@ -20,7 +20,8 @@
             </div>
             <div v-if="page.certified_intro" class="page__body-header flex items-center flex-col md:flex-row">
                 <div class="md:flex-grow-0">
-                    <h2 v-if="page.certified_intro.title" class="page__body-header-title">{{ page.certified_intro.title }}</h2>
+                    <h2 v-if="page.certified_intro.title" class="page__body-header-title">{{ page.certified_intro.title }}
+                    </h2>
                     <div v-if="page.certified_intro.text" v-html="page.certified_intro.text" class="mb-4"></div>
                 </div>
                 <img v-if="page.certified_intro.images.length"
@@ -40,10 +41,13 @@
                         <div v-for="(image, index) in page.recognition_intro.images" :key="index"
                             class="my-8 p-1 md:p-6 flex items-center justify-center"
                             :class="'w-1/' + page.recognition_intro.images.length">
-                            <a v-if="image.directus_files_id.location" :href="image.directus_files_id.location" target="_blank">
-                            <img :src="imageUrl + image.directus_files_id.id + '?key=small'" :key="index" alt="Award" class="inline-block" />
+                            <a v-if="image.directus_files_id.location" :href="image.directus_files_id.location"
+                                target="_blank">
+                                <img :src="imageUrl + image.directus_files_id.id + '?key=small'" :key="index"
+                                    :alt="image.directus_files_id.title + ' Award'" class="inline-block" />
                             </a>
-                            <img v-else :src="imageUrl + image.directus_files_id + '?key=small'" :key="index" alt="Award" class="inline-block" /> 
+                            <img v-else :src="imageUrl + image.directus_files_id.id + '?key=small'" :key="index"
+                                :alt="image.directus_files_id.title + ' Award'" class="inline-block" />
                         </div>
                     </div>
                 </div>
@@ -63,7 +67,7 @@ if ($preview) {
     const { data: page, pending, error } = await useAsyncData('page', () => {
         return $directus.items('recognition').readOne(1, {
             fields: [
-                'header_image,title,caption,page_header,page_intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id.id,recognition_intro.images.directus_files_id.location,seo.*',
+                'header_image,title,caption,page_header,page_intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id.id,recognition_intro.images.directus_files_id.title,recognition_intro.images.directus_files_id.location,seo.*',
             ],
         })
     })
@@ -71,7 +75,7 @@ if ($preview) {
 const { data: page, pending, error } = await useAsyncData('page', () => {
     return $directus.items('recognition').readOne(1, {
         fields: [
-            'header_image,title,caption,page_header,page_intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id.id,recognition_intro.images.directus_files_id.location,seo.*',
+            'header_image,title,caption,page_header,page_intro,url,articles.title,articles.subtitle,articles.link,articles.image,certified_intro.title,certified_intro.subtitle,certified_intro.text,certified_intro.images.directus_files_id,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id.id,recognition_intro.images.directus_files_id.title,recognition_intro.images.directus_files_id.location,seo.*',
         ],
     })
 })

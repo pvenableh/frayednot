@@ -5,5 +5,5 @@
     { 
         "editor.defaultFormatter": "bradlc.vscode-tailwindcss" 
     },
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true
 }
