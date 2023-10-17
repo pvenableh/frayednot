@@ -3,7 +3,7 @@
     <div class="nav-drawer__bg"></div>
     <div class="nav-drawer__menu-box p-4 relative">
       <nuxt-icon @click="closeNavDrawer" name="close" class="close-icon close-btn" />
-      
+
       <ul @click="closeNavDrawer" tabindex="0" class="w-full nav-drawer__menu text-center">
         <li><nuxt-link to="/">Home</nuxt-link></li>
         <li>
@@ -23,7 +23,7 @@
         <li><a href="https://htacertified.org/home-technology-installation-budget-tool/4413" target="_blank">Budget
             Calculator</a></li>
         <li><nuxt-link to="/contact">Contact</nuxt-link></li>
-
+        <li><a id="admin-btn" href="https://admin.frayednot.net" target="_blank">Admin</a></li>
       </ul>
     </div>
   </div>
@@ -46,25 +46,25 @@ function closeNavDrawer() {
 const windowWidth = ref(null)
 
 const handleResize = () => {
-    windowWidth.value = window.innerWidth
+  windowWidth.value = window.innerWidth
 }
 onMounted(() => {
   windowWidth.value = window.innerWidth
   window.addEventListener('resize', handleResize)
   const { direction } = useSwipe(
-  navDrawerRef, { 
+    navDrawerRef, {
     onSwipe() {
       if (direction.value === "DOWN" && windowWidth.value < 768) {
-        closeNavDrawer()   
+        closeNavDrawer()
       } else if (direction.value === "UP" && windowWidth.value >= 768) {
         closeNavDrawer()
       }
     },
   }
-)
+  )
 })
 onUnmounted(() => {
-    window.removeEventListener('resize', handleResize)
+  window.removeEventListener('resize', handleResize)
 })
 
 </script>
@@ -113,14 +113,17 @@ onUnmounted(() => {
   &__menu-box {
     width: 350px;
     @apply flex items-center justify-center flex-col;
+
     .close-btn {
       transform: translateY(50px);
       opacity: 0;
       transition: 0.65s var(--curve);
       transition-delay: 0.075s;
+
       @media (min-width: theme('screens.md')) {
         transform: translateY(-50px);
       }
+
       @apply absolute -top-20;
     }
   }
@@ -188,6 +191,10 @@ onUnmounted(() => {
     li:nth-of-type(8) {
       transition-delay: 0.215s;
     }
+
+    li:nth-of-type(9) {
+      transition-delay: 0.218s;
+    }
   }
 }
 
@@ -198,12 +205,14 @@ onUnmounted(() => {
     right: 0px;
     width: 110vw;
   }
+
   .nav-drawer__menu-box {
     .close-btn {
       transform: translateY(0px);
       opacity: 1;
     }
   }
+
   .nav-drawer__menu {
     li {
       transform: translateY(0px);
@@ -213,7 +222,7 @@ onUnmounted(() => {
   }
 }
 
-#nav-drawer-toggle:checked ~ .page__content {
+#nav-drawer-toggle:checked~.page__content {
   /* transform: matrix(1, 0, 0, 1, 8, 0); */
   /* transform: translateY(10px); */
   filter: blur(2px) grayscale(0.5);
@@ -223,4 +232,17 @@ onUnmounted(() => {
   background: rgba(48, 54, 64, 0.4);
   opacity: 0.999999;
   visibility: visible;
-} */</style>
+} */
+
+#admin-btn {
+  font-size: 10px;
+  font-family: var(--body-font);
+  letter-spacing: 1em;
+  opacity: 0.5;
+  margin-top: 20px;
+}
+
+#admin-btn:hover {
+  opacity: 1;
+}
+</style>
