@@ -135,11 +135,9 @@ const handleSubmit = async () => {
 <style>
 #payment-form {
   width: 100%;
-
   @media (min-width: theme('screens.sm')) {
     /* max-width: 550px; */
   }
-
   #payment-element {
     /* min-height: 335px; */
   }

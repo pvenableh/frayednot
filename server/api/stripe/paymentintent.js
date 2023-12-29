@@ -42,15 +42,14 @@ export default defineEventHandler(async (event) => {
       automatic_payment_methods: {
         enabled: true,
       },
-      // statement_descriptor: 'Purchase from frayednot.net',
+      // statement_descriptor: 'Purchase from danablairdesigns.com.',
     }
   }
 
   const stripe = new Stripe(
-    'sk_test_51NYWsGF0lK6IMCafZk3rSLVAqCUA9HS7c3tG3XNF7kcs1uhbI9wGDNgyZoPcWiFnHitALS4qa2k5Pt3iaAxTf8LW00kEbGEx8s'
+    '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'
   )
-  // sk_test_51NYWsGF0lK6IMCafZk3rSLVAqCUA9HS7c3tG3XNF7kcs1uhbI9wGDNgyZoPcWiFnHitALS4qa2k5Pt3iaAxTf8LW00kEbGEx8s
-  // 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
+  // hue sk_test_MEBnHMrFHTpPJsl88qX92GbI00wdGnFKSm
 
   const paymentIntent = await stripe.paymentIntents.create(options)
 
