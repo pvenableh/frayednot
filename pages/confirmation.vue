@@ -26,14 +26,16 @@ function showMessage(messageText) {
 }
 const payment = ref({})
 onMounted(async () => {
-  if(window.localStorage.getItem('payment')) {
+  if (window.localStorage.getItem('payment')) {
     payment.value = JSON.parse(window.localStorage.getItem('payment'))
+  } else {
+    console.log('no payment')
   }
   stripe = await loadStripe(config.public.stripePublic)
   const { error, paymentIntent } = await stripe.retrievePaymentIntent(
     clientSecret.value, {
-      expand: ['payment_method', 'latest_charge'],
-    }
+    expand: ['payment_method', 'latest_charge'],
+  }
   )
   console.log(paymentIntent)
   switch (paymentIntent.status) {
@@ -79,7 +81,7 @@ onMounted(async () => {
     payment_total: payment.value.amount,
   });
   console.log(payment.value)
-  const { data, pending, error2, refresh } = await useFetch('/api/paymentnotification', {
+  const { data, pending, error2, refresh } = fetch('/api/paymentnotification', {
     method: 'post',
     body: {
       name: payment.value.name,
@@ -90,8 +92,9 @@ onMounted(async () => {
       description: payment.value.description,
     },
   })
+  console.log(data)
   payment.value = {}
   localStorage.removeItem('payment')
-  console.log(data)
+
 })
 </script>
