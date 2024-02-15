@@ -1,13 +1,27 @@
 <template>
-  <div id="nav-drawer" class="flex items-center justify-center flex-col nav-drawer" ref="navDrawerRef">
+  <div
+    id="nav-drawer"
+    class="flex items-center justify-center flex-col nav-drawer"
+    ref="navDrawerRef"
+  >
     <div class="nav-drawer__bg"></div>
     <div class="nav-drawer__menu-box p-4 relative">
-      <nuxt-icon @click="closeNavDrawer" name="close" class="close-icon close-btn" />
-      
-      <ul @click="closeNavDrawer" tabindex="0" class="w-full nav-drawer__menu text-center">
+      <nuxt-icon
+        @click="closeNavDrawer"
+        name="close"
+        class="close-icon close-btn"
+      />
+
+      <ul
+        @click="closeNavDrawer"
+        tabindex="0"
+        class="w-full nav-drawer__menu text-center"
+      >
         <li><nuxt-link to="/">Home</nuxt-link></li>
         <li>
-          <nuxt-link to="/automated-audio-video-experiences">Experiences</nuxt-link>
+          <nuxt-link to="/automated-audio-video-experiences"
+            >Experiences</nuxt-link
+          >
         </li>
         <li>
           <nuxt-link to="/audio-video-design-philosophy">Philosophy</nuxt-link>
@@ -17,13 +31,22 @@
           <nuxt-link to="/awards-press-recognition">Recognition</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/innovative-audio-visual-technology">Technology</nuxt-link>
+          <nuxt-link to="/innovative-audio-visual-technology"
+            >Technology</nuxt-link
+          >
         </li>
         <li><nuxt-link to="/payment">Payment</nuxt-link></li>
-        <li><a href="https://htacertified.org/home-technology-installation-budget-tool/4413" target="_blank">Budget
-            Calculator</a></li>
+        <li>
+          <a
+            href="https://htacertified.org/home-technology-installation-budget-tool/4413"
+            target="_blank"
+            >Budget Calculator</a
+          >
+        </li>
         <li><nuxt-link to="/contact">Contact</nuxt-link></li>
-
+        <li class="admin-link">
+          <a href="https://admin.frayednot.net" target="_blank">Admin</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -34,7 +57,7 @@ const navDrawerRef = ref(null)
 import { useSwipe } from '@vueuse/core'
 function enableScroll() {
   console.log('enable scroll')
-  window.onscroll = function () { };
+  window.onscroll = function () {}
 }
 function closeNavDrawer() {
   const element = document.getElementById('nav-drawer-toggle')
@@ -46,27 +69,24 @@ function closeNavDrawer() {
 const windowWidth = ref(null)
 
 const handleResize = () => {
-    windowWidth.value = window.innerWidth
+  windowWidth.value = window.innerWidth
 }
 onMounted(() => {
   windowWidth.value = window.innerWidth
   window.addEventListener('resize', handleResize)
-  const { direction } = useSwipe(
-  navDrawerRef, { 
+  const { direction } = useSwipe(navDrawerRef, {
     onSwipe() {
-      if (direction.value === "DOWN" && windowWidth.value < 768) {
-        closeNavDrawer()   
-      } else if (direction.value === "UP" && windowWidth.value >= 768) {
+      if (direction.value === 'DOWN' && windowWidth.value < 768) {
+        closeNavDrawer()
+      } else if (direction.value === 'UP' && windowWidth.value >= 768) {
         closeNavDrawer()
       }
     },
-  }
-)
+  })
 })
 onUnmounted(() => {
-    window.removeEventListener('resize', handleResize)
+  window.removeEventListener('resize', handleResize)
 })
-
 </script>
 <style>
 .nav-drawer {
@@ -126,7 +146,6 @@ onUnmounted(() => {
   }
 
   &__menu {
-
     li {
       transform: translateY(50px);
       opacity: 0;
@@ -139,7 +158,6 @@ onUnmounted(() => {
       @apply my-1;
 
       a {
-
         color: var(--grey);
         font-size: 13px;
         letter-spacing: 0.3em;
@@ -152,7 +170,12 @@ onUnmounted(() => {
         @apply cursor-default;
       }
     }
-
+    .admin-link {
+      a {
+        font-size: 11px;
+        @apply block uppercase py-1 font-bold tracking-widest mt-6 opacity-50;
+      }
+    }
     a:hover {
       letter-spacing: 0.6em;
     }
@@ -174,7 +197,7 @@ onUnmounted(() => {
     }
 
     li:nth-of-type(5) {
-      transition-delay: 0.190s;
+      transition-delay: 0.19s;
     }
 
     li:nth-of-type(6) {
@@ -188,10 +211,13 @@ onUnmounted(() => {
     li:nth-of-type(8) {
       transition-delay: 0.215s;
     }
+    li:nth-of-type(9) {
+      transition-delay: 0.225s;
+    }
   }
 }
 
-#nav-drawer-toggle:checked~.nav-drawer {
+#nav-drawer-toggle:checked ~ .nav-drawer {
   transform: translateX(0%);
 
   .nav-drawer__bg {
@@ -223,4 +249,5 @@ onUnmounted(() => {
   background: rgba(48, 54, 64, 0.4);
   opacity: 0.999999;
   visibility: visible;
-} */</style>
+} */
+</style>
