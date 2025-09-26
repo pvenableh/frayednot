@@ -1,23 +1,30 @@
 <template>
-    <div class="page recognition">
-        <LayoutPageHeader :page="page" :heading="heading" />
-        <div class="page__body pt-12">
-            <div class="page__body-header">
-                <h2 class="page__body-header-title">{{ page.page_header }}</h2>
-                <div v-html="page.page_intro"></div>
-            </div>
-            <div class="page__body-header pb-12">
-                <h2 class="page__body-header-title">{{ page.technology_intro.title }}</h2>
-                <h3 class="uppercase mb-6 page__body-header-subtitle">{{ page.technology_intro.subtitle }}</h3>
-                <div class="mb-6" v-html="page.technology_intro.text"></div>
-                <div class="grid grid-cols-3 gap-1 mt-12">
-                    <img v-for="(image, index) in page.technology_intro.images" :key="index"
-                        :src="imageUrl + image.directus_files_id + '?key=small'" alt="" />
-
-                </div>
-            </div>
+  <div class="page recognition">
+    <LayoutPageHeader :page="page" :heading="heading" />
+    <div class="page__body pt-12">
+      <div class="page__body-header">
+        <h2 class="page__body-header-title">{{ page.page_header }}</h2>
+        <div v-html="page.page_intro"></div>
+      </div>
+      <div class="page__body-header pb-12">
+        <h2 class="page__body-header-title">
+          {{ page.technology_intro.title }}
+        </h2>
+        <h3 class="uppercase mb-6 page__body-header-subtitle">
+          {{ page.technology_intro.subtitle }}
+        </h3>
+        <div class="mb-6" v-html="page.technology_intro.text"></div>
+        <div class="grid grid-cols-3 gap-1 mt-12">
+          <img
+            v-for="(image, index) in page.technology_intro.images"
+            :key="index"
+            :src="imageUrl + image.directus_files_id + '?key=small'"
+            alt=""
+          />
         </div>
-        <!-- <div v-for="(section, index) in page.project_sections" :key="index" class="w-full page__body">
+      </div>
+    </div>
+    <!-- <div v-for="(section, index) in page.project_sections" :key="index" class="w-full page__body">
 
             <div class="page__body-header">
 
@@ -36,22 +43,75 @@
                 :project="project.projects_id" :size="section.project_sections_id.layout" />
 
         </div> -->
-        <div class="w-full shadow-inner my-20 partners-intro">
-            <div class="page__body mx-auto">
-                <div class="page__body-header">
+    <!-- <div class="w-full shadow-inner my-20 partners-intro">
+      <div class="page__body mx-auto">
+        <div class="page__body-header">
+          <h5 class="uppercase page__body-header-subtitle">
+            OUR TECHNOLOGY PARTNERS INCLUDE:
+          </h5>
 
-                    <h5 class="uppercase page__body-header-subtitle">OUR TECHNOLOGY PARTNERS INCLUDE:</h5>
-
-                    <div class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-12 md:gap-12 lg:gap-12 mt-6 mb-20 ">
-                        <a v-for="(partner, index) in page.partners" :key="index" :href="partner.link" target="_blank"
-                            class="flex items-center justify-center partner">
-                            <img :src="imageUrl + partner.logo + '?key=small'" :alt="partner.name" class="transition-all" />
-                        </a>
-                    </div>
-                </div>
-            </div>
+          <div
+            class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-12 md:gap-12 lg:gap-12 mt-6 mb-20"
+          >
+            <a
+              v-for="(partner, index) in page.partners"
+              :key="index"
+              :href="partner.link"
+              target="_blank"
+              class="flex items-center justify-center partner"
+            >
+              <img
+                :src="imageUrl + partner.logo + '?key=small'"
+                :alt="partner.name"
+                class="transition-all"
+              />
+            </a>
+          </div>
         </div>
-        <!-- <div class="page__body mb-20 recognition-intro">
+      </div>
+    </div> -->
+    <div
+      v-if="page.partners_intro"
+      class="w-full shadow-inner mb-20 partners-intro"
+    >
+      <div class="page__body mx-auto">
+        <div class="page__body-header">
+          <h2 v-if="page.partners_intro.title" class="page__body-header-title">
+            {{ page.partners_intro.title }}
+          </h2>
+          <h5
+            v-if="page.partners_intro.subtitle"
+            class="uppercase page__body-header-subtitle"
+          >
+            {{ page.partners_intro.subtitle }}
+          </h5>
+          <div
+            class="relative"
+            v-if="page.partners_intro.text"
+            v-html="page.partners_intro.text"
+          ></div>
+          <div
+            v-if="page.partners_intro.partners.length"
+            class="w-full grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-8 mt-6 mb-20"
+          >
+            <a
+              v-for="(partner, index) in page.partners_intro.partners"
+              :key="index"
+              :href="partner.partners_id.link"
+              target="_blank"
+              class="flex items-center justify-center partner"
+            >
+              <img
+                :src="imageUrl + partner.partners_id.logo + '?key=small'"
+                :alt="partner.partners_id.name"
+                class="drop-shadow-md"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="page__body mb-20 recognition-intro">
             <div class="page__body-header">
                 <h2 v-if="page.recognition_intro.title" class="page__body-header-title">{{ page.recognition_intro.title }}
                 </h2>
@@ -67,7 +127,7 @@
                 </div>
             </div>
         </div> -->
-    </div>
+  </div>
 </template>
 
 <script setup>
@@ -75,67 +135,92 @@ const config = useRuntimeConfig()
 const route = useRoute()
 const heading = ref('Technology')
 const imageUrl = 'https://admin.frayednot.net/assets/'
-const { $directus, $preview } = useNuxtApp();
+const { $directus, $preview } = useNuxtApp()
 
 if ($preview) {
-    const { data: page, pending, error } = await useAsyncData('page', () => {
-        return $directus.items('technology').readOne(1, {
-            fields: [
-                'header_image,title,caption,page_header,page_intro,url,partners.name,partners.link,partners.logo,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,technology_intro.title,technology_intro.subtitle,technology_intro.text,technology_intro.images.directus_files_id,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,partners.name,partners.link,partners.logo,seo.*',
-            ],
-        })
-    })
-}
-const { data: page, pending, error } = await useAsyncData('page', () => {
+  const {
+    data: page,
+    pending,
+    error,
+  } = await useAsyncData('page', () => {
     return $directus.items('technology').readOne(1, {
-        fields: [
-            'header_image,title,caption,page_header,page_intro,url,partners.name,partners.link,partners.logo,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,technology_intro.title,technology_intro.subtitle,technology_intro.text,technology_intro.images.directus_files_id,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,partners.name,partners.link,partners.logo,seo.*',
-        ],
+      fields: [
+        'header_image,title,caption,page_header,page_intro,url,partners.name,partners.link,partners.logo,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,technology_intro.title,technology_intro.subtitle,technology_intro.text,technology_intro.images.directus_files_id,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,partners.name,partners.link,partners.logo,seo.*,partners_intro.title,partners_intro.subtitle,partners_intro.text,partners.partners_id.name,partners_intro.partners.partners_id.link,partners_intro.partners.partners_id.name,partners_intro.partners.partners_id.logo',
+      ],
     })
+  })
+}
+const {
+  data: page,
+  pending,
+  error,
+} = await useAsyncData('page', () => {
+  return $directus.items('technology').readOne(1, {
+    fields: [
+      'header_image,title,caption,page_header,page_intro,url,partners.name,partners.link,partners.logo,recognition_intro.title,recognition_intro.subtitle,recognition_intro.text,recognition_intro.images.directus_files_id,technology_intro.title,technology_intro.subtitle,technology_intro.text,technology_intro.images.directus_files_id,project_sections.project_sections_id.sort,project_sections.project_sections_id.title,project_sections.project_sections_id.sub_title,project_sections.project_sections_id.text,project_sections.project_sections_id.layout,project_sections.project_sections_id.projects.projects_id.sort,project_sections.project_sections_id.projects.projects_id.title,project_sections.project_sections_id.projects.projects_id.description,project_sections.project_sections_id.projects.projects_id.experience,project_sections.project_sections_id.projects.projects_id.category,project_sections.project_sections_id.projects.projects_id.images.directus_files_id,partners.name,partners.link,partners.logo,seo.*,partners_intro.title,partners_intro.subtitle,partners_intro.text,partners.partners_id.name,partners_intro.partners.partners_id.link,partners_intro.partners.partners_id.name,partners_intro.partners.partners_id.logo',
+    ],
+  })
 })
 
 if (page.value.seo) {
-    useHead({
-        title: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
-    })
+  useHead({
+    title: () =>
+      page.value.seo.title ? page.value.seo.title : config.public.seo.title,
+  })
 
-    useSeoMeta({
-        title: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
-        description: () => (page.value.seo.meta_description ? page.value.seo.meta_description : config.public.seo.description),
-        ogDescription: () =>
-            (page.value.seo.meta_description ? page.value.seo.meta_description : config.public.seo.description),
-        ogUrl: () => 'https://frayednot.net' + route.path,
-        ogTitle: () => (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
-        ogImage: () => (page.value.seo.og_image ? imageUrl + page.value.seo.og_image : config.public.seo.image),
-        ogType: 'website',
-        ogSiteName: 'frayednot',
-        twitterTitle: (page.value.seo.title ? page.value.seo.title : config.public.seo.title),
-        twitterDescription: (page.value.seo ? page.value.seo.meta_description : config.public.seo.description),
-        twitterImage: (page.value.seo.og_image ? imageUrl + page.value.seo.og_image : config.public.seo.image),
-        twitterCard: 'summary',
-    })
+  useSeoMeta({
+    title: () =>
+      page.value.seo.title ? page.value.seo.title : config.public.seo.title,
+    description: () =>
+      page.value.seo.meta_description
+        ? page.value.seo.meta_description
+        : config.public.seo.description,
+    ogDescription: () =>
+      page.value.seo.meta_description
+        ? page.value.seo.meta_description
+        : config.public.seo.description,
+    ogUrl: () => 'https://frayednot.net' + route.path,
+    ogTitle: () =>
+      page.value.seo.title ? page.value.seo.title : config.public.seo.title,
+    ogImage: () =>
+      page.value.seo.og_image
+        ? imageUrl + page.value.seo.og_image
+        : config.public.seo.image,
+    ogType: 'website',
+    ogSiteName: 'frayednot',
+    twitterTitle: page.value.seo.title
+      ? page.value.seo.title
+      : config.public.seo.title,
+    twitterDescription: page.value.seo
+      ? page.value.seo.meta_description
+      : config.public.seo.description,
+    twitterImage: page.value.seo.og_image
+      ? imageUrl + page.value.seo.og_image
+      : config.public.seo.image,
+    twitterCard: 'summary',
+  })
 }
 </script>
 <style>
 .partners-intro {
-    background: rgba(162, 162, 162, 0.15);
-    background: rgba(216, 212, 199, 0.25);
+  background: rgba(162, 162, 162, 0.15);
+  background: rgba(216, 212, 199, 0.25);
 
-    a,
-    a:link {
-        img {
-            transition: all 0.4s var(--curve);
-            filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.25));
-        }
+  a,
+  a:link {
+    img {
+      transition: all 0.4s var(--curve);
+      filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.25));
     }
+  }
 
-    a:hover {
-        img {
-            @media (min-width: theme('screens.lg')) {
-                filter: drop-shadow(15px 15px 5px rgba(0, 0, 0, 0.5));
-                transform: scale(1.1);
-            }
-        }
+  a:hover {
+    img {
+      @media (min-width: theme('screens.lg')) {
+        filter: drop-shadow(15px 15px 5px rgba(0, 0, 0, 0.5));
+        transform: scale(1.1);
+      }
     }
+  }
 }
 </style>
