@@ -1,6 +1,7 @@
 import Stripe from 'stripe'
 
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig()
   const query = getQuery(event)
   let total = query.amount
   console.log(query.amount)
@@ -46,9 +47,7 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  const stripe = new Stripe(
-    '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'
-  )
+  const stripe = new Stripe(config.stripeSecretKeyLive)
   // hue sk_test_MEBnHMrFHTpPJsl88qX92GbI00wdGnFKSm
 
   const paymentIntent = await stripe.paymentIntents.create(options)
