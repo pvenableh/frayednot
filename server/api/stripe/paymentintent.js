@@ -2,6 +2,27 @@ import Stripe from 'stripe'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
+
+  // Debug logging
+  console.log(
+    'Runtime config stripeSecretKey:',
+    config.stripeSecretKey ? 'EXISTS' : 'MISSING'
+  )
+  console.log(
+    'Process env STRIPE_SECRET_KEY:',
+    process.env.STRIPE_SECRET_KEY ? 'EXISTS' : 'MISSING'
+  )
+
+  const stripeKey = config.stripeSecretKey || process.env.STRIPE_SECRET_KEY
+  console.log('Final stripe key:', stripeKey ? 'EXISTS' : 'MISSING')
+
+  if (!stripeKey) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Stripe secret key not found in environment variables',
+    })
+  }
+
   const query = getQuery(event)
   let total = query.amount
   console.log(query.amount)
@@ -47,7 +68,7 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  const stripe = new Stripe(config.stripeSecretKeyLive)
+  const stripe = new Stripe(stripeKey)
   // hue sk_test_MEBnHMrFHTpPJsl88qX92GbI00wdGnFKSm
 
   const paymentIntent = await stripe.paymentIntents.create(options)
