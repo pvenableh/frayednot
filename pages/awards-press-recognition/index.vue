@@ -86,32 +86,30 @@
           ></div>
           <div
             v-if="page.recognition_intro.images.length"
-            class="flex items-center justify-around mb-8"
+            class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2 md:gap-4 lg:gap-6 mb-12 mt-6"
           >
             <div
               v-for="(image, index) in page.recognition_intro.images"
               :key="index"
-              class="my-8 p-1 md:p-6 flex items-center justify-center"
-              :class="'w-1/' + page.recognition_intro.images.length"
+              class="my-0.5 lg:my-2"
             >
               <a
                 v-if="image.directus_files_id.location"
                 :href="image.directus_files_id.location"
                 target="_blank"
+                class="w-full h-full flex items-center justify-center"
               >
                 <img
                   :src="imageUrl + image.directus_files_id.id + '?key=small'"
-                  :key="index"
                   :alt="image.directus_files_id.title + ' Award'"
-                  class="inline-block"
+                  class="w-full h-auto"
                 />
               </a>
               <img
                 v-else
                 :src="imageUrl + image.directus_files_id.id + '?key=small'"
-                :key="index"
                 :alt="image.directus_files_id.title + ' Award'"
-                class="inline-block"
+                class="w-full h-auto"
               />
             </div>
           </div>
